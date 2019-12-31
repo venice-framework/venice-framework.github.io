@@ -152,6 +152,44 @@ sup a:hover {
 
 /* ---------------------------------
 
+                intro
+
+------------------------------------ */
+
+header {
+  height: 100vh;
+  background: #edf5e1;
+}
+
+header h1 {
+  font-size: 3rem;
+  line-height: 4rem;
+  padding: 20px 20px;
+}
+
+header p {
+  color: #1e4470;
+  font-family: "Hind", "Open Sans", sans-serif;
+  font-size: 3.5rem;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateY(-50%) translateX(-50%);
+  width: 750px;
+  padding-bottom: 20px;
+  padding-top: 40px;
+}
+
+header h1 img {
+  display: block;
+  width: 30%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 120px 0;
+}
+
+/* ---------------------------------
+
             our team
 
 ------------------------------------ */
