@@ -305,3 +305,442 @@ small {
 #our-team small a {
   color: #9eba2a;
 }
+
+/* ---------------------------------
+
+    responsive design (width)
+
+------------------------------------ */
+
+@media (max-width: 1100px) {
+  #case-study nav {
+    display: none;
+  }
+
+  nav#case-study-mobile ul {
+    margin: 0;
+  }
+
+  nav#site-navigation #case-study-mobile li {
+    margin-left: 0;
+  }
+
+  nav#site-navigation #case-study-mobile li:last-child {
+    margin-bottom: 0;
+  }
+
+  main {
+    padding: 0 75px;
+  }
+
+  section#integration {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #integration article {
+    width: 100vw;
+    text-align: center;
+    padding-bottom: 100px;
+  }
+
+  #integration div.box {
+    width: 100vw;
+    padding: 0 10px 100px 10px;
+  }
+
+  section#case-study {
+    margin: 70px auto;
+  }
+
+  #case-study h2:first-of-type {
+    margin-top: 20px;
+  }
+
+  #flowchart {
+    max-width: 100%;
+    height: auto;
+  }
+
+  #our-team h1 {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 1030px) {
+  #home p {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 90px;
+  }
+}
+
+@media (max-width: 975px) {
+
+  /* section */
+
+  .box {
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .integration {
+    flex-direction: column;
+  }
+
+  .integration a.button {
+    display: inline-block;
+    margin: 1rem auto;
+    padding: 0.4rem;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .integration img {
+    max-width: 360px;
+  }
+
+  .text-box h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .text-box p {
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  #our-team > p {
+    width: 60%;
+  }
+
+  #our-team .individual li {
+    margin: 10px 7px 0;
+  }
+
+  #our-team .individual li img {
+    width: 30px;
+  }
+}
+
+@media (min-width: 1100px) {
+  nav#case-study-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  /* General */
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  /* Logos */
+
+  #crato-logo {
+    width: 40px;
+    top: 18px;
+    right: 40px;
+  }
+
+  #github-logo {
+    cursor: pointer;
+    width: 28px;
+    position: fixed;
+    bottom: 75px;
+    right: 27px;
+  }
+
+  /* Main */
+
+  header h1 {
+    font-size: 2.5rem;
+    padding: 18px 21px;
+    line-height: 2.3rem;
+  }
+
+  #home p {
+    font-size: 2.5rem;
+  }
+
+  section#case-study {
+    width: 100%;
+  }
+
+  #case-study p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  #case-study blockquote p {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+  }
+
+  code,
+  .command {
+    font-size: 0.9rem;
+  }
+
+  pre code {
+    font-size: 1.5vw;
+  }
+
+  #footnotes {
+    word-wrap: break-word;
+  }
+
+  /* Our Team */
+
+  #our-team > p {
+    width: 70%;
+  }
+
+  #our-team .individual li {
+    margin: 10px 5px 0;
+  }
+
+  #our-team .individual li img {
+    width: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* General */
+
+  h1 {
+    font-size: 2.7rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  /* section */
+
+  .integration {
+    flex-direction: column;
+  }
+
+  .text-box h1 {
+    font-size: 2.7rem;
+  }
+
+  .text-box p {
+    font-size: 1.5rem;
+  }
+
+  /* Main */
+
+  #home p {
+    font-size: 2.3rem;
+    padding: 0 60px;
+  }
+
+  section#case-study {
+    margin: 40px auto;
+  }
+
+  /* Our Team */
+
+  #our-team h1 {
+    padding-top: 60px;
+  }
+
+  #our-team > p {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  #our-team > ul {
+    margin-top: 0;
+    padding: 0;
+  }
+
+  #our-team li {
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+  }
+
+  #our-team .individual {
+    padding: 50px 0;
+    border-bottom: 1px solid #fff;
+  }
+
+  #our-team .individual:last-of-type {
+    border-bottom: 0px;
+  }
+
+  #our-team .individual ul {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  #our-team .individual li {
+    margin: 10px 5px;
+  }
+
+  #our-team .individual li img {
+    width: 25px;
+    padding: 3px;
+  }
+
+  #our-team li > img {
+    width: 30vw;
+  }
+}
+
+@media (max-width: 500px) {
+  #home p {
+    font-size: 1.7rem;
+  }
+
+  #case-study img {
+    max-width: 60vw;
+  }
+
+  #our-team .individual ul {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #our-team .individual li {
+    margin: 10px 7px;
+  }
+
+  #our-team .individual li img {
+    width: 30px;
+    padding: 2px;
+  }
+
+  #our-team li > img {
+    width: 35vw;
+  }
+
+  nav#site-navigation ul {
+    font-size: 1.2rem;
+  }
+
+  nav#site-navigation ul li {
+    margin: 10px 0 10px 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  #crato-logo {
+    width: 33px;
+    right: 40px;
+  }
+
+  #github-logo {
+    right: 20px;
+    width: 23px;
+  }
+
+  #toTop-logo {
+    bottom: 20px;
+    width: 23px;
+    right: 20px;
+  }
+
+  #medium-logo {
+    bottom: 20px;
+    right: 20px;
+    width: 23px;
+  }
+
+  /* section */
+
+  .text-box p {
+    font-size: 1.7rem;
+  }
+
+  .text-box h1 {
+    font-size: 2.5rem;
+  }
+
+  main {
+    padding: 0 70px 0 25px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  nav#site-navigation ul {
+    font-size: 1.1rem;
+  }
+
+  nav#site-navigation > ul {
+    margin-top: 20px;
+    padding-bottom: 25px;
+  }
+
+  nav#site-navigation ul li {
+    margin-bottom: 3.5vh;
+  }
+
+  nav#case-study-mobile {
+    margin-top: 1.75vh;
+  }
+
+  #case-study img {
+    max-width: 65vw;
+  }
+
+  #our-team {
+    padding-bottom: 18px;
+  }
+
+  #our-team > p {
+    width: 57%;
+  }
+}
+
+/* ---------------------------------
+
+    responsive design (height)
+
+------------------------------------ */
+
+@media (max-height: 500px) {
+  header {
+    display: flex;
+    align-items: center;
+  }
+
+  header h1 {
+    margin: 0 auto;
+  }
+
+  header h1 img {
+    padding: 0;
+  }
+
+  header p {
+    display: none;
+  }
+}
