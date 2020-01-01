@@ -212,6 +212,186 @@ header h1 img {
   padding: 120px 0;
 }
 
+/* ---------------------------------
+
+            case study
+
+------------------------------------ */
+#side-nav {
+  display: none;
+
+  left: 1rem;
+  position: fixed;
+  top: 17%;
+  transform: translateY(-50%);
+}
+
+#side-nav img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+#case-study nav {
+  display: none;
+  left: 2rem;
+  position: fixed;
+  top: 70%;
+  transform: translateY(-60%);
+}
+
+#case-study nav li {
+  color: #999;
+  font-size: 1.3rem;
+  list-style: circle;
+  margin-bottom: 2vh;
+}
+
+#case-study nav li:last-of-type {
+  margin-bottom: 0;
+}
+
+#case-study nav a {
+  color: #999;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  text-decoration: none;
+  vertical-align: 0.1rem;
+}
+
+#case-study nav a:hover {
+  color: #ed6a40;
+}
+
+#case-study h3,
+#case-study h4,
+#case-study h5,
+#case-study p,
+#case-study pre,
+#case-study ul,
+#case-study ol {
+  margin-bottom: 20px;
+}
+
+#case-study ul ul {
+  margin-bottom: 0px;
+}
+
+#case-study h2 {
+  color: #ed6a40;
+  font-family: "Teko", "Open Sans", sans-serif;
+  margin: 75px auto 20px auto;
+}
+
+#case-study h2:first-of-type {
+  margin-top: 50px;
+}
+
+#case-study h2,
+h3 {
+  letter-spacing: 0.02rem;
+}
+
+#case-study h3,
+#case-study h4,
+#case-study h5 {
+  color: #444343;
+}
+
+#case-study p {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+.img-wrapper {
+  position: relative;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.softened {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+
+  border-radius: 5px;
+}
+
+#case-study .img-wrapper p {
+  font-size: 80%;
+  text-align: center;
+  width: 50%;
+  line-height: 1rem;
+  margin: 0 auto;
+  margin-bottom: 0;
+}
+
+#case-study blockquote p {
+  font-size: 1.3rem;
+}
+
+#case-study blockquote p:first-of-type {
+  font-style: italic;
+}
+
+#case-study blockquote p:last-of-type {
+  margin-bottom: 0;
+}
+
+#case-study li {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  list-style: disc;
+  margin-left: 2rem;
+}
+
+#case-study li code {
+  font-size: 0.8rem;
+}
+
+#case-study ol li code {
+  font-size: 1rem;
+}
+
+#case-study ol li {
+  list-style: decimal;
+}
+
+#case-study .lower-alpha-list li {
+  list-style: lower-alpha;
+}
+
+#case-study .number-list li {
+  list-style: decimal;
+}
+
+#slideshow img {
+  display: none;
+}
+
+#slidehow img.active {
+  display: block;
+}
+
+.buttons {
+  width: 250px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cratoButton {
+  background: #3a7dca;
+  width: 25%;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  padding: 7px;
+  margin-right: 2%;
+
+  border-radius: 8%;
+  border: none;
+}
 
 /* ---------------------------------
 
