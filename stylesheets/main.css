@@ -744,3 +744,44 @@ small {
     display: none;
   }
 }
+
+body {
+    color: #f7f7f7;
+}
+header {
+    background: #262336;
+    color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header p {
+    color: #f7f7f7;
+    font-family: Futura;
+    font-weight: normal;
+    position: initial;
+    transform: none;
+}
+header h1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+header h1 img {
+    width: 100%;
+    padding: 0;
+    max-width: 350px;
+    flex: 100%;
+    margin: 0 auto;
+}
+/* (Writeup) */
+body > pre {
+    color: #262336;
+    font-family: Roboto;
+    font-size: 16px;
+}
+#our-team {
+    background: #262336;
+    color: #f7f7f7;
+}
