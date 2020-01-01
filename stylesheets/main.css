@@ -152,6 +152,30 @@ sup a:hover {
 
 /* ---------------------------------
 
+               images
+
+------------------------------------ */
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+#github-logo {
+  cursor: pointer;
+  width: 35px;
+  position: fixed;
+  top: 35px;
+  right: 35px;
+}
+
+#github-logo:hover {
+  filter: invert(20%);
+}
+
+/* ---------------------------------
+
                 intro
 
 ------------------------------------ */
@@ -187,6 +211,7 @@ header h1 img {
   margin: 0 auto;
   padding: 120px 0;
 }
+
 
 /* ---------------------------------
 
