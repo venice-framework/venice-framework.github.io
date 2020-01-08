@@ -6,7 +6,7 @@
 
 body {
   /*  background-color: #fff;*/
-  color: #282828;
+  color: #262335;
   font-family: "Hind", "Open Sans", sans-serif;
 }
 
@@ -44,14 +44,14 @@ h4 {
 }
 
 .integration:first-of-type {
-  background: #8ee4af;
+  background: #262335;
   padding-top: 20px;
   padding-bottom: 40px;
   color: #f7f7f7;
 }
 
 .integration:nth-of-type(2) {
-  background: #8ec3e4;
+  background: #262335;
   border-bottom: 2px solid #dfe0e2;
   padding-top: 40px;
   padding-bottom: 40px;
