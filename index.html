@@ -128,7 +128,8 @@
 
     <!-- <p>[Diagram from presentation comparing these three options]</p> -->
     <div class="img-wrapper">
-      <img src="images/diagrams/bm-iaas-paas-01.png" alt="Three types of deployment options" />
+      <img src="images/diagrams/deployment-options-compared-1.png" alt="Three types of deployment options with vendor examples" />
+      <img src="images/diagrams/deployment-options-compared-2.png" alt="Detailed comparison showing abstractions" />
     </div>
 
 
@@ -237,7 +238,7 @@
 
     <!-- <p>[Diagram of Mothership sending requests to remote Docker host]</p> -->
     <div class="img-wrapper">
-      <img src="images/diagrams/remote-docker-host.png" alt="Mothership sending a request to a remote docker host" />
+      <img src="images/diagrams/mission-control-to-remote-docker.png" alt="Mothership sending a request to a remote docker host" />
     </div>
 
     <p>So Mothership can use Docker to remotely build and run an isolated container for each application to run inside. [Footnote: Technically, we build images from which containers are run. We're deliberately avoiding going too deep on Docker terminology to keep the discussion general.] The remaining question is how we determine which system and application dependencies to install in each application's container, what command we run to start an application, and how we instruct Docker to do all this.</p>
@@ -259,7 +260,11 @@
 
     <p>Using buildpacks to generate Docker images allowed us to focus on the architecture and features of Mothership, rather than worrying about the details of containerizing each different application type. However, buildpacks are used internally by Heroku to create <em>dynos</em>, not Docker containers. So Mothership requires a system for generating Docker containers from buildpacks.</p>
 
-    <p>[Diagram of buildpack file turning into Docker image]</p>
+    <!-- <p>[Diagram of buildpack file turning into Docker image]</p> -->
+    <div class="img-wrapper">
+      <img src="images/diagrams/buildpacks-to-image.png" alt="Copy code to server and execute buildpacks against them" />
+    </div>
+
 
     <p>To achieve this, we considered an interesting new open-source initiative from Heroku and Pivotal (and recently accepted into the Cloud Native Foundation's Sandbox): Cloud Native Buildpacks. Cloud Native Buildpacks is essentially a specification for how to convert buildpacks into OCI images in a standard way. Unfortunately, at the moment the implementations of this standard are experimental, and the standard itself is undergoing rapid development. While Cloud Native Buildpacks are an exciting new development, we decided that the technology is still too immature to build Mothership on top of.</p>
 
@@ -277,7 +282,11 @@
 
     <p>Clearly, this doesn't scale very well. Depending on the initial size of application node, we will quickly run out of resources for deploying applications (in our testing, entry-level VPS nodes run out of memory once four database-backed applications are deployed). To grow beyond a handful of applications, the PaaS will need to support either <em>vertical</em> or <em>horizontal</em> scaling.</p>
 
-    <p>[diagram of vertically scaling application node. maybe a small server that looks full and an arrow pointing to a bigger server that looks like it has room for more apps]</p>
+    <!-- <p>[diagram of vertically scaling application node. maybe a small server that looks full and an arrow pointing to a bigger server that looks like it has room for more apps]</p> -->
+
+    <div class="img-wrapper">
+      <img src="images/diagrams/vertical-scaling-1.png" alt="Vertically scaling servers can lead to wasteful utilization of resources" />
+    </div>    
 
     <p>To implement vertical scaling, we could add functionality for users to increase the size (RAM, storage, and CPU) of the application node. Unfortunately, vertical scaling can get very costly very quickly, and there are still hard limits on how large you can scale with this approach.</p>
 
@@ -285,7 +294,7 @@
 
     <!-- <p>[fleet diagram]</p> -->
     <div class="img-wrapper">
-      <img src="images/diagrams/fleet-diagram.png" alt="Overview of Mothership's fleet" />
+      <img src="images/diagrams/app-convoy.png" alt="Overview of Mothership's app convoy" />
     </div>
 
     <p>A fleet of application nodes raises some new questions that our PaaS must answer:</p>
@@ -354,7 +363,7 @@
     <!-- <p>[Swarm visualizer diagram showing app and database living on separate nodes. Perhaps animate to show app and database moving around?]</p> -->
 
     <div class="img-wrapper">
-      <img src="images/diagrams/swarm-visualizer.png" alt="Diagram showing app and database living on separate nodes" />
+      <img src="images/diagrams/inter_service_communication.png" alt="Diagram showing app and database living on separate nodes" />
     </div>
 
     <p>Recall that Docker containers are isolated environments that view themselves as complete operating systems. This means that the only way for two Docker containers to communicate is via a network connection. When we're talking about multiple containers running on the same Docker host, this can be accomplished by creating a virtual LAN using a Linux bridge <a href="https://success.docker.com/article/networking#thelinuxbridge">link</a>. A Linux bridge is a virtual implementation of a physical network switch. By default, Docker creates a so-called "bridge" network built on top of Linux bridge technology. All containers created on the host are attached to this network by default, and so are able to communicate with one another. This, in fact, is how Docker Compose connects services in local development.</p>
@@ -377,7 +386,7 @@
 
     <!-- <p>[first diagram from mapping services to URLs section]</p> -->
     <div class="img-wrapper">
-      <img src="images/diagrams/mapping-url-diagram.png" alt="How do you map services to URLs?" />
+      <img src="images/diagrams/mapping-urls.png" alt="How do you map services to URLs?" />
     </div>
 
     <p>First of all, we need to decide which node from our cluster to map <code>http://my-app.my-paas.com</code> to via DNS. Unfortunately, there's no way to know in advance which node <code>my-app</code> will be running on. On first deploy, our orchestrator will start a container on whichever node it deems most appropriate. And as cluster conditions change, the orchestrator may decide to move the container to another node. What's more, if the user horizontally scales their application, there will be multiple <code>my-app</code> containers running on different nodes.</p>
@@ -407,7 +416,7 @@
     <!-- <p>[diagram from presentation of apps connected to proxy network]</p> -->
 
     <div class="img-wrapper">
-      <img src="images/diagrams/apps-connecting-to=proxy-networks.png" alt="Diagram showing apps connected to proxy network" />
+      <img src="images/diagrams/proxy-network-with-two-containers.png" alt="Diagram showing apps connected to proxy network" />
     </div>
 
     <p>By setting things up this way, Mothership ensures all apps are exposed to the proxy service, but <em>not</em> exposed directly to the Internet. And, due to the proxy network's local DNS server (discussed earlier), the proxy service can forward requests to apps by their service name. This means we can configure our proxy with simple mappings like the following:</p>
@@ -420,7 +429,7 @@
 
     <!-- <p>[Diagram of incoming request hitting proxy, going through proxy overlay, and then to app.]</p> -->
     <div class="img-wrapper">
-      <img src="images/diagrams/incoming-proxy-overlay.png" alt="Incoming request hit proxy, go through proxy overlay, and then to app" />
+      <img src="images/diagrams/apps-to-proxy-solved.png" alt="Incoming request hit proxy, go through proxy overlay, and then to app" />
     </div>
 
     <p>[TODO: Dynamic proxy configuration with Dockerflow.]</p>
@@ -441,7 +450,11 @@
 
     <p>A common deployment need is the ability to run post-deployment commands. In particular, most deployments will need the ability to run database migrations once the application code is deployed and the database is provisioned. There are a variety of ways this can be accomplished, but we decided that the simplest and most powerful is to give developers direct terminal access to their deployed applications.</p>
 
-    <p>[gif of opening console and running <code>rake db:migrate</code>]</p>
+    <!-- <p>[gif of opening console and running <code>rake db:migrate</code>]</p> -->
+
+    <div class="img-wrapper">
+      <img src="images/diagrams/gifs/rake-db-migrate.gif" alt="Animation showing database migration inside a console" />
+    </div>
 
     <p>A benefit of this approach is it gives developers an intuitive way to inspect exactly what the deployed source code looks like. This can be very valuable in debugging deploys to ensure that the correct files made it onto Mothership.</p>
 
@@ -461,7 +474,11 @@
 
     <p>Since we're looking for a persistent, bi-directional connection between a browser and our server, the WebSocket protocol is ideal for our use-case. When a user requests to start a terminal session with their app from a browser, the Mothership web client sends a WebSocket request to mission control. Mission control issues a request to the remote Docker host on our orchestrator to create a suitable one-off container, and stream its stdin/stdout over TCP. Mission control then pipes any data coming in from the WebSocket to the container's stdin stream, and any data coming from the container's stdout stream out over the WebSocket. In essence, mission control serves as a proxy between clients and the container's they're interacting with. </p>
 
-    <p>[Diagram from presentation showing client to mission control to container architecture.]</p>
+    <!-- <p>[Diagram from presentation showing client to mission control to container architecture.]</p> -->
+
+    <div class="img-wrapper">
+      <img src="images/diagrams/ws-terminal-print.png" alt="Showing how ephemeral containers are made for console use" />
+    </div>
 
     <p>To accept client input and output, a simple text field will not suffice. Along with regular character data, the shell will send <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape sequences</a> for formatting output that the client must interpret. The Mothership client uses the Xterm.js terminal emulator to enable this. But what about handling and displaying input?</p>
 
@@ -481,7 +498,10 @@
 
     <p>Once again, we use WebSockets to make health statuses visible to user. When a user visits an application's "show" page, the web client establishes a WebSocket connection with mission control. Mission control then sets a timeout that periodically checks with the orchestrator for application restarts, and sends the result (<code>health</code> or <code>unhealth</code>) to the client over the WebSocket. This result is rendered client-side with a dynamic badge.</p>
 
-    <p>[Screenshot of healthy and unhealthy badges.]</p>
+    <div class="img-wrapper">
+      <img src="images/diagrams/health-checks.png" alt="Showing dynamically generated health check buttons that say healthy or unhealthy" />
+    </div>
+
 
     <h4>4.5.3 Service Logs</h4>
 
