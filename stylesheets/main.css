@@ -222,7 +222,7 @@ img {
   height: 100vh;
   background: linear-gradient(180deg, #382D6E, #262335);
   position: relative;
-  min-height: 600px;
+  min-height: 800px;
   z-index: 1;
 }
 
