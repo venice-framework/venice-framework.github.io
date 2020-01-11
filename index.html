@@ -249,7 +249,11 @@
 
     <p>Clearly, this doesn't scale very well. Depending on the initial size of application node, we will quickly run out of resources for deploying applications (in our testing, entry-level VPS nodes run out of memory once four database-backed applications are deployed). To grow beyond a handful of applications, the PaaS will need to support either <em>vertical</em> or <em>horizontal</em> scaling.</p>
 
-    <p>[diagram of vertically scaling application node. maybe a small server that looks full and an arrow pointing to a bigger server that looks like it has room for more apps]</p>
+    <!-- <p>[diagram of vertically scaling application node. maybe a small server that looks full and an arrow pointing to a bigger server that looks like it has room for more apps]</p> -->
+
+    <div class="img-wrapper">
+      <img src="images/diagrams/vertical-scaling-1.png" alt="Vertically scaling servers can lead to wasteful utilization of resources" />
+    </div>    
 
     <p>To implement vertical scaling, we could add functionality for users to increase the size (RAM, storage, and CPU) of the application node. Unfortunately, vertical scaling can get very costly very quickly, and there are still hard limits on how large you can scale with this approach.</p>
 
