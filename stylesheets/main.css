@@ -89,7 +89,7 @@ p > code {
   width: 50vw;
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 2rem;
   align-items: center;
 }
 
@@ -321,6 +321,10 @@ header nav ul li img {
   color: #ed6a40;
 }
 
+#case-study a {
+  color: #D53A84;
+}
+
 #case-study h3,
 #case-study h4,
 #case-study h5,
@@ -374,11 +378,6 @@ h3 {
 
 .img-wrapper img {
   max-width: 100%;
-}
-
-.softened {
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
 }
 
 #case-study .img-wrapper p {
