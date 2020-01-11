@@ -135,6 +135,16 @@ p > code {
   box-shadow: 0 0 4px #c02a72;
 }
 
+.button-link {
+  color: #D53A84;
+  border: 1px solid transparent;
+  background: transparent;
+}
+
+.button.button-link:hover {
+  background: #ececec;
+}
+
 .button-wide {
   padding: 12px 50px;
 }
@@ -466,27 +476,36 @@ h3 {
 }
 
 .buttons {
-  width: 250px;
   margin: 0 auto;
   text-align: center;
 }
 
+.buttons .button {
+  margin-left: 8px;
+  margin-right: 8px;
+}
 /* ---------------------------------
 
             our team
 
 ------------------------------------ */
 
-footer {
+footer,
+.team-wrapper {
   background: linear-gradient(180deg, #382D6E, #262335);
   color: #f7f7f7;
 }
 
-.footer-backdrop {
+.footer-backdrop,
+.team-backdrop {
   background: url('../images/icons/stars.svg');
   background-position: center center;
   background-repeat: repeat repeat;
   background-size: contain;
+}
+
+.team-backdrop {
+  height: 100%;
 }
 
 #our-team {
@@ -1044,4 +1063,14 @@ hr.minor {
 
 .flex-float-right {
   margin-left: auto;
+}
+
+.team-wrapper {
+  min-height: 100vh;
+}
+
+.lower-cta {
+  padding-top: 100px;
+  margin: 0 auto;
+  text-align: center;
 }
