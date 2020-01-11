@@ -111,16 +111,32 @@ p > code {
 }
 
 .button {
-  padding: 25px 50px;
+  padding: 12px 25px;
   background: #fff;
   color: #35363a;
-  text-transform: uppercase;
-  font-size: 24px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
-  line-height: 34px;
   text-decoration: none;
+  display: inline-block;
+}
+
+.button-primary {
+  background: #D53A84;
+  border-color: #D53A84;
+  color: #f7f7f7;
+  box-shadow: 0 0 4px #D53A84;
+}
+
+.button.button-primary:hover {
+  background: #c02a72;
+  color: #ececec;
+  border-color: #c02a72;
+  box-shadow: 0 0 4px #c02a72;
+}
+
+.button-wide {
+  padding: 12px 50px;
 }
 
 .button:hover {
@@ -178,17 +194,13 @@ img {
   max-width: 800px;
 }
 
-#github-logo {
-  cursor: pointer;
-  width: 35px;
-  position: fixed;
-  top: 35px;
-  right: 35px;
-  z-index: 1;
+.github {
+  width: 32px;
+  transition: 200ms ease filter;
 }
 
-#github-logo:hover {
-  filter: invert(20%);
+.github:hover {
+  filter: invert(25%);
 }
 
 /* ---------------------------------
@@ -197,7 +209,7 @@ img {
 
 ------------------------------------ */
 
-header {
+#home {
   height: 100vh;
   background: linear-gradient(180deg, #382D6E, #262335);
   position: relative;
@@ -211,33 +223,46 @@ header p {
   font-size: 24px;
   position: initial;
   transform: none;
+  margin-bottom: 1rem;
 }
 
-header nav {
+nav {
   display: block;
-  padding: 24px 0;
+  padding: 25px 0;
 }
 
-header nav ul {
+nav ul {
   display: flex;
   align-items: center;
+  padding-left: 25px;
 }
 
-header nav ul li {
-  flex: 1;
+nav ul li {
   text-align: center;
+  margin-right: 50px;
 }
 
-header nav ul li a {
+nav ul li a {
   color: #f7f7f7;
   text-decoration: none;
   font-size: 19px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
 }
 
-header nav ul li img {
+nav ul li a.active,
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+nav ul li img {
   width: 72px;
   height: auto;
+}
+
+.header-short {
+  background: linear-gradient(-90deg, #382D6E, #262335);
 }
 
 .banner {
@@ -263,6 +288,11 @@ header nav ul li img {
   text-transform: uppercase;
   font-family: 'Squada One';
   font-size: 6rem;
+}
+
+.banner-cta {
+  margin-top: 6rem;
+  font-size: 19px;
 }
 
 #overview {
@@ -340,7 +370,6 @@ header nav ul li img {
 }
 
 #case-study h2 {
-  color: #ed6a40;
   font-family: "Lato", "Open Sans", sans-serif;
   margin: 75px auto 20px auto;
 }
@@ -683,22 +712,6 @@ small {
     font-size: 1.3rem;
   }
 
-  /* Logos */
-
-  #crato-logo {
-    width: 40px;
-    top: 18px;
-    right: 40px;
-  }
-
-  #github-logo {
-    cursor: pointer;
-    width: 28px;
-    position: fixed;
-    bottom: 75px;
-    right: 27px;
-  }
-
   /* Main */
 
   #home p {
@@ -782,6 +795,10 @@ small {
 
   .text-box p {
     font-size: 1.5rem;
+  }
+
+  nav ul li {
+    margin-right: 25px;
   }
 
   /* Main */
@@ -890,16 +907,6 @@ small {
 }
 
 @media (max-width: 400px) {
-  #crato-logo {
-    width: 33px;
-    right: 40px;
-  }
-
-  #github-logo {
-    right: 20px;
-    width: 23px;
-  }
-
   #toTop-logo {
     bottom: 20px;
     width: 23px;
@@ -967,7 +974,7 @@ small {
 ------------------------------------ */
 
 @media (max-height: 500px) {
-  header {
+  #home {
     display: flex;
     align-items: center;
   }
@@ -987,11 +994,6 @@ hr.minor {
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
-}
-
-#case-study h1,
-#case-study h2 {
-  color: #d53a84;
 }
 
 #case-study {
@@ -1029,6 +1031,7 @@ hr.minor {
 .planet-spacer-bottom {
   background: linear-gradient(0, #d8d8d8, #f7f7f7);
   border-radius: 0 0 3px 3px;
+  margin-top: -1px;
 }
 
 .header-backdrop {
@@ -1037,4 +1040,8 @@ hr.minor {
   background-repeat: repeat repeat;
   background-size: contain;
   height: 100%;
+}
+
+.flex-float-right {
+  margin-left: auto;
 }

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mothership</title>
+
+    <link rel="stylesheet" href="stylesheets/reset.css" />
+    <link rel="stylesheet" href="stylesheets/main.css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicons/favicon-16x16.png">
+    <link rel="manifest" href="images/icons/favicons/site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code|Lato:400,700|Squada+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <header class="header-short">
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">
+              <img src="images/logos/mothership-logo.svg" />
+            </a>
+          </li>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li><a href="case-study.html" class="active">Case Study</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li class="flex-float-right">
+              <a href="https://github.com/mothership-paas/mothership" target="_blank">
+              <img
+                src="images/logos/github-mark-light.png"
+                alt="Mothership GitHub"
+                class="github"
+              />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <main>
+       <section id="case-study">
+       <h1>Case Study</h1>
+
+       <div id="side-nav">
+         <img src="images/logos/mothership-logo.png" alt="Mothership logo" />
+       </div>
+
+       <h2 id="introduction">1 Introduction</h2>
+
+       <p>Mothership is an open-source, platform-as-a-service (PaaS) that enables teams to easily deploy and manage small applications. It uses a multi-tenant, distributed architecture, the core of which is a Node.js application that directs a cluster of nodes on which deployed applications run. Mothership abstracts away the inherent complexities of deploying applications to production: users simply provide Mothership with an application's source code, and it takes care of provisioning servers, packaging the code, and booting the app under a live URL. This provides the benefits that have made proprietary, third-party PaaS's like Heroku popular, while allowing teams to retain full control over their deployment platform. It is the ideal solution for teams looking to deploy small, internal-facing applications, without wasting valuable engineering time.</p>
+
+       <p>To build Mothership, we had to solve a host of interesting engineering challenges: creating a scalable, multi-tenant application environment, packaging applications into secure isolated environments, scheduling resources, handling service discovery, as well as providing the essential features for managing deployed applications.</p>
+
+       <p>In this case study, we discuss each of these challenges in turn, as well as how we solved them. But first, we take a step back and explain what an open-source PaaS is and where it lies on the spectrum of deployment options.</p>
+
+       <h2 id="what-is-a-paas">2 What is a Platform as a Service</h2>
+
+       <p>At its core, deploying a web application requires running a physical server with a public IP address, mapping URLs to that address, installing operating system dependencies and runtimes, transferring source code to the server, installing application dependencies, and starting the application listening on an appropriate port. There are three primary options for accomplishing these tasks: "bare metal" deployments, infrastructure as a service deployments, and platform as a service deployments. These options are defined by the level of abstraction at which they require developers to operate, and each is best suited to different use-cases.</p>
+
+       <!-- <p>[Diagram from presentation comparing these three options]</p> -->
+       <div class="img-wrapper">
+         <img src="images/diagrams/deployment-options-compared-1.png" alt="Three types of deployment options with vendor examples" />
+         <img src="images/diagrams/deployment-options-compared-2.png" alt="Detailed comparison showing abstractions" />
+       </div>
+
+
+       <h3>2.1 PaaS</h3>
+
+       <p>A PaaS builds on top of IaaS and offers another abstraction: a <em>platform</em> in which a user's application can run. Under this model, developers no longer need to think about OS-level concerns &#8211; they simply provide the PaaS with their application source code, and the PaaS creates an environment in which the code runs. With a PaaS, application developers are free to focus exclusively on application-level concerns &#8211; which, of course, is what they do best.</p>
+
+       <p>Most PaaS offerings are proprietary. A proprietary PaaS is a third-party service provider built on top of an IaaS provider. For example, developers pay Heroku a monthly fee to host their applications, and behind the scenes Heroku manages and scales a fleet of virtual servers provided by AWS's EC2 service. The benefits of this model are obvious: a third-party is responsible for all lower-level concerns, allowing developers to work at a high-level of abstraction.</p>
+
+       <p>The downside, however, is that application deployment is now dependent on the business models of both the PaaS provider and the IaaS provider, and there are more parties you need to trust with your data and code. While often a worthwhile tradeoff, this does present potential business risks.</p>
+
+       <h4>2.1.1 Open-Source PaaS</h4>
+
+       <p>One way of mitigating these risks is with an <em>open-source</em> PaaS. Because it is open-source, control of the platform remains with the developers using it. This confers some interesting benefits:</p>
+
+       <ul>
+       <li><em>Control:</em> Application developers retain control over the platform, and so are not subject to the business decisions of a third-party provider</li>
+       <li><em>Provider Agnostic:</em> Application developers are free to move their PaaS to different IaaS providers as needed</li>
+       <li><em>Trust:</em> Application developers no longer need to entrust a third-party PaaS provider with their data and source code</li>
+       <li><em>Other OSS Benefits:</em> Application developers are free to audit the PaaS source code, patch bugs, or fork and customize to their needs</li>
+       </ul>
+
+       <p>Of course, there are also some downsides. The most significant difference between a proprietary and open-source PaaS is the management of the PaaS itself. With a proprietary PaaS, the provider manages the platform, but with an open-source PaaS, the development team using the PaaS is also responsible for managing it. This includes things like initially setting up the PaaS, and horizontally scaling it as the number of deployed applications grows.</p>
+
+       <p>Additionally, an open-source PaaS is not likely to offer feature parity with a mature proprietary PaaS. Nor will an open-source PaaS be able to offer the same level of up-time and scalability for large or mission-critical applications (or, at least, not without significant maintenance efforts from developers).</p>
+
+       <p>So when do the tradeoffs of an open-source PaaS make sense? To our minds, a primary use-case is for teams needing to quickly deploy small applications for internal use. In this case, eliminating a third-party provider and their business decisions keeps the deployment platform predictable, a key benefit for apps that are not primary profit centers. As long it offers smooth implementations of the right features, an open-source PaaS is very appealing in this case.</p>
+
+       <h2 id="enter-mothership">3 Enter Mothership</h2>
+
+       <p>We designed Mothership for easy deployment of small, internal-facing applications. To do so, we began with the following high-level goals:</p>
+
+       <ol>
+       <li>Mothership should provide centralized interface for teams to see and manage their deployed applications, via either a web or command-line interface</li>
+       <li>Mothership should support for deploying database-backed applications written in a variety of popular languages and frameworks, without requiring knowledge of server configuration, networking, or containerization</li>
+       <li>Mothership should allow easy application management: running console commands against apps, setting environment variables, monitoring app health, viewing service logs, and performing app database backups/restores</li>
+       <li>Mothership's interface should be familiar to users of proprietary PaaS's like Heroku, Elastic Beanstalk, or Google App Engine</li>
+       </ol>
+
+       <p>Since an open-source PaaS also requires some administration, we had three goals for the experience of managing Mothership:</p>
+
+       <ol>
+       <li>It should be easy to get Mothership up and running for the first time</li>
+       <li>It should be easy to horizontally scale Mothership as the number deployed applications grows</li>
+       <li>Mothership's core architecture should be IaaS agnostic</li>
+       </ol>
+
+       <p>In the remaining sections, we discuss the challenges that arose in architecting a system to meet these goals, and how we solved them.</p>
+
+       <h2 id="building-mothership">4 Building Mothership</h2>
+
+       <h3>4.1 Tenancy</h3>
+
+       <p>One of the fist questions that we confronted was where deployed applications should live. A common way of doing manual deploys on to IaaS is to first provision a new VPS, copy over the source code, and boot up the app server. On this approach, there is one application per node. This is a <em>single tenant</em> model, and it offers several benefits:</p>
+
+       <ul>
+       <li>Routing requests to individual apps is easy, since each app lives on its own server with a static IP address</li>
+       <li>Each application has access to a predictable amount of RAM, storage, and compute resources</li>
+       <li>Easy isolation: each app is on its own node, so there is no concern of app dependency conflicts or security breaches between apps</li>
+       </ul>
+
+       <p>It is possible to design a PaaS with a single-tenant architecture &#8211; in fact, an early version of Mothership took exactly this approach:</p>
+
+       <!-- <p>[Diagram of Mothership server with connections to a bunch of VPS's each housing an app]</p> -->
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/single-tenant.png" alt="One app per VPS instance" />
+       </div>
+
+       <p>Unfortunately, there are two significant downsides to this approach:</p>
+
+       <ul>
+       <li>Speed: provisioning a new VPS for each new app significantly slows down application deployment</li>
+       <li>Resource utilization: small, internal-facing applications are unlikely to ever need the full resources of even a modest VPS &#8211; this means we would not be fully utilizing the resources we're paying for</li>
+       </ul>
+
+       <p>While the speed penalty is annoying, the resource utilization issue is a show-stopper for our use-case. A single-tenancy PaaS for small applications is extremely wasteful and would be far too expensive.</p>
+
+       <p>The alternative is a <em>multi-tenant architecture:</em></p>
+
+       <!-- <p>[Diagram of Mothership server with connections to a single VPS with multiple apps inside it]</p> -->
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/multi-tenant.png" alt="Multiple apps per vps instance" />
+       </div>
+
+       <p>This is the right model for our use-case, and the above diagram represents the core architecture of Mothership. But designing a multi-tenancy architecture introduces significant challenges that complicate the picture.</p>
+
+       <h3>4.2 Application Packaging</h3>
+
+       <p>Now that we have multiple applications running on a single VPS, we have some problems. It is a major security vulnerability for all applications to share a single filesystem (ask anyone who ran a WordPress site on a shared host back in the 2000s) &#8211; that would mean if one application is compromised, all others are as well. Additionally, applications dependencies can come into conflict. What we need is a way to create an isolated environment for each application, but where we can efficiently run multiple environments on a single node.</p>
+
+       <p>As it happens, there is a robust solution for exactly this problem: containers. Containers provide isolated environments that appear to be unique OS instances from the inside, but which in fact share the resources of the host OS. This technology is made possible by low-level Linux features such as cgroups, union mount filesystems, and network namespaces. If we run each application inside of a container, it will be able to install its own dependencies and will not be able to interact with other applications, which is exactly what we want.</p>
+
+       <p>There are various containerization technologies available, but the dominant implementation is from Docker. We decided to use Docker for Mothership's containerization stack because of its ample documentation, ease-of-use, and vast ecosystem. Equally important is Docker's <em>client-server architecture</em>. Docker has three main components:</p>
+
+       <ol>
+       <li>The Docker Engine, which is a server that typically runs as a daemon on a so-called "Docker host"</li>
+       <li>The Docker REST API, which clients can use to issue Docker commands to a Docker host</li>
+       <li>The Docker CLI, which uses the REST API to interact with whatever Docker host it is connected to</li>
+       </ol>
+
+       <p>From the perspective of most users, Docker just is the CLI. When you install Docker locally, a local Docker daemon is started and the CLI transparently connects to it via a Unix domain socket. It's easy to miss the fact you are in fact using a client that issues API requests to a server. But that's what is happening under the hood, and it means that a Docker client can just as easily connect to a <em>remote</em> Docker host.</p>
+
+       <p>Because the Mothership application &#8211; which is in charge of deploying and managing applications &#8211; runs on a different VPS from the one in which application containers run, it needs the ability to issue commands to a remote Docker host:</p>
+
+       <!-- <p>[Diagram of Mothership sending requests to remote Docker host]</p> -->
+       <div class="img-wrapper">
+         <img src="images/diagrams/mission-control-to-remote-docker.png" alt="Mothership sending a request to a remote docker host" />
+       </div>
+
+       <p>So Mothership can use Docker to remotely build and run an isolated container for each application to run inside. [Footnote: Technically, we build images from which containers are run. We're deliberately avoiding going too deep on Docker terminology to keep the discussion general.] The remaining question is how we determine which system and application dependencies to install in each application's container, what command we run to start an application, and how we instruct Docker to do all this.</p>
+
+       <p>Early versions of Mothership supported only Rack-compliant applications written in the latest version of Ruby. Generating an appropriate container for such applications was fairly straightforward:</p>
+
+       <ol>
+       <li>Install the latest version of Ruby inside the container</li>
+       <li>Copy the app source code into the container</li>
+       <li>Run <code>bundle install</code> inside the container to install app dependencies</li>
+       <li>Start the Puma app server (a Rack compliant app server that can also serve static assets)</li>
+       </ol>
+
+       <p>We used a custom Dockerfile to give these instructions to Docker: a Dockerfile is simply an imperative set of instructions for generating a Docker container. It was easy enough to make Mothership more flexible by checking the source code for a specific Ruby version and dynamically adjusting the Dockerfile. But a key goal of Mothership was to handle multiple languages and frameworks.</p>
+
+       <p>One way of handling this is to create a custom Dockerfile for each language. However, this approach quickly gets unmanageable: it is brittle, requires deep understanding of the needs of applications written in different languages, and requires constant maintenance. While possible, this approach was not feasible for our small team. A better solution comes from Heroku: the <em>buildpack</em>. </p>
+
+       <p>Like a Dockerfile, a buildpack contains a set of instructions for generating a suitable environment in which an application can run. The benefit of buildpacks, however, is that there are well-tested, open-source buildpacks that support applications written in many of the most popular languages and frameworks. Additionally, there are standard ways of examining source code and determining which buildpack is appropriate. Although they originated for use within Heroku's proprietary system, at this point they are effectively an industry standard.</p>
+
+       <p>Using buildpacks to generate Docker images allowed us to focus on the architecture and features of Mothership, rather than worrying about the details of containerizing each different application type. However, buildpacks are used internally by Heroku to create <em>dynos</em>, not Docker containers. So Mothership requires a system for generating Docker containers from buildpacks.</p>
+
+       <!-- <p>[Diagram of buildpack file turning into Docker image]</p> -->
+       <div class="img-wrapper">
+         <img src="images/diagrams/buildpacks-to-image.png" alt="Copy code to server and execute buildpacks against them" />
+       </div>
+
+
+       <p>To achieve this, we considered an interesting new open-source initiative from Heroku and Pivotal (and recently accepted into the Cloud Native Foundation's Sandbox): Cloud Native Buildpacks. Cloud Native Buildpacks is essentially a specification for how to convert buildpacks into OCI images in a standard way. Unfortunately, at the moment the implementations of this standard are experimental, and the standard itself is undergoing rapid development. While Cloud Native Buildpacks are an exciting new development, we decided that the technology is still too immature to build Mothership on top of.</p>
+
+       <p>Fortunately, the long-standing open-source project Herokuish offers a reliable way of generating Docker images from buildpacks. In our testing, Herokuish was very reliable for the types of applications Mothership is designed for, and so we built it into Mothership.</p>
+
+       <p>With a solid containerization strategy in place, the next challenges to consider concern resource scheduling.</p>
+
+       <h3>4.3 Resource Scheduling</h3>
+
+       <p>Recall that our current architecture looks like the following:</p>
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/multi-tenant.png" alt="Multiple apps per vps instance" />
+       </div>
+
+       <p>Clearly, this doesn't scale very well. Depending on the initial size of application node, we will quickly run out of resources for deploying applications (in our testing, entry-level VPS nodes run out of memory once four database-backed applications are deployed). To grow beyond a handful of applications, the PaaS will need to support either <em>vertical</em> or <em>horizontal</em> scaling.</p>
+
+       <!-- <p>[diagram of vertically scaling application node. maybe a small server that looks full and an arrow pointing to a bigger server that looks like it has room for more apps]</p> -->
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/vertical-scaling-1.png" alt="Vertically scaling servers can lead to wasteful utilization of resources" />
+       </div>
+
+       <p>To implement vertical scaling, we could add functionality for users to increase the size (RAM, storage, and CPU) of the application node. Unfortunately, vertical scaling can get very costly very quickly, and there are still hard limits on how large you can scale with this approach.</p>
+
+       <p>For this reason, Mothership is designed to scale horizontally. Instead of a single application node, Mothership supports an arbitrary-sized <em>fleet</em> of application nodes. As nodes fill up, whoever is in charge of managing the PaaS can simply request that Mothership add another node to the fleet.</p>
+
+       <!-- <p>[fleet diagram]</p> -->
+       <div class="img-wrapper">
+         <img src="images/diagrams/app-convoy.png" alt="Overview of Mothership's app convoy" />
+       </div>
+
+       <p>A fleet of application nodes raises some new questions that our PaaS must answer:</p>
+
+       <ul>
+       <li>Which node should we place newly deployed applications on?</li>
+       <li>Which node is a particular application running on?</li>
+       <li>If a node is added to the fleet, should we rebalance application distribution?</li>
+       <li>If a node crashes, how do we redistribute its applications on to other nodes?</li>
+       </ul>
+
+       <h4>4.3.1 Container Orchestration</h4>
+
+       <p>These are (some of the) questions of <a href="https://blog.newrelic.com/engineering/container-orchestration-explained/"><em>container orchestration</em></a>. The standard way of addressing them is by adding a <em>container orchestrator</em> to the system. </p>
+
+       <p>To understand container orchestrators, we need to introduce the concept of a <em>service</em>. When, for example, we deploy a simple Node application to Mothership, it is ultimately run as a container. But the particular running container is not to be <em>identified</em> with the application &#8211; it is merely an ephemeral <em>instance</em> of the application. If a container crashes, we can start a new container and the application lives on. The application is a <em>service</em>.</p>
+
+       <p>The service is one of the key abstractions provided by a container orchestrator. We tell the container orchestrator which services should be on our system, and the container orchestrator is responsible for starting appropriate containers and distributing them amongst the nodes. If a container dies, the orchestrator must discover this (typically via heartbeat checks) and start a new container. It is also responsible keeping track of available nodes and how to network with them. [Footnote: A container orchestrator has several other critical responsibilities, as we'll see in the next section on service discovery.]</p>
+
+       <p>While it is certainly possible to write your own container orchestrator, that would be a bit like an application developer writing their own HTTP server &#8211; probably not the right call. The two dominant container orchestrators are Docker Swarm and Kubernetes. [Footnote: Officially, Docker Swarm was a separate product from Docker that is now deprecated, while <em>Swarm Mode</em> is the current container orchestrator built into Docker as of v1.12. Whenever we say "Docker Swarm", we are referring to "Docker in Swarm Mode."] We elected to use Docker Swarm for Mothership's container orchestration for several reasons:</p>
+
+       <ul>
+       <li>It is built into Docker</li>
+       <li>It has a relatively low learning curve for anyone familiar with Docker</li>
+       <li>We can interact with it directly via the Docker REST API</li>
+       <li>It handles 95% of our use-case out of the box, and a little elbow grease on our part took care of the remaining 5% (see Service Discovery, below)</li>
+       </ul>
+
+       <p>The three key concepts in Docker Swarm are <em>nodes</em>, <em>services</em>, and <em>tasks</em>. For our purposes, a node is a VPS that is connected to the swarm and has Docker installed. There are two types of nodes: <em>worker</em> nodes and <em>manager</em> nodes. Worker nodes are only responsible for housing running containers, while manager nodes are responsible for the actual container orchestration work described above. [Footnote: Manager nodes in Docker Swarm are convenient in that they can server dual-duty as worker nodes. This makes it possible to have a cluster with a single node, which is how Mothership operates on first setup.]</p>
+
+       <p>We introduced the concept of a service earlier, and noted that they are instantiated by containers. In Docker Swarm, the containers that instantiate a service are called tasks. [Footnote: There is a subtle distinction between a task and a container that is immaterial to the present discussion.] To deploy a service to the swarm, we describe the service to the manager node and how many tasks the service should have. The manager node then assigns the tasks to the worker nodes. Worker nodes keep track of the state of the tasks assigned to them &#8211; if a container dies, the worker must notify the manager node so that it can decide what to do.</p>
+
+       <p>Let's make this discussion less abstract with an example. When a user deploys, e.g. a Node app onto Mothership, Mothership uses a buildpack to generate an appropriate Docker image for the app. Then, using remote API calls, it tells the manager node from the application fleet that there should be a new service, and which Docker image should be used to start tasks for that service. The manager node then inspects the state of its nodes and assigns the service task to an available node. The deployed Node app is now running on that node.</p>
+
+       <p>Suppose something goes wrong and the Node app crashes and shuts down. This means the container also shuts down. All of a sudden, our application is no longer running. The worker node will quickly discover that the task it was assigned is no longer running, and it will inform the manager node. The manager node knows that we requested one task be kept available for this service, and so it will once again assign that task to an available node. Within seconds, our Node app is back up and running.</p>
+
+       <h4>4.3.2 App Services and Database Services</h4>
+
+       <p>Mothership supports database-backed applications. While it is technically possible to have the application and database running inside of a single container, this violates the Docker model of <a href="https://runnable.com/docker/rails/run-multiple-processes-in-a-container">single-process containers</a>. Instead, when a users requests a database for an application, we create a separate Postgres image and instruct the manager node to create a new database service. How application services are able to communicate with their associated database service is covered below in the Service Discovery section. This keeps applications and databases decoupled, and allows for easy application scaling. [Footnote: Since containers are ephemeral, but database data is persistent, we make use of Docker volumes to persist database data.]</p>
+
+       <h4>4.3.3 Application scaling</h4>
+
+       <p>When we describe a service to the manager, we can stipulate how many tasks we want for the service. The result is as many containers running as we requested. This works best for stateless services. Fortunately, web applications are inherently stateless, so horizontally scaling apps on Mothership is as simple as issuing a single API request to the manager node. While not essential to our use-case of deploying small, internal-facing applications, the implementation was so trivial that we added the feature. Users of Mothership can scale out their apps by simply requesting an increased number of instances.</p>
+
+       <p>Now that we know how to distribute our services among our fleet using Docker Swarm, we turn to another set of challenges.</p>
+
+       <h3>4.4 Service Discovery</h3>
+
+       <p>Now that we have a container orchestrator dynamically distributing tasks across our fleet of application nodes, we have two interesting problems to solve:</p>
+
+       <ul>
+       <li>How do services talk to one another? In particular, how does an app talk to its database?</li>
+       <li>How do we route incoming requests from the Internet to the appropriate service?</li>
+       </ul>
+
+       <p>These are problems of <em>service discovery:</em></p>
+
+       <blockquote>
+       <p>[A] modern microservice-based application typically runs in a virtualized or containerized environment where the number of instances of a service and their locations changes dynamically. Consequently, you must implement a mechanism that enables the clients of service to make requests to a dynamically changing set of ephemeral service instances. <a href="https://microservices.io/patterns/server-side-discovery.html">link</a></p>
+       </blockquote>
+
+       <h4>4.4.1 Inter-Service Communication</h4>
+
+       <p>Application services need to be able to communicate with their associated database services. The trouble is, the tasks for an application's database are dynamically allocated across a cluster of nodes. In Docker Swarm, there is no guarantee that the tasks for an application and its database are running on the same node. What's more, both the IP address of the database container itself, as well as the IP address of its host node, can change at any time.</p>
+
+       <!-- <p>[Swarm visualizer diagram showing app and database living on separate nodes. Perhaps animate to show app and database moving around?]</p> -->
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/inter_service_communication.png" alt="Diagram showing app and database living on separate nodes" />
+       </div>
+
+       <p>Recall that Docker containers are isolated environments that view themselves as complete operating systems. This means that the only way for two Docker containers to communicate is via a network connection. When we're talking about multiple containers running on the same Docker host, this can be accomplished by creating a virtual LAN using a Linux bridge <a href="https://success.docker.com/article/networking#thelinuxbridge">link</a>. A Linux bridge is a virtual implementation of a physical network switch. By default, Docker creates a so-called "bridge" network built on top of Linux bridge technology. All containers created on the host are attached to this network by default, and so are able to communicate with one another. This, in fact, is how Docker Compose connects services in local development.</p>
+
+       <p>The advantage of this networking model is security. By communicating over a virtual LAN instead of exposing ports on the Internet, containers remain isolated from the outside world. We want this same level of security for our application and database containers. A Linux bridge, however, cannot help us here for the simple reason that communication over a virtual Linux switch is limited to a single Linux host, while our containers are distributed across a many nodes.</p>
+
+       <p>Instead, Mothership makes use of an <em>overlay network</em> for connecting services distributed across the fleet. Ultimately, the nodes in our fleet are not connected to each other over a physical LAN &#8211; they must communicate over the Internet. But, by using Linux VXLAN technology, it is possible to create a <em>virtual</em> layer 2 subnet that spans a distributed layer 3 physical network (i.e., the Internet). <a href="https://www.juniper.net/us/en/products-services/what-is/vxlan/">link</a> This is accomplished by tunneling layer 2 Ethernet frames inside of layer 3 UDP packets. This virtual LAN <em>overlays</em> the underlying physical network, giving us the isolation of a layer 2 subnet even though our containers (or their host nodes) are not actually physically connected at the link layer. [Footnote: The implementation details of Docker overlay networks get pretty hairy, but <a href="https://success.docker.com/article/networking#overlaydrivernetworkarchitecture">this reference article</a> is a good place to start.]</p>
+
+       <p>Putting this theory into practice, Mothership creates a separate overlay network for each app service. When a user adds a database to the app, Mothership connects this database to the app's overlay network. This enables communication between the app and its database, but keeps the database service isolated from both other applications and the outside world.</p>
+
+       <p>While secure communication between distributed services is now theoretically possible, we still haven't solved the service discovery problem: how does the app service know the IP address of the database service on their shared overlay network? The answer is DNS. Service names are mapped to container IP addresses via a DNS server local to the overlay network. Whenever our container orchestrator creates a new container for a service, it updates this DNS server. [Footnote: This is an oversimplification because there may be <em>multiple</em> running containers for a given service. Docker Swarm uses DNS round-robin load-balancing to distribute requests to services among running containers.]</p>
+
+       <p>What this means is that app services only need to know the <em>service name</em> of their associated databases to send requests to them across the overlay network. </p>
+
+       <p>[animation of being inside an app terminal and pinging a database service by name]</p>
+
+       <h4>4.4.2 Handling External Requests</h4>
+
+       <p>Overlay networks solve the problem of inter-service communication. But now we need to solve the problem of mapping external requests to running containers. Ideally, we'd like deployed applications to be accessible via subdomain URLs (e.g., <code>my-app</code> could be viewed by visiting <code>http://my-app.my-paas.com</code>). But this is not so simple in our distributed, multi-tenant architecture.</p>
+
+       <!-- <p>[first diagram from mapping services to URLs section]</p> -->
+       <div class="img-wrapper">
+         <img src="images/diagrams/mapping-urls.png" alt="How do you map services to URLs?" />
+       </div>
+
+       <p>First of all, we need to decide which node from our cluster to map <code>http://my-app.my-paas.com</code> to via DNS. Unfortunately, there's no way to know in advance which node <code>my-app</code> will be running on. On first deploy, our orchestrator will start a container on whichever node it deems most appropriate. And as cluster conditions change, the orchestrator may decide to move the container to another node. What's more, if the user horizontally scales their application, there will be multiple <code>my-app</code> containers running on different nodes.</p>
+
+       <p>The second problem is that even if we <em>did</em> somehow map the URL to the correct node, we'd still need a way for the node to pass an incoming request for <code>my-app.my-paas.com</code> to the correct container. In principle, this may not sound like much of a hurdle since our orchestrator knows which containers belong to which apps. As things currently stand, our app containers are completely isolated from the outside world &#8211; each is accessible only from its own overlay network. This means that there is no way for them to receive requests from the outside world.</p>
+
+       <p>Tackling the second problem first, what we need is a way to expose our app containers to the outside world. In Docker, this is standardly accomplished by <em>port publishing</em>. When starting a container, one can request that Docker forward traffic from one of the host's external ports to a particular port inside the container. For example, if one were to start a container with the Puma application server listening on the container's port 80, one could stipulate that the host should forward traffic on from its external port 8080 to this container's port 80. (Under the hood, Docker accomplishes this via heavy use of Linux iptables rules.)</p>
+
+       <p>This suggests the beginning of a potential solution to our problem. Each time a new app is deployed, we can publish the internal port of its app server to its an unused port on its host node. If we do this, we expose our apps to the Internet by opening ports on host nodes. Conveniently, app databases remain isolated from the Internet, and only accessible from the app's local network.</p>
+
+       <p>There's still the problem of determining which node to particular request to, however. If the correct node receives a request on a particular port, it knows which container to forward it to. But <em>we</em> can't know which node to assign a particular subdomain, because the correct node is dynamically changing. What we need is some sort of load balancer.</p>
+
+       <p>Docker happens to have a built-in tool for handling this problem: the <em>ingress routing mesh</em>. One thing the ingress routing mesh includes is a layer 4 load balancer. This load balancer is managed by the container orchestrator, and knows which containers are exposed on which nodes across the cluster. Therefore, when it receives a request on a particular port, it can forward it to an appropriate node over on same port &#8211; the node then forwards the request to the container.</p>
+
+       <p>[Diagram would probably help here.]</p>
+
+       <p>So we can solve our external service discovery problem by publishing ports for each service, and taking advantage of the the ingress routing mesh. We can then map all app URLs to the IP address of our orchestrator, and the L4 load balancer will send them to an appropriate node. In fact, the ingress routing mesh allows any node in the cluster to use the load balancer, so we could map our URLs to any node, or even use DNS round-robin to spread the load.</p>
+
+       <p>Unfortunately, this solution does not fit our use-case. The problem is that the sort of URLs this will provide. We'd need to configure our DNS so that <code>my-paas</code> resolves to one of the IP addresses in our cluster; let's say we point it at the orchestrator for simplicity. To visit a particular app, we'd need to know the the port it was published on, and then the URL would be something like <code>http://my-paas.com:54731</code>. This is not a memorable URL, and it is unintelligible to most users who are not aware of ports. Additionally, the solution requires opening lots of ports on our servers, which is a security vulnerability.</p>
+
+       <p>We need a load balancer, but what Docker provides is a Layer 4 load balancer &#8211; hence the need to use port numbers to distinguish between services. We, however, want to route based on <em>hostname</em>. And that means we need to add to our architecture a <em>Layer 7</em> load balancer, such as HAProxy or Nginx.</p>
+
+       <p>But if we're not using ports, how should our app services expose themselves to the Internet? And how will our load balancer determine which node to forward a particular request to? A bit of reflection should reveal that the first question is misleading: our app services need not be exposed to the Internet. If we treat our load balancer as a reverse proxy, then all that matters is that app services are somehow exposed to the proxy.</p>
+
+       <p>The situation is very similar to one we faced earlier &#8211; exposing databases to apps. And, in fact, Mothership solves this problem in much the same way. First, we deploy our proxy as just another service in our cluster. Second, we create an additional overlay network for the proxy. Third, we ensure that each app is added to the proxy overlay network.</p>
+
+       <!-- <p>[diagram from presentation of apps connected to proxy network]</p> -->
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/proxy-network-with-two-containers.png" alt="Diagram showing apps connected to proxy network" />
+       </div>
+
+       <p>By setting things up this way, Mothership ensures all apps are exposed to the proxy service, but <em>not</em> exposed directly to the Internet. And, due to the proxy network's local DNS server (discussed earlier), the proxy service can forward requests to apps by their service name. This means we can configure our proxy with simple mappings like the following:</p>
+
+       <ul>
+       <li><code>http://my-app.my-paas.com</code> → <code>my-app_service</code></li>
+       </ul>
+
+       <p>Although our apps don't need to be directly exposed to the Internet, the Mothership <em>proxy</em> does. In this case, we'll need to expose a port. Since the proxy is fielding HTTP/S requests, Mothership publishes it on ports 80/443. Since the proxy internally decides which subdomains go to which services, we simply map a wildcard subdomain (<code>*.my-paas.com</code>) to our orchestrator node. Incoming web requests will hit that node on port 80 or 443, and the ingress routing mesh ensures that it gets forwarded to our proxy service, and the proxy then gets it to the appropriate container.</p>
+
+       <!-- <p>[Diagram of incoming request hitting proxy, going through proxy overlay, and then to app.]</p> -->
+       <div class="img-wrapper">
+         <img src="images/diagrams/apps-to-proxy-solved.png" alt="Incoming request hit proxy, go through proxy overlay, and then to app" />
+       </div>
+
+       <p>[TODO: Dynamic proxy configuration with Dockerflow.]</p>
+
+       <p>And with that, Mothership's service discovery challenges are solved. Apps can communicate with their databases using overlay networks, without exposing the databases to the outside world. Outside requests to apps are routed to running containers via an L7 load balancer, and a combination of overlay networking and Docker's ingress routing mesh.</p>
+
+       <hr />
+
+       <p>At this point, it's worth briefly reviewing Mothership's core architecture:</p>
+
+       <p>[Diagram of Mothership architecture. Include PaaS user sending deploy requests to Mission-Control <em>and</em> example of user requesting to view app at app URL.]</p>
+
+       <p>Arriving at this architecture, and solving the many problems it entails, was a major challenge in the development of Mothership. But for our PaaS to be useful to teams looking to deploy internal-facing apps, many features needed to be added, and each involved significant engineering challenges of its own. We turn to these features and challenges next.</p>
+
+       <h3>4.5 Essential Features</h3>
+
+       <h4>4.5.1 Running Terminal Commands</h4>
+
+       <p>A common deployment need is the ability to run post-deployment commands. In particular, most deployments will need the ability to run database migrations once the application code is deployed and the database is provisioned. There are a variety of ways this can be accomplished, but we decided that the simplest and most powerful is to give developers direct terminal access to their deployed applications.</p>
+
+       <!-- <p>[gif of opening console and running <code>rake db:migrate</code>]</p> -->
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/gifs/rake-db-migrate.gif" alt="Animation showing database migration inside a console" />
+       </div>
+
+       <p>A benefit of this approach is it gives developers an intuitive way to inspect exactly what the deployed source code looks like. This can be very valuable in debugging deploys to ensure that the correct files made it onto Mothership.</p>
+
+       <p>Giving users the ability to interact with containers in the fleet through an in-browser terminal emulator turned out to be a very interesting challenge. The first problem is deciding which container to connect to. A naive approach would be to connect the terminal emulator to one of the already running application containers that is servicing web requests. There are several downside with this approach:</p>
+
+       <ul>
+       <li>Which containers are running for a service and where is an internal concern of our container orchestrator, and not something we have easy access to</li>
+       <li>A user might accidentally run a harmful command and break their deployed application (e.g., <code>rm -rf ./</code>)</li>
+       <li>The job of an application container started by our orchestrator is to serve web requests for the application &#8211; we shouldn't burden it with extra load</li>
+       </ul>
+
+       <p>Mothership takes a different approach. Instead of finding and connecting to an existing container for the application in question, we create a new "one-off container." This one-off container is based on the same Docker image that we created when the app was deployed, so it is functionally identical to the running containers serving requests. We call it a "one-off" container because its sole purpose is to handle a single terminal session &#8211; once the session ends, the container is destroyed to free up resources.</p>
+
+       <p>Instead of starting one-off containers with whatever command would boot the application, we start them with the <code>bash</code> command. This starts a shell process and allocates a TTY for the container. Recall that Mothership's mission control service connects to the remote Docker host in the fleet to create services and containers. If mission control is to send terminal output back to a client, it will somehow need access to a remote container's stdin and stdout streams. Fortunately, the Docker API makes this possible: we can upgrade our initial HTTP request into a persistent, full-duplex TCP connection over which we can stream to and from the container's stdin and stdout.</p>
+
+       <p>Mission control interacts with this stream as a Node.js a <code>Duplex</code> stream object. The next challenge is to expose this stream to clients, so that they can send terminal commands over it and receive terminal output from it. </p>
+
+       <p>Since we're looking for a persistent, bi-directional connection between a browser and our server, the WebSocket protocol is ideal for our use-case. When a user requests to start a terminal session with their app from a browser, the Mothership web client sends a WebSocket request to mission control. Mission control issues a request to the remote Docker host on our orchestrator to create a suitable one-off container, and stream its stdin/stdout over TCP. Mission control then pipes any data coming in from the WebSocket to the container's stdin stream, and any data coming from the container's stdout stream out over the WebSocket. In essence, mission control serves as a proxy between clients and the container's they're interacting with. </p>
+
+       <!-- <p>[Diagram from presentation showing client to mission control to container architecture.]</p> -->
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/ws-terminal-print.png" alt="Showing how ephemeral containers are made for console use" />
+       </div>
+
+       <p>To accept client input and output, a simple text field will not suffice. Along with regular character data, the shell will send <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape sequences</a> for formatting output that the client must interpret. The Mothership client uses the Xterm.js terminal emulator to enable this. But what about handling and displaying input?</p>
+
+       <p>We initially tried directly display characters the user enters, and then sending them over the WebSocket once the user hits enters. It quickly became apparent that this was not the correct approach. For one thing, the same character can have different meanings in different contexts. At a shell prompt, entering <code>q</code> should cause the letter "q" to be displayed in the prompt. But inside a <code>less</code> process, for example, <code>q</code> should quit the process. Additionally, entering an escape sequence like <code>ctrl-C</code> should have an effect without pressing the enter key. In general, it is the shell's job to interpret keystrokes and determine the result &#8211; whether that's sending a character to stdout or terminating a process.</p>
+
+       <p>So Mothership's client-side JavaScript directly sends each keystroke over the WebSocket and into the container, and only displays output when it receives stdout data from the WebSocket. This may sound like a lot of overhead for each keystroke, but it is actually quite performant due to the nature of WebSockets.</p>
+
+       <p>The final piece to this puzzle is security. The Mothership client requires authentication, so that only authorized users can interact with it. We accomplish this via Express middleware. Unfortunately for us, Node's HTTP server handles WebSocket upgrade requests directly and never forwards them to our Express app. This means that our Express middleware is never given the chance to authenticate upgrade requests. Without some protective measures, anyone with access to our WebSocket URLs would be able to establish a terminal session with deployed applications &#8211; a major security vulnerability.</p>
+
+       <p>To prevent this, when an upgrade request comes in, our WebSocket handlers sends another a GET request to our Express application with all authentication headers (cookies or bearer tokens). If the Express application returns a 200 response, authentication was successful and the upgrade proceeds. If it returns a 401 response, authentication failed and we reject the upgrade request. </p>
+
+       <h4>4.5.2 Health Checks</h4>
+
+       <p>Users of a PaaS expect some way of viewing the health of deployed applications &#8211; the PaaS should be able to tell whether an application is running in a healthy state. There are many ways of monitoring the health of an application, but Mothership uses a simple, but useful metric. If our container orchestrator has restarted an application more than 5 times in the last minute, this indicates a problem. A variety of things can cause this &#8211; more load than a single app server can handle, application errors that crash the server, or configuration errors like forgetting to install the <code>puma</code> gem for an app attempting to boot under the <code>puma</code> command. </p>
+
+       <p>When this is happening, Mothership lists the app as unhealthy, otherwise it is considered healthy. The number 5 is somewhat arbitrary, but in our testing, a small handful of restarts is normal, but more than 5 is highly correlated with a problem that is preventing the app from handling requests.</p>
+
+       <p>Once again, we use WebSockets to make health statuses visible to user. When a user visits an application's "show" page, the web client establishes a WebSocket connection with mission control. Mission control then sets a timeout that periodically checks with the orchestrator for application restarts, and sends the result (<code>health</code> or <code>unhealth</code>) to the client over the WebSocket. This result is rendered client-side with a dynamic badge.</p>
+
+       <div class="img-wrapper">
+         <img src="images/diagrams/health-checks.png" alt="Showing dynamically generated health check buttons that say healthy or unhealthy" />
+       </div>
+
+
+       <h4>4.5.3 Service Logs</h4>
+
+       <h4>4.5.4 Database Backups</h4>
+
+       <p>Mothership does not support robust, automated real-time database backups for applications. That would require significant engineering time, and is overkill for our use-case. Instead, Mothership allows users to perform manual database backups as needed. Our basic strategy uses PostgreSQL's <code>pg_dump</code> utility. This utility dumps the SQL statements needed to restore the database to its complete state as of the time the command is run. It can be run while there are concurrent connections to the database, and guarantees a consistent snapshot (even as concurrent updates are occurring, details). The basic strategy is to run this command in a container with access to the live database &#8211; but the actual implementation is surprisingly complicated.</p>
+
+       <p>But where do we run <code>pg_dump</code>, and how do we get the output back to the client? Once again, we make use of a one-off container. But a container based on an app image won't work because these images don't have PostgreSQL installed in them. Instead, we use the official Postgres image.</p>
+
+       <p>The next step is somewhat tricky. We cannot simply start the container with the <code>pg_dump</code> command. If we do that, we override the image's default command which starts the Postgres daemon &#8211; and we can't run <code>pg_dump</code> if there's no Postgres daemon. To solve this problem, we attach the one-off Postgres container to the app's network so it can talk to the live database server. <code>pg_dump</code> can connect to remote postgres servers and run against them: so we simply run <code>pg_dump</code> to start the container, but tell it to connect to the app's running database container.</p>
+
+       <p>How do we get this dump back to the client? <code>pg_dump</code> simply sends its output to <code>stdout</code>, although you would normally redirect this to a file. But we don't want to do that, because then we'd have to figure out how to get this file out of the container. Since our PaaS server is connected to this container via a TCP connection with the Docker host, its stdout is available to us as a stream on the PaaS. So we let pg_dup stream its output to stdout in its container, and then we capture that stream in the PaaS and redirect it into a temporary <code>.sql</code> file. Once the stream ends, we remove the temporary postgres container, send the file to the client, and then remove the temporary file.</p>
+
+       <h4>4.5.5 Scaling</h4>
+
+       <h4>4.5.6 Deploying the PaaS</h4>
+
+       <h2 id="future-plans">5 Future Plans</h2>
+   	    <li>
+   	    	<ol>Testing</ol>
+   				<ol>Versioning and rollbacks</ol>
+   				<ol>Background jobs for apps</ol>
+   				<ol>CLI feature parity with web</ol>
+   				<ol>Migrate automated setup to Terraform</ol>
+   	    </li>
+       <h2 id="references">6 References</h2>
+
+       <br/>
+
+       </section>
+     </main>
+
+     <footer>
+       <div class="footer-backdrop">
+
+         <div class="planet-spacer planet-spacer-bottom"></div>
+
+         <img class="planet-edge planet-edge-bottom" src="images/planet-edge.svg" />
+
+         <section id="our-team">
+           <h1>Our Team</h1>
+           <p>
+             We are looking for opportunities.<br/>If you liked what you saw and want to
+             talk more, please reach out!
+           </p>
+           <ul>
+             <li class="individual">
+               <img src="images/team/ian.png" alt="Ian Evans" />
+               <h3>Ian Evans</h3>
+               <p>New York, NY</p>
+               <ul class="social-icons">
+                 <li>
+                   <a href="mailto:icevans@icloud.com" target="">
+                     <img src="images/icons/email_icon.png" alt="email" />
+                   </a>
+                 </li>
+                 <li>
+                   <a href="https://icevans.github.io" target="_blank">
+                     <img src="images/icons/website_icon.png" alt="website" />
+                   </a>
+                 </li>
+                 <li>
+                   <a href="https://www.linkedin.com/in/ian-evans-299a36187/" target="_blank">
+                     <img src="images/icons/linked_in_icon.png" alt="linkedin" />
+                   </a>
+                 </li>
+               </ul>
+             </li>
+             <li class="individual">
+               <img src="images/team/jon.png" alt="Jon Kulton" />
+               <h3>Jon Kulton</h3>
+               <p>Akron, OH</p>
+               <ul class="social-icons">
+                 <li>
+                   <a href="mailto:jonkulton@gmail.com" target="">
+                     <img src="images/icons/email_icon.png" alt="email" />
+                   </a>
+                 </li>
+                 <li>
+                   <a href="http://jkulton.com" target="_blank">
+                     <img src="images/icons/website_icon.png" alt="website" />
+                   </a>
+                 </li>
+                 <li>
+                   <a href="https://www.linkedin.com/in/jkulton/" target="_blank">
+                     <img src="images/icons/linked_in_icon.png" alt="linkedin" />
+                   </a>
+                 </li>
+               </ul>
+             </li>
+             <li class="individual">
+               <img src="images/team/bharat.png" alt="Bharat Agarwal" />
+               <h3>Bharat Agarwal</h3>
+               <p>Bangalore, India</p>
+               <ul class="social-icons">
+                 <li>
+                   <a href="mailto:bharatagarwal@gmail.com" target="">
+                     <img src="images/icons/email_icon.png" alt="email" />
+                   </a>
+                 </li>
+                 <li>
+                   <a href="https://bharatagarwal.in" target="_blank">
+                     <img src="images/icons/website_icon.png" alt="website" />
+                   </a>
+                 </li>
+                 <li>
+                   <a href="https://www.linkedin.com/in/bharat-agarwal-b7741c91/" target="_blank">
+                     <img src="images/icons/linked_in_icon.png" alt="linkedin" />
+                   </a>
+                 </li>
+               </ul>
+             </li>
+           </ul>
+         </section>
+       </div>
+     </footer>
+
+  </body>
+</html>
