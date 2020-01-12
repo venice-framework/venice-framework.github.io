@@ -496,7 +496,8 @@ footer,
 }
 
 .footer-backdrop,
-.team-backdrop {
+.team-backdrop,
+.banner-short {
   background: url('../images/icons/stars.svg');
   background-position: center center;
   background-repeat: repeat repeat;
@@ -593,6 +594,10 @@ small {
 
 #our-team small a {
   color: #9eba2a;
+}
+
+.supported-languages {
+  max-width: 650px;
 }
 
 /* ---------------------------------
@@ -817,6 +822,10 @@ small {
 
   nav ul li {
     margin-right: 25px;
+  }
+
+  nav ul li img {
+    width: 60px;
   }
 
   /* Main */
