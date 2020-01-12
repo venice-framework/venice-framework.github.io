@@ -295,7 +295,7 @@ nav ul li img {
   color: #D53A84;
   text-shadow: 0 0 4px #D53A84;
   text-transform: uppercase;
-  font-family: 'Squada One';
+  font-family: 'Squada One', 'Lato', 'Futura', sans-serif;
   font-size: 6rem;
 }
 
