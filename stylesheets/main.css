@@ -820,8 +820,16 @@ small {
     font-size: 1.5rem;
   }
 
+  nav {
+    padding: 12.5px 0;
+  }
+
+  nav ul {
+    padding-left: 12.5px;
+  }
+
   nav ul li {
-    margin-right: 25px;
+    margin-right: 15px;
   }
 
   nav ul li img {
@@ -894,6 +902,7 @@ small {
     padding: 0 25px;
   }
 
+  nav ul li a,
   header nav ul li a {
     font-size: 1rem;
   }
