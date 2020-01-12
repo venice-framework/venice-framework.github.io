@@ -1073,6 +1073,7 @@ hr.minor {
   background-repeat: repeat repeat;
   background-size: contain;
   height: 100%;
+  width: 100%;
 }
 
 .flex-float-right {
