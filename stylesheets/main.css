@@ -65,10 +65,6 @@ p > code {
 
 .integration:nth-of-type(3) {
   padding-top: 40px;
-  padding-bottom: 80px;
-}
-
-.integration:nth-of-type(3) div.box {
 }
 
 .text-box {
@@ -295,7 +291,7 @@ nav ul li img {
   color: #D53A84;
   text-shadow: 0 0 4px #D53A84;
   text-transform: uppercase;
-  font-family: 'Squada One', 'Lato', 'Futura', sans-serif;
+  font-family: 'Squada One', 'Lato', sans-serif;
   font-size: 6rem;
 }
 
@@ -307,6 +303,7 @@ nav ul li img {
 #overview {
   text-align: center;
   margin-bottom: 2rem;
+  font-size: 3rem;
 }
 
 /* ---------------------------------
@@ -597,7 +594,7 @@ small {
 }
 
 .supported-languages {
-  max-width: 650px;
+  max-width: 550px;
 }
 
 /* ---------------------------------
@@ -687,12 +684,12 @@ small {
   }
 
   .text-box h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
   }
 
   .text-box p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     padding: 0;
     margin: 0;
   }
@@ -1056,7 +1053,7 @@ hr.minor {
 }
 
 .planet-spacer {
-  height: 150px;
+  height: 125px;
 }
 
 .planet-spacer-top {
