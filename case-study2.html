@@ -241,7 +241,9 @@
 
 <p>For this reason, Mothership is designed to scale horizontally. Instead of a single application node, Mothership supports an arbitrary-sized <em>fleet</em> of application nodes. As nodes fill up, whoever is in charge of managing the PaaS can simply request that Mothership add another node to the fleet.</p>
 
-<p>[Diagram: fleet diagram from presentation, before container orchestrator (Jon)]</p>
+<div class="img-wrapper">
+  <img src="images/diagrams/horizontal-scaling-naive.png" style="max-height: 450px" alt="Multiple application servers" />
+</div>
 
 <p>A fleet of application nodes raises some new questions that our PaaS must answer:</p>
 
