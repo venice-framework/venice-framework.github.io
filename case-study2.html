@@ -358,7 +358,7 @@
 <p>In Docker, the standard approach for exposing containers to the Internet is <em>port publishing</em>. When starting a container, one can request that Docker forward traffic from one of the host’s external ports to a particular port inside the container.<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup> For example, we could configure that requests to the host’s port 8080 be mapped to a particular container’s port 80:</p>
 
  <div class="img-wrapper">
-   <img src="images/diagrams/port-publishing.png" alt="Detailed comparison showing abstractions" />
+   <img style="max-height:10rem" src="images/diagrams/port-publishing.png" alt="Detailed comparison showing abstractions" />
  </div>
 
 <p>Port publishing allows our an app pod to forward requests for an application to the correct container. So once an app pod receives a request, it can pass it along to the correct container. But how do we know which app pod to send a particular request to?</p>
