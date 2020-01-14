@@ -51,9 +51,7 @@
 
        <div id="side-nav">
          <img src="images/logos/mothership-logo.png" alt="Mothership logo" />
-       </div>
-
-<h1>Case Study</h1>
+       </div> 
 
 <h2 id="Introduction">Introduction</h2>
 
@@ -178,7 +176,9 @@
 
 <p>Because the Mothership application – which is in charge of deploying and managing applications – runs on a different server from the one in which application containers run, it needs the ability to issue commands to a remote Docker host. Docker’s client-server architecture makes this use-case possible. Mothership’s Mission Control server can connect remotely to the Docker host on a separate server to build and run containers, as illustrated in the following diagram.</p>
 
-<p>[Diagram: Mission control connecting to remote Docker host (ian)]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/remote-docker.png" alt="Mission Control service connecting to remote Docker host" />
+ </div>
 
 <p>Here we see the Mission Control service (Mothership’s core Node.js application) using a custom Docker client to manage multiple app containers on a remote Docker host. Mission Control acts as a proxy connecting users of the PaaS to the server responsible for hosting apps.</p>
 
