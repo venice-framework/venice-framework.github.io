@@ -322,7 +322,9 @@
 
 <p>Putting this theory into practice, Mothership creates a separate overlay network for each app service. When a user adds a database to their app, Mothership connects this database to the app’s overlay network. This enables communication between the app and its database, but keeps the database service isolated from both other applications and the outside world.</p>
 
-<p>[Diagram: app overlay network diagram from presentation (ian)]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/app-overlay.png" alt="Detailed comparison showing abstractions" />
+ </div>
 
 <p>While secure communication between distributed services is now theoretically possible, we still haven’t solved the service discovery problem: how does the app service know the IP address of the database service on their shared overlay network? The answer is DNS. Service names are mapped to container IP addresses via a DNS server local to the overlay network. Whenever our container orchestrator creates a new container for a service, it updates this DNS server.<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup></p><p>What this means is that app services only need to know the <em>service name</em> of their associated databases to send requests to them across the overlay network.</p>
 
