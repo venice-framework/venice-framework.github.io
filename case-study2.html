@@ -375,7 +375,9 @@
 
 <p>We need some sort of load balancer/proxy, but what Docker provides is a layer 4 load balancer, which requires port numbers in URLs. We, however, want human-readable URLs with app names as subdomains (e.g. <code>app7.my-paas.com</code>). This means that we need our proxy to forward requests based on <em>hostname</em>, which are an application layer concern. So our architecture requires a <em>layer 7</em> reverse proxy service, such as HAProxy or Nginx. Adding that, our architecture is as follows:</p>
 
-<p>[Diagram: proxy service running on container orchestrator, no network (ian)]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/proxy-no-overlay.png" alt="Detailed comparison showing abstractions" />
+ </div>
 
 <p>Our reverse proxy must somehow map URLs to containers. As we learned in the section on inter-service communication, this cannot be done by container IP address since these are ephemeral. Indeed, this problem is just another instance of the problem of inter-service communication we solved earlier. And so Mothership solves it in much the same way.</p>
 
