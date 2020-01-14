@@ -908,10 +908,6 @@ small {
     font-size: 1.5rem;
   }
 
-  #case-study img {
-    max-width: 60vw;
-  }
-
   #our-team .individual ul {
     width: 90%;
     margin: 0 auto;
@@ -985,10 +981,6 @@ small {
 
   nav#case-study-mobile {
     margin-top: 1.75vh;
-  }
-
-  #case-study img {
-    max-width: 65vw;
   }
 
   #our-team {
