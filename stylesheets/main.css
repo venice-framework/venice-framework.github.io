@@ -46,6 +46,9 @@ code {
 
 p > code {
   color: #ce3380;
+  background: #efefef;
+  padding: 0 .2rem;
+  border-radius: 4px;
 }
 
 .integration {
@@ -154,10 +157,11 @@ main > section {
 }
 
 blockquote {
-  border-left: 0.3rem solid #8ee4af;
-  color: #999;
-  margin: 0.9rem 1rem;
-  padding: 0.7rem;
+  border-left: 0.3rem solid #D53A84;
+  background: #ececec;
+  color: #393551;
+  margin: 1rem 0;
+  padding: 1.5rem 1rem;
 }
 
 blockquote:before {
@@ -425,7 +429,7 @@ h3 {
 }
 
 #case-study blockquote p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 #case-study blockquote p:first-of-type {
