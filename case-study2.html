@@ -225,7 +225,9 @@
 
 <p>Recall that our current architecture looks like the following:</p>
 
-<p>[Diagram: Mission control connecting to remote Docker host (ian). Same as earlier]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/remote-docker.png" alt="Detailed comparison showing abstractions" />
+ </div>
 
 <p>Clearly, this doesn’t scale very well. Depending on the initial size of application node, we will quickly run out of resources for deploying applications (in our testing, entry-level IaaS nodes run low on memory once four database-backed applications are deployed). To grow beyond a handful of applications, the PaaS will need to support either <em>vertical</em> or <em>horizontal</em> scaling.</p>
 
@@ -252,7 +254,9 @@
 
 <p>The service is one of the key abstractions provided by a container orchestrator. We tell the container orchestrator which services should be on our system, and the container orchestrator is responsible for starting appropriate containers and distributing them amongst the nodes. If a container dies, the orchestrator must discover this (typically via heartbeat checks) and start a new container. It is also responsible for keeping track of available nodes and how to network them.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> With a container orchestrator in place, our architecture is as follows:</p>
 
-<p>[Diagram: from presentation where user connects to Mission Control, and Mission Control connects to container orchestrator (ian)]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/multi-tenant-with-orchestrator.png" alt="Detailed comparison showing abstractions" />
+ </div>
 
 <p>Here, we see that Mission Control talks only to the container orchestrator. The container orchestrator is responsible for distributing app containers across the servers that house apps. We call these servers <em>app pods</em>, and, collectively, they form Mothership’s <em>app convoy</em>. Mothership’s container orchestrator manages the convoy.</p>
 
