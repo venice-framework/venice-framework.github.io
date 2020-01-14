@@ -205,17 +205,19 @@
 
 <p>Like a Dockerfile, a buildpack contains a set of instructions for generating a suitable environment in which an application can run. The benefit of buildpacks, however, is that there are well-tested, open-source buildpacks that support applications written in many of the most popular languages and frameworks. Additionally, there are standard ways of examining source code and determining which buildpack is appropriate. Although they originated for use within Heroku’s proprietary system, at this point they are effectively an industry standard.</p>
 
-<p>[Diagram: buildpack executing against code and resulting in finishing environment (Jon)]</p>
+<div class="img-wrapper">
+  <img src="images/diagrams/buildpacks.png" style="max-height: 150px;" alt="Buildpacks executed against application source code, resulting in prepared environment" />
+</div>
 
 <p>Traditionally, one or more buildpacks are installed on a host operating system, then the buildpacks are executed against a directory of application source code. The result of this <em>build process</em> is a ready to run environment. Different buildpack systems result in different outputs, but all result in an environment ready to run the application. How then can buildpacks be used in conjunction with Docker containers?</p>
 
 <h3 id="Buildpacks-and-Containers">5.5 Buildpacks and Containers</h3>
 
- <div class="img-wrapper">
-   <img src="images/diagrams/buildpacks-to-image.png" alt="Copy code to server and execute buildpacks against them" />
- </div>
-
 <p>When an application is deployed Mothership starts with a base Docker image that has all supported buildpacks installed. Next, it copies the source code for the user’s application into the Docker container. Then, it executes the buildpacks against the application source code. The result of this process is stored as a finalized and ready-to-run Docker image.</p>
+
+ <div class="img-wrapper">
+   <img src="images/diagrams/buildpacks-to-image.png" style="max-height: 200px;" alt="Copy code to server and execute buildpacks against them" />
+ </div>
 
 <p>Using buildpacks to generate Docker images allowed us to focus on the architecture and features of Mothership, rather than worrying about the details of containerizing each different application type. However, buildpacks are used internally by Heroku to create <em>dynos</em>, not Docker containers. So Mothership requires a system for generating Docker containers from buildpacks.</p>
 
