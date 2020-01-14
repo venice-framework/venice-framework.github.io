@@ -44,14 +44,14 @@
         </ul>
       </nav>
     </header>
-    
+
     <main>
        <section id="case-study">
        <h1>Case Study</h1>
 
        <div id="side-nav">
          <img src="images/logos/mothership-logo.png" alt="Mothership logo" />
-       </div> 
+       </div>
 
 <h2 id="Introduction">Introduction</h2>
 
@@ -150,7 +150,9 @@
 
 <p>The alternative is a <em>multi-tenant architecture</em>. In a multi-tenant model <em>multiple</em> applications run concurrently on the same server. Applications can be added or removed more quickly than in a single-tenant model, and resources will be better utilized because a single server can run many small applications.</p>
 
-<p>[Diagram: multi-tenant server]</p>
+<div class="img-wrapper">
+  <img src="images/diagrams/multi-tenant.png" style="max-height: 250px" alt="Multiple apps per VPS instance" />
+</div>
 
 <p>Multi-tenancy is the right model for our use-case, and the above diagram represents the core architecture of Mothership. But designing a multi-tenancy architecture introduces significant challenges that complicate the picture.</p>
 
