@@ -353,13 +353,17 @@
 
 <p>In Docker, the standard approach for exposing containers to the Internet is <em>port publishing</em>. When starting a container, one can request that Docker forward traffic from one of the host’s external ports to a particular port inside the container.<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup> For example, we could configure that requests to the host’s port 8080 be mapped to a particular container’s port 80:</p>
 
-<p>[Diagram: host forwarding traffic from 8080 to container (ian)]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/port-publishing.png" alt="Detailed comparison showing abstractions" />
+ </div>
 
 <p>Port publishing allows our an app pod to forward requests for an application to the correct container. So once an app pod receives a request, it can pass it along to the correct container. But how do we know which app pod to send a particular request to?</p>
 
 <p>This is where Docker’s ingress routing mesh comes into play. The ingress routing mesh includes a layer 4 load balancer. This load balancer is managed by the container orchestrator, and knows which pods have ports listening for each app. Therefore, when it receives a request on a particular port, it can forward the request to the same port on the correct pod:</p>
 
-<p>[Diagram: request to port 8080 reaching container orchestrator, and container ochestrator forwarding request to correct node (ian)]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/ingress-routing.png" alt="Detailed comparison showing abstractions" />
+ </div>
 
 <p>Unfortunately, this solution does not fit our use-case. The problem is the sort of URLs this will provide. We’d need to configure our DNS so that <code>my-paas</code> resolves to one of the IP addresses in our cluster; let’s say we point it at the orchestrator for simplicity. To visit a particular app, we’d need to know the port it was published on, and then the URL would be something like <code>http://my-paas.com:54731</code>. This is not a memorable URL, and would appear strange to users who are not familiar with ports. Additionally, the solution requires opening lots of ports on our servers, which is a security vulnerability.</p>
 
