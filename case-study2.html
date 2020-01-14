@@ -412,7 +412,9 @@
 
 <p>At this point, it’s worth briefly reviewing Mothership’s core architecture:</p>
 
-<p>[Diagram: overall Mothership architecture. Include PaaS user sending deploy requests to Mission-Control <em>and</em> example of user requesting to view app at app URL. (ian)]</p>
+ <div class="img-wrapper">
+   <img src="images/diagrams/overall-architecture.png" style="max-height:500px" alt="Incoming request hit proxy, go through proxy overlay, and then to app" />
+ </div>
 
 <p>Arriving at this architecture, and solving the many problems it entails, was a major challenge in the development of Mothership. But for our PaaS to be useful to teams looking to deploy internal-facing apps, many features needed to be added, and each involved significant engineering challenges of its own. We turn to these features and challenges next.</p>
 
