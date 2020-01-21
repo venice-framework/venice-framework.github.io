@@ -82,20 +82,23 @@
 
 <h2 id="Introduction">1. Introduction</h2>
 
+
+<p>Mothership is an open-source, platform-as-a-service (PaaS) that enables teams to easily deploy and manage small applications. It uses a multi-tenant, distributed architecture, the core of which is a Node.js application that directs a cluster of nodes on which deployed applications run. Mothership allows developers to focus on application code, rather than infrastructure.</p>
+  
 <div class="img-wrapper">
-<video style="max-width: 100%"
-  controls
->
-  <source
-    src="/images/rails-demo-website.mp4"
-    type="video/mp4"
+  <video style="max-width: 100%"
+    controls
   >
-</video>
+    <source
+      src="/images/rails-demo-website.mp4"
+      type="video/mp4"
+    >
+  </video>
     <p>A demo of deploying a Rails application on Mothership, by uploading a zip
     of the app's source code using the Mothership web client</p>
 </div>
 
-<p>Mothership is an open-source, platform-as-a-service (PaaS) that enables teams to easily deploy and manage small applications. It uses a multi-tenant, distributed architecture, the core of which is a Node.js application that directs a cluster of nodes on which deployed applications run. Mothership allows developers to focus on application code, rather than infrastructure. It abstracts away the inherent complexities of deploying applications to production: users simply provide Mothership with an application’s source code, and it takes care of provisioning servers, packaging the code, and booting the app under a live URL. This provides the benefits that have made proprietary, third-party services like Heroku popular, while allowing teams to retain full control over their deployment platform. It is the ideal solution for teams looking to deploy small, internal-facing applications, without wasting valuable engineering time.</p>
+<p>It abstracts away the inherent complexities of deploying applications to production: users simply provide Mothership with an application’s source code, and it takes care of provisioning servers, packaging the code, and booting the app under a live URL. This provides the benefits that have made proprietary, third-party services like Heroku popular, while allowing teams to retain full control over their deployment platform. It is the ideal solution for teams looking to deploy small, internal-facing applications, without wasting valuable engineering time.</p>
 
 <p>To build Mothership, we had to solve a host of engineering challenges: creating a scalable, multi-tenant application environment, packaging applications into secure isolated environments, scheduling resources, handling service discovery, as well as providing essential features for managing deployed applications.</p>
 
