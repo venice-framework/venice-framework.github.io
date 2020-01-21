@@ -45,15 +45,55 @@
       </nav>
     </header>
 
+    <div class="study-wrapper">
+    <aside class="sidebar">
+      <ul>
+        <li>
+          <a href="#Introduction">
+            Introduction</a></li>
+        <li>
+          <a href="#What-is-a-Platform-as-a-Service">
+            What is a PaaS?</a></li>
+        <li>
+          <a href="#Mothership">
+            Mothership</a></li>
+        <li>
+          <a href="#Tenancy">
+            Tenancy</a></li>
+        <li>
+          <a href="#Application-Packaging">
+            Application Packaging</a></li>
+        <li>
+          <a href="#Resource-Scheduling">
+            Resource Scheduling</a></li>
+        <li>
+          <a href="#Service-Discovery">
+            Service Discovery</a></li>
+        <li>
+          <a href="#Essential-Features">
+            Essential Features</a></li>
+      </ul>
+    </aside>
+
     <main>
        <section id="case-study">
        <h1>Case Study</h1>
 
-       <div id="side-nav">
-         <img src="images/logos/mothership-logo.png" alt="Mothership logo" />
-       </div>
 
 <h2 id="Introduction">1. Introduction</h2>
+
+<div class="img-wrapper">
+<video style="max-width: 100%"
+  controls
+>
+  <source
+    src="/images/rails-demo-website.mp4"
+    type="video/mp4"
+  >
+</video>
+    <p>A demo of deploying a Rails application on Mothership, by uploading a zip
+    of the app's source code using the Mothership web client</p>
+</div>
 
 <p>Mothership is an open-source, platform-as-a-service (PaaS) that enables teams to easily deploy and manage small applications. It uses a multi-tenant, distributed architecture, the core of which is a Node.js application that directs a cluster of nodes on which deployed applications run. Mothership allows developers to focus on application code, rather than infrastructure. It abstracts away the inherent complexities of deploying applications to production: users simply provide Mothership with an application’s source code, and it takes care of provisioning servers, packaging the code, and booting the app under a live URL. This provides the benefits that have made proprietary, third-party services like Heroku popular, while allowing teams to retain full control over their deployment platform. It is the ideal solution for teams looking to deploy small, internal-facing applications, without wasting valuable engineering time.</p>
 
@@ -96,7 +136,7 @@
 
 <p>So when do the tradeoffs of an open-source PaaS make sense? To our minds, a primary use-case is for teams needing to quickly deploy small applications for internal use. In this case, eliminating a third-party provider and their business decisions keeps the deployment platform predictable. This is a net win for small applications that don’t need all of the advanced features of a mature proprietary PaaS, and whose uptime and scalability needs are more modest.</p>
 
-<h2 id="Enter-Mothership">3. Mothership</h2>
+<h2 id="Mothership">3. Mothership</h2>
 
 <p>We designed Mothership for easy deployment of small, internal-facing applications. To do so, we began with the following high-level goals:</p>
 
@@ -547,6 +587,7 @@
 
        </section>
      </main>
+    </div>
 
      <footer>
        <div class="footer-backdrop">

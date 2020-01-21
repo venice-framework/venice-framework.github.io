@@ -11,9 +11,16 @@ body {
   scroll-behavior: smooth;
 }
 
+.study-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 main {
-  padding: 0 75px 0 350px;
-  background: #f7f7f7;
+  /* padding: 0 75px 0 350px; */
+  /* background: #f7f7f7; */
+  max-width: 50rem;
+  margin-left: 8rem;
 }
 
 h1,
@@ -152,8 +159,8 @@ p > code {
 }
 
 main > section {
-  margin: 80px 0 100px 0;
-  width: 75%;
+  /* margin: 80px 0 100px 0; */
+  /* width: 75%; */
 }
 
 blockquote {
@@ -315,6 +322,28 @@ nav ul li img {
             case study
 
 ------------------------------------ */
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky; 
+  align-self: flex-start;
+  top: 0px;
+  padding-top: 14em;
+  margin-left: -8rem;
+}
+
+.sidebar ul {
+  list-style: disc;
+}
+
+.sidebar li {
+  margin-top: 0.5em;
+}
+
+.sidebar a {
+  color: #D53A84;
+  text-decoration: none;
+}
+
 #side-nav {
   display: none;
 
@@ -901,6 +930,11 @@ small {
 @media (max-width: 500px) {
   main {
     padding: 0 25px;
+    margin-left: 0;
+  }
+
+  .sidebar {
+    display: none;
   }
 
   nav ul li a,
