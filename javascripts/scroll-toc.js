@@ -1,59 +1,26 @@
-let inViewId = 1;
-const main = (tagName) => $('main').getElementsByTagName(tagName);
-const create = (tagName) => document.createElement(tagName);
-const yPos = (element) => element.getBoundingClientRect().y;
-const getSelectedA = () => $(`a[data-id="${inViewId}"`);
+document.addEventListener('DOMContentLoaded', () => {
+  const elementArray = selector => Array.apply(null, document.querySelectorAll(selector));
+  const sectionHeaders = elementArray('#case-study h2').reverse();
+  const sidebarLinks = elementArray('.sidebar ul li a');
 
-const mainLinks = main('a');
-for (i = 0; i < mainLinks.length; i++) { 
-  mainLinks[i].target = '_blank';
-}
+  const setActive = (id) => {
+    const newActive = document.querySelector("[href='#" + id + "']");
+    if (newActive.className === 'active') { return }
 
-const h2s = Array.from(main('h2'));
-const toc = $('#toc ul');
-const firstH2 = h2s[0];
-
-h2s.forEach((h2, idx) => {
-  const li = create('li');
-  const a = create('a');
-  a.href = '#' + h2.id;
-
-  let title = h2.innerHTML;
-  a.innerHTML = title;
-  h2.dataset.id = idx + 1;      
-  a.dataset.id = idx + 1;
-  li.appendChild(a);
-  toc.appendChild(li);
-});
-
-const toggleToc = () => {
-  if (yPos(firstH2) > 200) {
-    toc.classList.remove('fadein');        
-    toc.classList.add('fadeout');
-  } else {
-    toc.classList.remove('fadeout');        
-    toc.classList.add('fadein');
-    toc.classList.remove('hidden');
+    sidebarLinks.forEach((link) => link.className = '');
+    newActive.className = 'active';
   }
-}
-toggleToc();    
 
-let debounce = null;
+  const scrollHandler = () => {
+    const windowVerticalCenter = Math.floor(window.innerHeight / 2);
+    const activeSection = sectionHeaders.find((header) => {
+      return window.scrollY > (header.offsetTop - windowVerticalCenter);
+    });
 
-window.onscroll = () => {
-  if (debounce) clearTimeout(debounce);
-  debounce = setTimeout(() => {
-    toggleToc();
-    for (let i = 0; i < h2s.length; i++) {
-      const h2 = h2s[i];
+    if (!activeSection) { return }
 
-      if (yPos(h2) > 200) {
-        const prevSelectedA = getSelectedA();
-        prevSelectedA && prevSelectedA.classList.remove('selected');
-        inViewId = h2.dataset.id - 1;
-        getSelectedA().classList.add('selected');
-        return;
-      }
-    }
-  }, 50);
-}
+    setActive(activeSection.id);
+  };
+
+  document.addEventListener('scroll', scrollHandler);
+});
