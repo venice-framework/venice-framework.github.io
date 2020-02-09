@@ -350,8 +350,7 @@ nav ul li img {
 
 .sidebar a:hover,
 .sidebar a.active {
-  background: #d5398426;
-  border-radius: 4px;
+  color: #d53a84;
 }
 
 #side-nav {
