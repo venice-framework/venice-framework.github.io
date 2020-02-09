@@ -332,8 +332,6 @@
 
 <p>Let’s make this discussion less abstract with an example. When a user deploys, e.g. a Node app onto Mothership, Mothership uses a buildpack to generate an appropriate Docker image for the app. Then, using remote API calls, it tells the manager node from the application fleet that there should be a new service, and which Docker image should be used to start tasks for that service. The manager node then inspects the state of its nodes and assigns the service task to an available node. The deployed Node app is now running on that node.</p>
 
-<p>[Diagram: animation of this process]</p>
-
 <p>Suppose something goes wrong and the Node app crashes and shuts down. This means the container also shuts down. Suddenly, our application is no longer running. The worker node will quickly discover that the task it was assigned is no longer running, and it will inform the manager node. The manager node knows that we requested one task be kept available for this service, and so it will once again assign that task to an available node. Within seconds, our Node app is back up and running.</p>
 
 <h3 id="App-Services-and-Database-Services">6.4 App Services and Database Services</h3>
