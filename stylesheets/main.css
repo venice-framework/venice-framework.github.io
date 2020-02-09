@@ -333,12 +333,11 @@ nav ul li img {
 .sidebar li {
   padding: 0;
   margin: 0;
-  font-weight: bold;
   font-size: 1.1rem;
 }
 
 .sidebar a {
-  color: #D53A84;
+  color: #26233566;
   text-decoration: none;
   width: 100%;
   padding: .5rem;
@@ -350,8 +349,7 @@ nav ul li img {
 
 .sidebar a:hover,
 .sidebar a.active {
-  background: #d5398426;
-  border-radius: 4px;
+  color: #d53a84;
 }
 
 #side-nav {
