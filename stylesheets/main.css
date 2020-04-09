@@ -208,7 +208,7 @@ sup a {
 }
 
 sup a:hover {
-  color: #ed6a40;
+  color: var(--bright-orange);
 }
 
 /* ---------------------------------
@@ -360,7 +360,7 @@ nav ul li img {
 }
 
 .sidebar a {
-  color: #26233566;
+  color: var(--bright-orange);
   text-decoration: none;
   width: 100%;
   padding: .5rem;
@@ -372,7 +372,7 @@ nav ul li img {
 
 .sidebar a:hover,
 .sidebar a.active {
-  color: var(--bright-orange);
+  color: var(--light-orange);
 }
 
 #side-nav {
@@ -398,7 +398,7 @@ nav ul li img {
 }
 
 #case-study nav li {
-  color: #999;
+  color: var(--light-blue);
   font-size: 1.3rem;
   list-style: circle;
   margin-bottom: 2vh;
@@ -417,7 +417,7 @@ nav ul li img {
 }
 
 #case-study nav a:hover {
-  color: #ed6a40;
+  color: var(--bright-orange);
 }
 
 #case-study a {
@@ -438,8 +438,16 @@ nav ul li img {
   margin-bottom: 0px;
 }
 
+#case-study h1 {
+  color: var(--bright-orange);
+  text-align: center;
+  margin: 4rem 0;
+}
+
 #case-study h2 {
+  color: var(--dark-blue);
   margin: 75px auto 20px auto;
+  text-align: left;
 }
 
 #case-study h2:first-of-type {
@@ -451,15 +459,10 @@ h3 {
   letter-spacing: 0.02rem;
 }
 
-#case-study h1 {
-  text-align: center;
-  margin: 4rem 0;
-}
-
 #case-study h3,
 #case-study h4,
 #case-study h5 {
-  color: #444343;
+  color: var(--bright-blue);
 }
 
 #case-study p {
@@ -653,7 +656,7 @@ small {
 }
 
 #our-team small a {
-  color: #9eba2a;
+  color: var(--bright-orange);
 }
 
 .supported-languages {
@@ -1102,7 +1105,7 @@ hr.minor {
 }
 
 #case-study {
-  color: #262335;
+  color: var(--off-white);
   margin-bottom: 0;
 }
 
