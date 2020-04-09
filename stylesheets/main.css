@@ -1,3 +1,9 @@
+/* fonts 
+Code: font-family: 'Fira Code', monospace;
+text: font-family: 'Open Sans', sans-serif; (regular, italic, and bold options)
+headers: font-family: 'Barlow Condensed', sans-serif;
+*/ 
+
 /* ---------------------------------
 
                 general
@@ -7,7 +13,7 @@
 body {
   background-color: #f7f7f7;
   color: #262335;
-  font-family: "Lato", "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -20,12 +26,15 @@ main {
   max-width: 50rem;
 }
 
-h1,
+h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
 h2,
 h3,
 h4,
 h5 {
-  font-family: "Lato", "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 h1 {
@@ -49,7 +58,7 @@ code {
 }
 
 p > code {
-  color: #ce3380;
+  color: #e67952;
   background: #efefef;
   padding: 0 .2rem;
   border-radius: 4px;
@@ -124,21 +133,21 @@ p > code {
 }
 
 .button-primary {
-  background: #D53A84;
-  border-color: #D53A84;
+  background: #e67952;
+  border-color: #e67952;
   color: #f7f7f7;
-  box-shadow: 0 0 4px #D53A84;
+  box-shadow: 0 0 4px #e67952;
 }
 
 .button.button-primary:hover {
-  background: #c02a72;
+  background: #e67952;
   color: #ececec;
-  border-color: #c02a72;
-  box-shadow: 0 0 4px #c02a72;
+  border-color: #e67952;
+  box-shadow: 0 0 4px #e67952;
 }
 
 .button-link {
-  color: #D53A84;
+  color: #e67952;
   border: 1px solid transparent;
   background: transparent;
 }
@@ -156,7 +165,7 @@ p > code {
 }
 
 blockquote {
-  border-left: 0.3rem solid #D53A84;
+  border-left: 0.3rem solid #e67952;
   background: #ececec;
   color: #393551;
   margin: 1rem 0;
@@ -291,8 +300,8 @@ nav ul li img {
 }
 
 .banner h1 {
-  color: #D53A84;
-  text-shadow: 0 0 4px #D53A84;
+  color: #e67952;
+  text-shadow: 0 0 4px #e67952;
   text-transform: uppercase;
   font-family: 'Squada One', 'Lato', sans-serif;
   font-size: 6rem;
@@ -349,7 +358,7 @@ nav ul li img {
 
 .sidebar a:hover,
 .sidebar a.active {
-  color: #d53a84;
+  color: #e67952;
 }
 
 #side-nav {
@@ -399,7 +408,7 @@ nav ul li img {
 }
 
 #case-study a {
-  color: #D53A84;
+  color: #e67952;
 }
 
 #case-study h3,
@@ -557,7 +566,7 @@ footer,
   margin-bottom: 30px;
   text-align: center;
   line-height: 4rem;
-  color: #d53a84;
+  color: #e67952;
 }
 
 #our-team > p {
@@ -584,8 +593,8 @@ footer,
 
 #our-team h3 {
   margin-bottom: 10px;
-  color: #D53A84;
-  text-shadow: 0 0 2px #D53A84;
+  color: #e67952;
+  text-shadow: 0 0 1px #e67952;
 }
 
 #our-team a {
