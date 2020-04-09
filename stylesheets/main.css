@@ -10,9 +10,18 @@ headers: font-family: 'Barlow Condensed', sans-serif;
 
 ------------------------------------ */
 
+:root {
+  --bright-orange: #e67952;
+  --light-orange: #f99b7a;
+  --darkest-blue: #1b262c;
+  --dark-blue: #0f4c75;
+  --bright-blue: #3282b8;
+  --pale-blue: #bbe1fa;
+}
+
 body {
   background-color: #f7f7f7;
-  color: #262335;
+  color: var(--darkest-blue);
   font-family: "Open Sans", sans-serif;
   scroll-behavior: smooth;
 }
@@ -58,7 +67,7 @@ code {
 }
 
 p > code {
-  color: #e67952;
+  color: var(--bright-orange);
   background: #efefef;
   padding: 0 .2rem;
   border-radius: 4px;
@@ -133,21 +142,21 @@ p > code {
 }
 
 .button-primary {
-  background: #e67952;
-  border-color: #e67952;
+  background: var(--bright-orange);
+  border-color: var(--bright-orange);
   color: #f7f7f7;
-  box-shadow: 0 0 4px #e67952;
+  box-shadow: 0 0 4px var(--bright-orange);
 }
 
 .button.button-primary:hover {
-  background: #e67952;
+  background: var(--bright-orange);
   color: #ececec;
-  border-color: #e67952;
-  box-shadow: 0 0 4px #e67952;
+  border-color: var(--bright-orange);
+  box-shadow: 0 0 4px var(--bright-orange);
 }
 
 .button-link {
-  color: #e67952;
+  color: var(--bright-orange);
   border: 1px solid transparent;
   background: transparent;
 }
@@ -165,7 +174,7 @@ p > code {
 }
 
 blockquote {
-  border-left: 0.3rem solid #e67952;
+  border-left: 0.3rem solid var(--bright-orange);
   background: #ececec;
   color: #393551;
   margin: 1rem 0;
@@ -283,7 +292,7 @@ nav ul li img {
 }
 
 .banner {
-  background-image: url('../images/logos/mothership-shadow.svg');
+  /* background-image: url('../images/logos/mothership-shadow.svg'); */
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -300,8 +309,8 @@ nav ul li img {
 }
 
 .banner h1 {
-  color: #e67952;
-  text-shadow: 0 0 4px #e67952;
+  color: var(--bright-orange);
+  text-shadow: 0 0 4px var(--bright-orange);
   text-transform: uppercase;
   font-family: 'Squada One', 'Lato', sans-serif;
   font-size: 6rem;
@@ -358,7 +367,7 @@ nav ul li img {
 
 .sidebar a:hover,
 .sidebar a.active {
-  color: #e67952;
+  color: var(--bright-orange);
 }
 
 #side-nav {
@@ -408,7 +417,7 @@ nav ul li img {
 }
 
 #case-study a {
-  color: #e67952;
+  color: var(--bright-orange);
 }
 
 #case-study h3,
@@ -538,14 +547,14 @@ h3 {
 
 footer,
 .team-wrapper {
-  background: linear-gradient(180deg, #382D6E, #262335);
+  background: linear-gradient(180deg, var(--dark-blue), var(--darkest-blue));
   color: #f7f7f7;
 }
 
 .footer-backdrop,
 .team-backdrop,
 .banner-short {
-  background: url('../images/icons/stars.svg');
+  /* background: url('../images/icons/stars.svg'); */
   background-position: center center;
   background-repeat: repeat repeat;
   background-size: contain;
@@ -566,7 +575,7 @@ footer,
   margin-bottom: 30px;
   text-align: center;
   line-height: 4rem;
-  color: #e67952;
+  color: var(--bright-orange);
 }
 
 #our-team > p {
@@ -593,8 +602,8 @@ footer,
 
 #our-team h3 {
   margin-bottom: 10px;
-  color: #e67952;
-  text-shadow: 0 0 1px #e67952;
+  color: var(--bright-orange);
+  text-shadow: 0 0 1px var(--bright-orange);
 }
 
 #our-team a {
@@ -1127,7 +1136,7 @@ hr.minor {
 }
 
 .header-backdrop {
-  background: url('../images/icons/stars.svg');
+  /* background: url('../images/icons/stars.svg'); */
   background-position: center center;
   background-repeat: repeat repeat;
   background-size: contain;
