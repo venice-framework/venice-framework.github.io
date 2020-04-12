@@ -648,6 +648,18 @@ footer,
   font-size: 1rem;
 }
 
+.design-credit {
+  color: #999;
+  font-size: .75rem;
+  margin: 0 10px 10px 0;
+  text-align: right;
+  vertical-align: bottom;
+}
+
+.design-credit a {
+  color: var(--light-orange);
+}
+
 small {
   display: block;
   text-align: center;
@@ -1121,24 +1133,6 @@ hr.minor {
 .spacer-bottom {
   background: linear-gradient(180deg, var(--darkest-blue), var(--dark-blue));
 }
-
-/* footer,
-.team-wrapper {
-  background: linear-gradient(180deg, var(--dark-blue), var(--darkest-blue));
-  color: var(--off-white);
-}
-
-.footer-backdrop,
-.team-backdrop,
-.banner-short {
-  background-position: center center;
-  background-repeat: repeat repeat;
-  background-size: contain;
-}
-
-.team-backdrop {
-  height: 100%;
-} */
 
 .header-backdrop {
   background-position: center center;
