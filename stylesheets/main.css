@@ -359,6 +359,10 @@ nav ul li img {
   font-size: 1.1rem;
 }
 
+.sidebar li > ul > li {
+  margin-left: 10px;
+}
+
 .sidebar a {
   color: var(--bright-orange);
   text-decoration: none;
