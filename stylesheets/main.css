@@ -14,15 +14,8 @@
   --off-white: #f7f7f7;
   --header: 'Barlow Condensed', sans-serif;
   --text: 'Open Sans', sans-serif;
-  --italic:  {
-      font-family: 'Open Sans', sans-serif;
-      font-decoration: italic;
-  };   
-  --bold: {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-
-  };
+  --italic: italic;
+  --bold: 600;
   --code: 'Fira Code', monospace; 
 }
 
@@ -359,15 +352,11 @@ nav ul li img {
   font-size: 1.1rem;
 }
 
-.sidebar li > ul > li {
-  margin-left: 10px;
-}
-
 .sidebar a {
   color: var(--bright-orange);
   text-decoration: none;
   width: 100%;
-  padding: .5rem;
+  padding: .35rem;
   display: inline-block;
   list-style: none;
   box-sizing: border-box;
@@ -377,6 +366,17 @@ nav ul li img {
 .sidebar a:hover,
 .sidebar a.active {
   color: var(--light-orange);
+  font-weight: var(--bold);
+  text-shadow: 0px 0px 1px var(--light-orange);
+}
+
+.sidebar li > ul > li {
+  margin-left: 10px;
+}
+
+.sidebar li > ul > li > a {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 #side-nav {
