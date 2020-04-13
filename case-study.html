@@ -51,62 +51,70 @@
         <li>
           <a href="#What-is-a-Platform-as-a-Service">
             2. What is a PaaS?</a>
-            <ul>
-              <li>
-                <a href="#PaaS">
-                  2.1 PaaS</a></li>
-              </li>
-            </ul>
-          </li>
+        </li>
+        <li>
+          <ul>
+            <li>
+              <a href="#PaaS">
+                2.1 PaaS</a></li>
+            </li>
+          </ul>
+        </li>
         <li>
           <a href="#Mothership">
-            3. Mothership</a></li>
+            3. Mothership</a>
+        </li>
         <li>
           <a href="#Tenancy">
             4. Tenancy</a>
-            <ul>
-              <li>
-                <a href="#Single-Tenancy">
-                  4.1 Single-Tenancy
-                </a>
-              </li>
-              <li>
-                <a href="#Multi-Tenancy">
-                  4.2 Multi-Tenancy
-                </a>
-              </li>
-            </ul>
-          </li>
+        </li>
+        <li>
+          <ul>
+            <li>
+              <a href="#Single-Tenancy">
+                4.1 Single-Tenancy
+              </a>
+            </li>
+            <li>
+              <a href="#Multi-Tenancy">
+                4.2 Multi-Tenancy
+              </a>
+            </li>
+          </ul>
+        </li>
         <li>
           <a href="#Application-Packaging">
             5. Application Packaging</a>
-            <ul>
-              <li>
-                <a href="#Containers">
-                  5.1 Containers
-                </a>
-              </li>
-              <li>
-                <a href="#Docker">
-                  5.2 Docker
-                </a>
-              </li>
-              <li>
-                <a href="#Dockerfiles">
-                  5.3 Dockerfiles
-                </a>
-              </li>
-              <li>
-                <a href="#Buildpacks">
-                  5.4 Buildpacks
-                </a>
-              </li>
-              <li>
-                <a href="#Buildpacks-and-Containers">
-                  5.5 Buildpacks and Containers
-                </a>
-              </li>
-            </ul></li>
+        </li> 
+        <li>
+          <ul>
+            <li>
+              <a href="#Containers">
+                5.1 Containers
+              </a>
+            </li>
+            <li>
+              <a href="#Docker">
+                5.2 Docker
+              </a>
+            </li>
+            <li>
+              <a href="#Dockerfiles">
+                5.3 Dockerfiles
+              </a>
+            </li>
+            <li>
+              <a href="#Buildpacks">
+                5.4 Buildpacks
+              </a>
+            </li>
+            <li>
+              <a href="#Buildpacks-and-Containers">
+                5.5 Buildpacks and Containers
+              </a>
+            </li>
+          </ul>
+        </li>
         <li>
           <a href="#Resource-Scheduling">
             6. Resource Scheduling</a></li>
@@ -127,7 +135,7 @@
         <h1>Case Study</h1>
 
 
-        <h2 id="Introduction">1. Introduction</h2>
+        <h2 id="Introduction" class="sec-header">1. Introduction</h2>
 
 
         <p>Mothership is an open-source, platform-as-a-service (PaaS) that enables teams to easily deploy and manage
@@ -158,7 +166,7 @@
           take a step back and explain what an open-source PaaS is and where it lies on the spectrum of deployment
           options.</p>
 
-        <h2 id="What-is-a-Platform-as-a-Service">2. What is a Platform-as-a-Service</h2>
+        <h2 id="What-is-a-Platform-as-a-Service" class="sec-header">2. What is a Platform-as-a-Service</h2>
 
         <p>At its core, deploying a web application requires running a physical server with a public IP address, mapping
           URLs to that address, installing operating system dependencies and runtimes, transferring source code to the
@@ -174,7 +182,7 @@
 
         <hr />
 
-        <h3 id="PaaS">2.1 PaaS</h3>
+        <h3 id="PaaS" class="sec-header">2.1 PaaS</h3>
 
         <p>More and more, developers are turning to platforms-as-a-service to handle deployments. The reason is clear.
           With a PaaS, developers no longer need to think about OS-level concerns – they simply provide the PaaS with
@@ -224,7 +232,7 @@
           applications that don’t need all of the advanced features of a mature proprietary PaaS, and whose uptime and
           scalability needs are more modest.</p>
 
-        <h2 id="Mothership">3. Mothership</h2>
+        <h2 id="Mothership" class="sec-header">3. Mothership</h2>
 
         <p>We designed Mothership for easy deployment of small, internal-facing applications. To do so, we began with
           the following high-level goals:</p>
@@ -253,11 +261,11 @@
         <p>In the remaining sections, we discuss the challenges that arose in architecting a system to meet these goals,
           and how we solved them.</p>
 
-        <h2 id="Tenancy">4. Tenancy</h2>
+        <h2 id="Tenancy" class="sec-header">4. Tenancy</h2>
 
         <p>One of the first questions that we confronted was where deployed applications should live.</p>
 
-        <h3 id="Single-tenancy">4.1 Single-tenancy</h3>
+        <h3 id="Single-tenancy" class="sec-header">4.1 Single-tenancy</h3>
 
         <p>A common way of doing manual deploys is to first provision a new VPS, copy over the source code, and boot up
           the app server. With this approach, there is one application per node. This is a <em>single tenant</em> model,
@@ -289,7 +297,7 @@
         <p>While the speed penalty is annoying, the resource utilization issue is a show-stopper for our use-case. A
           single-tenancy PaaS for small applications would be wasteful and unnecessarily expensive.</p>
 
-        <h3 id="Multi-tenancy">4.2 Multi-tenancy</h3>
+        <h3 id="Multi-tenancy" class="sec-header">4.2 Multi-tenancy</h3>
 
         <p>The alternative is a <em>multi-tenant architecture</em>. In a multi-tenant model <em>multiple</em>
           applications run concurrently on the same server. Applications can be added or removed more quickly than in a
@@ -304,7 +312,7 @@
           Mothership. But designing a multi-tenancy architecture introduces significant challenges that complicate the
           picture.</p>
 
-        <h2 id="Application-Packaging">5. Application Packaging</h2>
+        <h2 id="Application-Packaging" class="sec-header">5. Application Packaging</h2>
 
         <p>Now that we have decided to deploy multiple applications on a single server, we have some problems to
           address. It is a major security vulnerability for all applications to share a single filesystem (ask anyone
@@ -313,7 +321,7 @@
           example, one app may require PHP 5 and another PHP 7. What we need is a way to create an isolated environment
           for each application, but where we can efficiently run multiple environments on a single node.</p>
 
-        <h3 id="Containers">5.1 Containers</h3>
+        <h3 id="Containers" class="sec-header">5.1 Containers</h3>
 
         <p>As it happens, there is a robust solution for exactly this problem: containers. Containers provide isolated
           environments that appear to be unique OS instances from the inside, but which in fact share the resources of
@@ -322,7 +330,7 @@
           install its own dependencies and will not be able to interact with other applications, which is exactly what
           we want.</p>
 
-        <h3 id="Docker">5.2 Docker</h3>
+        <h3 id="Docker" class="sec-header">5.2 Docker</h3>
 
         <p>There are various containerization technologies available, but the dominant implementation is from Docker. We
           decided to use Docker for Mothership’s containerization stack because of its ample documentation, ease-of-use,
@@ -358,7 +366,7 @@
           application dependencies to install in each application’s container, what command we run to start an
           application, and how we instruct Docker to do all this.</p>
 
-        <h3 id="Dockerfiles">5.3 Dockerfiles</h3>
+        <h3 id="Dockerfiles" class="sec-header">5.3 Dockerfiles</h3>
 
         <p>Early versions of Mothership supported only Rack-compliant applications written in the latest version of
           Ruby. Generating an appropriate container for such applications was fairly straightforward:</p>
@@ -380,7 +388,7 @@
           different languages, and requires constant maintenance. While possible, this approach was not feasible for our
           small team. A better solution comes from Heroku: the <em>buildpack</em>.</p>
 
-        <h3 id="Buildpacks">5.4 Buildpacks</h3>
+        <h3 id="Buildpacks" class="sec-header">5.4 Buildpacks</h3>
 
         <p>Like a Dockerfile, a buildpack contains a set of instructions for generating a suitable environment in which
           an application can run. The benefit of buildpacks, however, is that there are well-tested, open-source
@@ -399,7 +407,7 @@
           to run environment. Different buildpack systems result in different outputs, but all result in an environment
           ready to run the application. How then can buildpacks be used in conjunction with Docker containers?</p>
 
-        <h3 id="Buildpacks-and-Containers">5.5 Buildpacks and Containers</h3>
+        <h3 id="Buildpacks-and-Containers" class="sec-header">5.5 Buildpacks and Containers</h3>
 
         <p>When an application is deployed Mothership starts with a base Docker image that has all supported buildpacks
           installed. Next, it copies the source code for the user’s application into the Docker container. Then, it
@@ -431,7 +439,7 @@
         <p>With a solid containerization strategy in place, the next challenges to consider concern resource scheduling.
         </p>
 
-        <h2 id="Resource-Scheduling">6. Resource Scheduling</h2>
+        <h2 id="Resource-Scheduling" class="sec-header">6. Resource Scheduling</h2>
 
         <p>Recall that our current architecture looks like the following:</p>
 
@@ -556,7 +564,7 @@
           single API request to the manager node. Users of Mothership can scale out their apps by simply requesting an
           increased number of instances.</p>
 
-        <h2 id="Service-Discovery">7. Service Discovery</h2>
+        <h2 id="Service-Discovery" class="sec-header">7. Service Discovery</h2>
 
         <p>Now that we have a container orchestrator dynamically distributing tasks across our fleet of application
           nodes, we have two additional problems to solve:</p>
@@ -774,7 +782,7 @@
           features needed to be added, and each involved significant engineering challenges of its own. We turn to these
           features and challenges next.</p>
 
-        <h2 id="Essential-Features">8. Essential Features</h2>
+        <h2 id="Essential-Features" class="sec-header">8. Essential Features</h2>
 
         <h3 id="Running-Terminal-Commands">8.1 Running Terminal Commands</h3>
 
@@ -974,7 +982,7 @@
           URL you’d like your PaaS deployed to, and then handles the rest. After it work is done, the tool gives you
           instructions on the two DNS entries you must add to your domain to make Mothership live.</p>
 
-        <h2 id="Future-Work">9. Future Work</h2>
+        <h2 id="Future-Work" class="sec-header">9. Future Work</h2>
 
         <ul>
           <li>Increase testing coverage</li>
