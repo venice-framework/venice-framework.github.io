@@ -46,32 +46,22 @@
     <aside class="sidebar">
       <ul>
         <li>
-          <a href="#Introduction">
-            1. Introduction</a></li>
+          <a href="#What is Venice?">
+            What is Venice?</a>
+
+          <ul>
+            <li><a href="#Features">Features</a></li>
+            <li><a href="#Components">Components</a></li>
+            <li><a href="#Architecture">Architecture</a></li>
+            <li><a href="#When does it fit?">When does it fit?</a></li>
+            <li><a href="#When does it not fit?">When does it not fit?</a></li>
+          </ul>
+
+
+        </li>
         <li>
-          <a href="#What-is-a-Platform-as-a-Service">
-            2. What is a PaaS?</a></li>
-        <li>
-          <a href="#Mothership">
-            3. Mothership</a></li>
-        <li>
-          <a href="#Tenancy">
-            4. Tenancy</a></li>
-        <li>
-          <a href="#Application-Packaging">
-            5. Application Packaging</a></li>
-        <li>
-          <a href="#Resource-Scheduling">
-            6. Resource Scheduling</a></li>
-        <li>
-          <a href="#Service-Discovery">
-            7. Service Discovery</a></li>
-        <li>
-          <a href="#Essential-Features">
-            8. Essential Features</a></li>
-        <li>
-          <a href="#Future-Work">
-            9. Future Work</a></li>
+          <a href="#Quickstart">
+            Quickstart</a></li>
       </ul>
     </aside>
 
@@ -100,7 +90,7 @@
         <p>
           Venice’s main features are:
           <ul>
-            <li>An easy to use command-line interface for common development and pipeline management tasks.</li>
+            <li>An easy to use command line interface for common development and pipeline management tasks.</li>
             <li>A default pipeline to quickly support stream processing applications.</li>
             <li>Simple configuration of new connections and components.</li>
             <li>A web-based UI for monitoring the message brokers.</li>
@@ -156,54 +146,152 @@
           Venice may not be a good fit if your use case is complex and would require substantial customization.
         </p>
 
-        <p>Let’s first examine Mothership’s strategy for handling scaling. From the CLI, a user can run the command
-          <code>mothership cluster-scale</code>. This adds an additional app-pod to the convoy. The container
-          orchestrator
-          will take care of this pod as it sees fit. Easy. But there are a number of not-so-easy steps that must be
-          completed to enable this:</p>
 
-        <ol>
-          <li>We must provision a new server with the user’s IaaS account</li>
-          <li>We need to install Docker on this server</li>
-          <li>We need to register this new server with our container orhcestrator</li>
-        </ol>
-
-        <p>Mothership uses Docker Machine to handle server provisioning. Docker Machine comes with “providers” for
-          many
-          IaaS providers (Digital Ocean, Linode, AWS, and many others). These providers do the work of sending the
-          requisite API calls to the IaaS provider in question to get a server provisioned with Docker installed and
-          the
-          correct ports open. By using Docker Machine, we freed ourselves to work at a higher level of abstraction in
-          implementing scaling. Once we have this new Docker host, we can send it an API request instructing it to
-          register itself on our Convoy.<sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup></p>
-
-        <p>The first thing we did to ease the task of deploying Mothership was to containerize the application.
-          Mothership
-          requires the main Node.js app, as well as a Postgres database and a Redis server. We provision and connect
-          these
-          three pieces with a Docker compose file. But there are still quite a number of steps required before and
-          after
-          typing <code>docker compose up</code>. Multiple servers must be provisioned, a Swarm cluster must be
-          established, many configuration fields must be set in the database, and the proxy service must be created.
+        <h2 id="Quickstart">Quickstart</h2>
+        <h3 id="Installation Instructions">Installation Instructions</h3>
+        <h4 id="Install Dependencies">Dependencies</h4>
+        <p>
+          <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">Install Node and npm</a>
+          <ul>
+            <li><a href="https://nodejs.org/">Node</a> (the CLI was created and tested with version 13.8.0)</li>
+            <li><a href="https://www.npmjs.com/get-npm">npm</a> (the CLI was created and tested with version 6.13.6)
+            </li>
+          </ul>
         </p>
 
-        <p>To make all of this as easy as possible, Mothership has a CLI tool called <code>mothership-setup</code>
-          that
-          automates the entire process. Currently, this tool only supports Digital Ocean, although we’re working to
-          support more IaaS providers in the future. The tool prompts you for a Digital Ocean API token, along with
-          the
-          URL you’d like your PaaS deployed to, and then handles the rest. After it work is done, the tool gives you
-          instructions on the two DNS entries you must add to your domain to make Mothership live.</p>
+        <h4 id="Install Venice CLI">Install Venice CLI</h4>
+        <p>
+          Use this command:
+          <p>
+            <code>git clone git@github.com:venice-framework/venice-cli.git && cd venice-cli && npm install && sudo npm link</code>
+          </p>
+          <p>or do it step-by-step:</p>
+          <ol>
+            <li>Clone the respository.</li>
+            <p><code>git clone git@github.com:venice-framework/venice-cli.git</code></p>
+            <li>Navigate into the newly installed <code>venice-cli</code> directory.</li>
+            <p><code>cd venice-cli</code></p>
+            <li>Install packages.</li>
+            <p><code>npm install</code> or <code>npm i</code></p>
+            <li>Create a symbolic link.</li>
+            <p><code>sudo npm link</code></p>
+          </ol>
+        </p>
 
-        <h2 id="Future-Work">9. Future Work</h2>
+        <h4 id="Choose a pipeline">Choose a pipeline</h4>
+        <p>Navigate to a repo containing a pipeline, or install a Venice default pipeline.</p>
+        <p>You can use the Venice pipeline with a PostgreSQL sink if you do not have a pipeline you want to test.
+        </p>
+        <p>NOTE: The following command will clone a repo into the current working directory. If you want the repo to be
+          cloned into another folder, navigate away from <code>venice-cli</code> now (e.g., `<code>cd ..</code>)</p>
+        <p><code>venice install</code></p>
+        <p>Select "venice - Base pipeline with a Postgres sink".</p>
+        <p><code>cd venice-postgres-sink</code></p>
 
-        <ul>
-          <li>Increase testing coverage</li>
-          <li>App versioning and deployment rollbacks</li>
-          <li>Support background jobs for apps</li>
-          <li>Achieve CLI feature-parity with web interface</li>
-          <li>Migrate automated setup to Terraform</li>
-        </ul>
+
+        <h4 id="Add a producer">Add a producer</h4>
+        <p>You can use your own or a Venice producer example.</p>
+
+        <p>Open the <code>docker-compose.yml</code> file in a text editor.</p>
+        <p>Uncomment the section for the producer so that <code>producer</code> aligns vertically with the other
+          services.</p>
+        <div class="img-wrapper">
+          <figure>
+            <img src="images/diagrams/Producer_DockerCompose.png" style="max-height:400px"
+              alt="code snippet of the producer service in the default docker-compose.yml file" />
+            <figcaption>
+            </figcaption>
+          </figure>
+        </div>
+        <p>
+          If you want to use your own producer, package it in a container and have it use the environment variables
+          <code>BROKER</code>, <code>TOPIC_NAME</code>, and <code>SCHEMA_REGISTRY_URL</code>. Then, swap out <code>image:
+          veniceframework/python-producer-test-key-string</code> for the image you want to use.
+        </p>
+
+        <h4 id="choose-whether-to-insert-or-upsert-the-data-into-postgresql">Choose whether to insert or upsert the data
+          into PostgreSQL</h4>
+        <p>Open the <code>docker-compose.yml</code> file in a text editor if it is not yet open.</p>
+        <p><code>insert</code> inserts every row into the table.
+          <code>upsert</code> adds a new row if a row with the same key does not exist yet. If a row with the same key
+          exists, that row is updated.</p>
+        <p>The PostgreSQL pipeline uses <code>upsert</code> by default.
+          Within the commands for the <code>connector-init</code> service, change <code>upsert</code> to
+          <code>insert</code> if you want to use <code>insert</code> instead.</p>
+        <div class="img-wrapper">
+          <figure>
+            <img src="images/diagrams/insert-upsert.png" style="max-height:400px"
+              alt="code snippet of the connector-init service in the default docker-compose.yml file, with the configuration line for insert or upsert highlighted" />
+            <figcaption>
+            </figcaption>
+          </figure>
+        </div>
+        <p>Save and close the file.</p>
+        <h4 id="change-the-topic-name-and-postgresql-environment-variables-">Change the topic name and PostgreSQL
+          environment variables.</h4>
+        <p>Open the <code>.env</code> file in a text editor.
+          If you are following along with the Venice producer and PostgreSQL pipeline, change the values for
+          <code>TOPIC_NAME</code> to <code>bus_locations</code> and <code>POSTGRES_DB</code> to <code>buses</code>.
+          Save and close the file.</p>
+        <h4 id="start-the-pipeline-">Start the pipeline.</h4>
+        <p><code>venice up</code></p>
+        <h4 id="show-the-status-of-all-components-of-the-pipeline-">Show the status of all components of the pipeline.
+        </h4>
+        <p><code>venice status</code> or <code>venice -st</code></p>
+        <h4 id="to-follow-the-logs-of-one-or-more-components-press-space-bar-to-select-before-pressing-enter-return-">To
+          follow the logs of one or more components (press space bar to select before pressing enter/return)</h4>
+        <p><code>venice logs</code>
+          <img src="gifs/venice-logs.gif" alt="venice logs demo"></p>
+        <p>The output is piped to <code>less</code>, so you can navigate up and down through the logs using the arrow
+          keys or <code>j</code> and <code>k</code>. Use the spacebar to scroll down by “page”, and press <code>q</code>
+          to quit.</p>
+        <h4 id="show-topics-schemas-and-connectors">Show topics, schemas, and connectors</h4>
+        <p><code>venice topics</code> or <code>venice -t</code>
+          <code>venice schemas</code> | <code>venice -s</code>
+          <code>venice connectors</code> | <code>venice -c</code>venice</p>
+        <h4 id="open-the-ksql-cli-to-see-the-data-being-written-to-the-topic-">Open the KSQL CLI to see the data being
+          written to the topic.</h4>
+        <p>This will download the KSQL CLI if you have not already used it. There will be a notable delay as it loads
+          for the first time.
+          <code>venice ksql</code></p>
+        <p>If you get an error message that
+          <code>Remote server at http://ksql-server:8088 does not appear to be a valid KSQL server</code>, exit the KSQL
+          CLI and try again.</p>
+        <p>Try these KSQL commands:
+          Show all topics. You should see <code>bus_locations</code> among the list of topics.
+          <code>SHOW TOPICS;</code></p>
+        <p>Print all data from the beginning.
+          <code>PRINT bus_locations FROM BEGINNING;</code></p>
+        <p>Follow any new input.
+          <code>PRINT bus_locations;</code>
+          CTRL+C to stop printing.</p>
+        <p>You can issue additional queries over the data such as aggregations and other transformations.
+          See more KSQL commands in the <a
+            href="https://docs.confluent.io/current/ksql/docs/developer-guide/syntax-reference.html#ksql-statements">KSQL
+            documentation</a></p>
+        <p><code>CTRL+D</code> to exit the KSQL console.</p>
+        <h4 id="launch-the-postgresql-cli-to-see-the-data-populating-in-the-database-">Launch the PostgreSQL CLI to see
+          the data populating in the database.</h4>
+        <p><code>venice psql</code></p>
+        <p>If you are following along with the bus example, enter “venice_user” for the name of the PostgreSQL user, and
+          “buses” for the name of the PostgreSQL database.</p>
+        <p>PostgreSQL commands:
+          Show all tables. You should see <code>bus_locations</code>.
+          <code>\dt</code></p>
+        <p>Show the first ten rows.
+          <code>SELECT * FROM bus_locations LIMIT 10;</code></p>
+        <p>Display a count of how many records there are in the table.
+          <code>SELECT COUNT(*) FROM bus_locations;</code></p>
+        <p>CTRL+D to exit the PSQL console.
+          You can also use <code>exit</code>, <code>quit</code>, <code>\q</code>, or CTRL+C.</p>
+        <h4 id="gui">GUI</h4>
+        <p>For a graphic interface for the Kafka cluster, navigate to <code>localhost:9000</code> in your web browser.
+          Here you can view Kafka topics and consumer groups. You can examine individual messages to ensure they are
+          being serialized and deserialized correctly. You can also verify message distribution among partitions to
+          ensure balance.</p>
+        <h4 id="shut-down-the-venice-pipeline">Shut down the Venice pipeline</h4>
+        <p><code>venice down</code> </p>
+
 
       </section>
     </main>
