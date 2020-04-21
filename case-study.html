@@ -850,7 +850,6 @@
             </figcaption>
           </figure>
 
-          <!-- style this section & add icons for clock and plus -->
           <h3>
             3.2 Design goals for an approachable stream processing framework
           </h3>
@@ -872,7 +871,141 @@
             </ul>
           </div>
 
-          <h2 id="placeholder" class="sec-header"></h2>
+          <h2 id="Architecture" class="sec-header">4. Architecture and Deployment</h2>
+
+          <p>Venice consists of these components:</p>
+
+          <ul>
+            <li><strong>Kafka brokers</strong> for logging events</li>
+            <li>A <strong>Zookeeper</strong> instance for managing the cluster of Kafka brokers</li>
+            <li>A <strong>Schema Registry</strong> for managing schemas</li>
+            <li>A <strong>ksqlDB server</strong> for performing aggregations, filtrations, transformations, and joins over real-time data</li>
+            <li><strong>KSQL CLI</strong> for interacting with the ksqlDB server</li>
+            <li><strong>Kafka Connect</strong> workers for moving data in and out of Kafka and simplifying the process of adding new sources and sinks</li>
+            <li>A <strong>PostgreSQL</strong> data sink for storing the data in multiple formats</li>
+            <li><strong>Kafdrop</strong> UI for monitoring message brokers</li>
+            <li><strong>Venice CLI</strong> for deploying and managing the pipeline</li>
+          </ul>
+
+          <p>The components are packaged in Docker containers, making them easy to build and deploy or swap for others to better meet changing developer needs.</p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/VeniceFull.png"
+              alt="Venice pipeline architecture diagram"
+            />
+            <figcaption>
+              Figure 13. The complete Venice pipeline.
+            </figcaption>
+          </figure>
+
+          <p>The workflow is as follows:</p>
+
+          <ul>
+            <li>The user installs and launches Venice through the Venice CLI.
+              <figure class="img-wrapper">
+                <img
+                  src="images/diagrams/venice_up_and_status.png"
+                  alt="the result of 'venice up' and 'venice status' commands"
+                />
+                <figcaption>
+                  Figure 14. Viewing a deployed Venice pipeline in the console.
+                </figcaption>
+              </figure>
+            </li>
+<li>
+  The user connects a producer which generates events and sends them to the Kafka Brokers, which are managed by Zookeeper. 
+<ul>
+  <li>
+    Producers optionally register schemas with the Schema Registry. 
+  </li>
+  <li>Additional producers can be configured to connect to the pipeline through Kafka Connect.</li>
+</ul>
+</li>
+
+<li>
+  Kafka records the events in order and serializes them for transport.  
+  <ul>
+    <li>
+      The user can verify the serialization, topics, and more using the Kafka UI or Venice CLI.
+    </li>
+  </ul>
+</li>
+
+<li>
+  The stream processing engine performs queries as it receives each event and sends the transformed outputs back to Kafka to a new Kafka topic.
+<ul>
+  <li>The user has the option of launching and using the KSQL CLI through the Venice CLI to add new queries to the ksqlDB server.</li>
+</ul>
+</li>
+
+<li>
+  Consumers can read directly from the Kafka Brokers, retrieving schemas from the Schema Registry to deserialize data. 
+</li>
+
+<li>Kafka Connect connectors (PostgreSQL or additional optional user-added data sinks) synchronize data from Kafka to the database, automatically retrieving schemas from the schema registry.</li>
+          </ul>
+
+          <p>Each of the components in the <i>“Managed by Venice CLI”</i> box runs within a separate Docker container.</p>
+
+          <h3 id="Docker" class="sec-header">4.1 Docker isolates pipeline components</h3>
+
+          <p>The Venice pipeline contains multiple components and each has its own set of dependencies. These dependencies could conflict with each other or a user’s existing software. Docker isolates each component, preventing such dependency collisions. This provides streamlined installation as well as smoother addition of additional components. 
+          </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/ContainerizedServices.png"
+              alt="Three services with their dependencies isolated from one another in solid boxes inside a dotted box 'Managed by Docker' all within a larger 'Host Machine' box"
+            />
+            <figcaption>
+              Figure 15. Docker isolates each service and its dependencies in containers.
+            </figcaption>
+          </figure>
+
+          <h3 id="Kafka-UI" class="sec-header">4.2 Kafdrop provides visual insights to help manage stream processing pipelines</h3>
+
+          <p>A source of complexity for a developer new to event stream processing is the difficulty of gaining insight into the system. For a developer new to stream processing  it is often arduous to: 
+          </p>
+
+          <ul>
+            <li>Discover whether messages are being read and encoded properly or divided among partitions as desired. </li>
+            <li>Schemas are registered or evolving as intended. </li>
+            <li>Connectors are present and if their tasks are running or failed. </li>
+            <li>Topics are available or created as requested. </li>
+          </ul>
+
+          <p>To this end, Venice includes the third-party Kafdrop graphic user interface. Once a Venice user deploys the pipeline, they can navigate to a simple web interface that grants them a window into all of these features and more. 
+          </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/gifs/kafdrop_view_messages.gif"
+              alt="gif of a user viewing bus event data in the Kafkdrop Kafka graphical user interface"
+            />
+            <figcaption>
+              Figure 16. The Kafdrop Kafka cluster graphical user interface
+            </figcaption>
+          </figure>
+
+          <h3 id="Venice-CLI" class="sec-header">4.3 Venice CLI streamlines developer experience</h3>
+
+          <p>The commands to interact with a containerized event streaming system can be a source of frustration. Many of the commands to manage the Venice containerized components are unwieldy and require an intimate knowledge of container names, ports, etc. Venice provides a CLI with 14 commands to streamline these interactions for developers.
+          </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/CLI-Admin-Commands.png"
+              alt="list of Venice CLI administrative commands"
+            />
+            <img
+              src="images/diagrams/CLI-Connector-Topic-Commands.png"
+              alt="list of Venice CLI connector and topic commands"
+            />
+            <figcaption>
+              Figure 17. Commands for the Venice CLI.
+            </figcaption>
+          </figure>
 
           <h2 id="other-placeholder" class="sec-header"></h2>
 
