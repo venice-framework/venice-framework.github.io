@@ -203,10 +203,7 @@
           </ol>
 
           <figure class="img-wrapper">
-            <img
-              src="/images/diagrams/placeholder.png"
-              alt="data source feeds message broker feeds stream processing engine feeds data sink"
-            />
+            <img src="images/diagrams/Pipeline-Generalized.png" alt="data source feeds message broker feeds stream processing engine feeds data sink">
             <figcaption>
               A high-level overview of a generalized event-stream processing
               pipeline
@@ -301,11 +298,7 @@
           </p>
 
           <figure class="img-wrapper">
-            <img
-              src="/images/diagrams/placeholder.png"
-              style="max-height: 400px;"
-              alt="A web application sends data to a primary database that feeds multiple other databases and processes"
-            />
+            <img src="images/diagrams/PrimaryDatabaseDependency.png" style="max-height: 400px;" alt="A web application sends data to a primary database that feeds multiple other databases and processes">
             <figcaption>
               The same data is needed for many different purposes. <sup>1</sup>
             </figcaption>
@@ -361,7 +354,7 @@
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/DualWriteFailure.png"
               style="max-height: 400px;"
               alt="A customer order is written to one database but the accompanying inventory update fails"
             />
@@ -392,7 +385,7 @@
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/OrderEventObject.png"
               style="max-height: 400px;"
               alt="order event object with properties for order_id, customer_id, seller_id, product_id, quantity, price_in_cents, timestamp"
             />
@@ -408,7 +401,7 @@
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/OrderTriggersServices.png"
               style="max-height: 400px;"
               alt="data from the order object in the previous figure is sent to three different services"
             />
@@ -448,13 +441,13 @@
           </p>
 
           <h4>
-            Message queues do not retain events and may process events out of
+            2.3.1 Message queues do not retain events and may process events out of
             order
           </h4>
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/gifs/MessageQueue.gif"
               style="max-height: 400px;"
               alt="gif of a message queue with messages enqueing and dequeuing"
             />
@@ -487,12 +480,12 @@
           </p>
 
           <h4>
-            2.3 Log-based message brokers retain events and help guarantee order
+            2.3.2 Log-based message brokers retain events and help guarantee order
           </h4>
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/Log.png"
               style="max-height: 400px;"
               alt="a row of numbers in boxes, each box represents a message written to the log"
             />
@@ -583,7 +576,7 @@
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/LogAsBroker.png"
               style="max-height: 400px;"
               alt="generic data sources send data to a log-based message broker that feeds into a data sink"
             />
@@ -593,7 +586,7 @@
             </figcaption>
           </figure>
 
-          <h4>A note on the limitations of logs</h4>
+          <h4>2.3.3 A note on the limitations of logs</h4>
           <p>Log-based approaches are not the answer to all problems. If an event takes a long time to process, this could hold up processing of later events, because events are consumed in a linear fashion. [3, Ch. 11]. Ordering of events is only guaranteed within a single partition, which may be problematic as you scale. This system also does not support reading your own writes [3, Ch. 5], and other linearizability guarantees [3, Ch. 9, Ch. 12]. In many cases, the benefits outweigh the drawbacks, and log-based message brokers present a powerful solution to the problem of <b>propagating data to multiple services in real-time</b>, without sacrificing <b>availability</b> and <b>consistency</b>, while retaining the flexibility to <b>use historical data</b>.</p>
 
           <h3>2.4 Stream processors abstract common operations out to a fast and fault-tolerant engine</h2>
@@ -612,7 +605,7 @@
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/gifs/ProcessorReplacesConsumers.gif"
               style="max-height: 400px;"
               alt="gif of several consumers being replaced by a single stream processing engine"
             />
@@ -624,7 +617,7 @@
           <p>Adding a stream processor to a log-based architecture expands the benefits of the system. Services can write data efficiently by appending it to the log. The stream processor can complete operations shared by different services more efficiently. This means that services can share the same underlying data and easily transform that data into a format that is ideal for their needs. 
           </p>
 
-          <h4>A note on the importance of databases</h4>
+          <h4>2.4.1 A note on the importance of databases</h4>
 
           <p>This background emphasizes the benefits of an event-driven architecture with a distributed log at its core. However, event driven architecture does not replace databases completely.
           </p>
@@ -635,7 +628,7 @@
 
           <figure class="img-wrapper">
             <img
-              src="/images/diagrams/placeholder.png"
+              src="images/diagrams/Brokers-Processor.png"
               style="max-height: 400px;"
               alt="producers or sources such as user activity, sensor data, or database writes feed events to a replicated log-based message broker which sends them to a stream processing engine and eventually they wind up in various consumers or sinks such as a cache, graph database, or search index"
             />
@@ -656,6 +649,8 @@
   <li>An architecture with a distributed event log at its core and databases to store outputs provides <b>fast access to both events and state</b>. Multiple services can now use the same data in different ways, and the application has the agility to grow with changing requirements.</li>
 </ul>
 
+<!-- this is as far as I got -->
+<hr>
           <h2 id="Application-Packaging" class="sec-header">
             5. Application Packaging
           </h2>
