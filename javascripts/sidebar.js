@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const elementArray = selector => Array.apply(null, document.querySelectorAll(selector));
-  const sectionHeaders = elementArray('#case-study h2').reverse();
+  const sectionHeaders = elementArray('.sec-header').reverse();
   const sidebarLinks = elementArray('.sidebar ul li a');
 
   const setActive = (id) => {
