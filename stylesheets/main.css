@@ -903,10 +903,6 @@ small {
     font-size: 1.5vw;
   }
 
-  #footnotes {
-    word-wrap: break-word;
-  }
-
   .sidebar {
     display: none;
   }
@@ -1137,6 +1133,11 @@ small {
   #our-team > p {
     width: 57%;
   }
+}
+
+.reference-item {
+  padding-bottom: 20px;
+  word-wrap: break-word;
 }
 
 /* ---------------------------------
