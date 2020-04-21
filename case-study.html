@@ -160,18 +160,7 @@
           <h2 id="Introduction" class="sec-header">1. Introduction</h2>
 
           <p>
-            One of the main challenges for event-driven microservices
-            architecture is how the system handles the volume and velocity of
-            data that needs to be distributed to different services. Many
-            services may rely on the same event data but require it in different
-            formats. One solution, event-stream processing, involves processing
-            and transforming events as they arrive in the system before
-            distributing them to their respective services. Event-stream
-            processing decouples data writes from data reads. This means we can
-            choose the ideal tools and formats for both reads and writes.
-            Event-stream processing is a powerful solution for delivering event
-            data in real time by centralizing event transformations in a single
-            pipeline.
+            One of the main challenges for event-driven microservices architecture is how the system handles the volume and velocity of data that needs to be distributed to different services. Many services may rely on the same event data but require it in different formats. One solution, event-stream processing, involves processing and transforming events as they arrive in the system before distributing them to their respective services. Event-stream processing decouples data writes from data reads. This means the ability to choose the ideal tools and formats for both reads and writes. Event-stream processing is a powerful solution for delivering event data in real time by centralizing event transformations in a single pipeline. 
           </p>
 
           <p>
@@ -258,7 +247,7 @@
             Many applications start out as simple monoliths. Over time, as
             requirements grow and become more complex, the need for scale
             prompts many to shift to a service-oriented architecture, such as
-            microservices [<a href="#microservices">1, Ch. 1</a>].
+            microservices [<a href="#microservices" id="ref1">1, Ch. 1</a>].
           </p>
 
           <p>
@@ -303,7 +292,7 @@
           </figure>
 
           <p class="note">
-            <sup>1</sup> Figure inspired by [<a href="#mssp">2, Ch 2</a>].
+            <sup>1</sup> Figure inspired by [<a href="#mssp" id="ref2">2, Ch 2</a>].
           </p>
 
           <p>
@@ -367,7 +356,7 @@
           <p>
             Distributed transactions can provide consistency, but may sacrifice
             availability, because partial failures can render the application
-            extremely slow or unresponsive [<a href="mssp">2, Ch. 2</a>;
+            extremely slow or unresponsive [<a href="mssp" id="ref3">2, Ch. 2</a>;
             <a href="two-phase-commit">3</a>].
           </p>
 
@@ -380,7 +369,7 @@
 
           <p>
             An event is an immutable object that describes something that
-            happened at some point in time in an application [<a href="#ddia"
+            happened at some point in time in an application [<a href="#ddia" id="ref4"
               >4, Ch. 11</a
             >]. For example, if a new order is placed, that order can be modeled
             as an event as follows:
@@ -418,7 +407,7 @@
             In streaming terminology, a producer generates an event. Related
             events are grouped together into a stream (also known as a topic).
             That event is then processed by one or many consumers [<a
-              href="#ddia"
+              href="#ddia" id="ref5"
               >4, Ch. 11</a
             >]. In the example above, the application is the producer. When a
             customer creates a new order, the application produces an event to
@@ -482,7 +471,7 @@
 
           <p>
             Message queues are not the answer because they may process events
-            out of order and do not retain events [<a href="#ddia">4, Ch. 11</a
+            out of order and do not retain events [<a href="#ddia" id="ref6">4, Ch. 11</a
             >].
           </p>
 
@@ -512,8 +501,8 @@
             <li>each event can be processed quickly.</li>
             <li>processing order is important.</li>
             <li>
-              event retention is required [<a href="#mssp">2, Ch. 2</a>;
-              <a href="#ddia">4, Ch. 11</a>].
+              event retention is required [<a href="#mssp" id="ref7">2, Ch. 2</a>;
+              <a href="#ddia" id="ref8">4, Ch. 11</a>].
             </li>
           </ul>
 
@@ -534,7 +523,7 @@
                 <li>
                   High Throughput: Logs can be split into partitions and
                   replicated across machines. This means many reads and writes
-                  can proceed concurrently [<a href="#okay-store-data">5</a>].
+                  can proceed concurrently [<a href="#okay-store-data" id="ref9">5</a>].
                 </li>
               </ul>
             </li>
@@ -601,7 +590,7 @@
           <p>
             Log-based approaches are not the answer to all problems. Events are
             consumed in a linear fashion, so a single event taking a long time
-            to process could delay processing of later events. [<a href="#ddia"
+            to process could delay processing of later events. [<a href="#ddia" id="ref10"
               >4, Ch. 11</a
             >]. Ordering of events is only guaranteed within an individual
             partition, which may be problematic as the system scales. The system
@@ -627,7 +616,7 @@
             different, but many of the operations used by the services to
             process these events are the same. These operations include
             windowing, aggregation, joins, filters, and transformations [<a
-              href="#streaming-systems"
+              href="#streaming-systems" id="ref11"
               >6</a
             >].
           </p>
@@ -645,7 +634,7 @@
             to an engine. Such an engine can provide additional benefits such as
             fault tolerance, efficient processing of events via clusters,
             maintenance of local state, and out-of-order events handling [<a
-              href="kafka-streams"
+              href="kafka-streams" id="ref12"
               >7</a
             >].
           </p>
@@ -866,27 +855,26 @@
             3.2 Design goals for an approachable stream processing framework
           </h3>
 
-          <div class="design-goals">
+          <div id="design-goals">
             <p>
               Venice is approachable for developers new to event-stream
-              processing. It allows them to:
+              processing.<br> It allows them to:
             </p>
             <ul>
-              <li>
-                <!-- clock icon -->Set up common pipeline patterns in minutes so
+              <li><img src="images/icons/clock.png" alt="clock" class="goals"/>Set up common pipeline patterns in minutes so
                 they can minimize time spent on configuration and focus on
                 application code instead.
               </li>
-              <li>
-                <!-- plus icon -->Retain extensibility and potential for
+              
+              <li><img src="images/icons/plus.png" alt="plus" class="goals"/>Retain extensibility and potential for
                 reconfiguration if their needs change or become more complex.
               </li>
             </ul>
           </div>
 
-          <h2 id="" class="sec-header"></h2>
+          <h2 id="placeholder" class="sec-header"></h2>
 
-          <h2 id="" class="sec-header"></h2>
+          <h2 id="other-placeholder" class="sec-header"></h2>
 
           <h2 id="Challenges" class="sec-header">6. Challenges</h2>
 
@@ -1081,7 +1069,7 @@
 
           <hr />
           <!-- mothership text -->
-          <p>These are problems of <em>service discovery:</em></p>
+          <p>These are problems of <i>service discovery:</i></p>
 
           <blockquote>
             <p>
@@ -1143,151 +1131,82 @@
 
           <h2 id="References" class="sec-header">8. References</h2>
 
-          <ol>
-            <li id="microservices">
-              S. Newman, Building Microservices, 1st ed. Sebastopol, CA, USA.
-              O’Reilly, 2015.
-            </li>
-            <li id="mssp">
-              M. Kleppman, Making Sense of Stream Processing, 1st ed.
-              Sebastopol, CA, USA. O’Reilly, 2016.
-            </li>
-            <li id="ddia">
-              M. Kleppmann, Designing Data Intensive Applications, 1st ed.
-              Sebastopol, CA, USA. O’Reilly, 2017.
-            </li>
-            <li id="two-phase-commit">
-              “Consensus Protocols: Two-Phase-Commit”, The Paper Trail blog,
-              <a
-                href="https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/"
-                target="_blank"
-                >https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/</a
-              >
-              (April 13, 2020).
-            </li>
-            <li id="okay-store-data">
-              J. Kreps, “It’s Okay To Store Data In Apache Kafka”, Confluent.io
-              blog,
-              <a
-                href="https://www.confluent.io/blog/okay-store-data-apache-kafka/"
-                target="_blank"
-                >https://www.confluent.io/blog/okay-store-data-apache-kafka/</a
-              >
-              (April 16, 2020).
-            </li>
-            <li id="streaming-systems">
-              T. Akidau, S. Chernyak, and R. Lax, Streaming Systems, 1st ed.
-              Sebastopol, CA, USA. O’Reilly, 2018.
-            </li>
-            <li id="kafka-streams">
-              J. Kreps, “Introducing Kafka Streams: Stream Processing Made
-              Simple”, Confluent.io blog,
-              <a
-                href="https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/"
-                target="_blank"
-                >https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/</a
-              >
-              (April 14, 2020).
-            </li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li id="docker-compose">Docker documentation: Docker Compose, <a href=”https://docs.docker.com/compose/” target=”_blank”>https://docs.docker.com/compose/</a> (April 12, 2020).
-            </li>
-            <li id="compose-networking">Docker documentation: Docker Compose networking, <a href=”https://docs.docker.com/compose/networking/” target=”_blank”>https://docs.docker.com/compose/networking/</a> (April 12, 2020).
-            </li>
-            <li id="compose-startup">Docker documentation: Docker Compose startup order, <a href=”https://docs.docker.com/compose/startup-order/” target=”_blank”>https://docs.docker.com/compose/startup-order/</a> (April 10, 2020).</li>
-            <li id="rmoff-tips">R. Moffatt, “Docker Tips with KSQL and Kafka”, Professional Blog of Robin Moffatt, <a href=”https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/” target=”_blank”>https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/</a> (April 9, 2020).</li>
-          </ol>
+            <ol>
+              <li id="microservices" class="reference-item">
+                S. Newman, <i>Building Microservices</i>, 1st ed. Sebastopol, CA, USA.
+                O’Reilly, 2015. <a href="#ref1" class="reference-backref">↩︎</a>
+              </li>
 
-          <hr class="footnotes-sep" />
+              <li id="mssp" class="reference-item">
+                M. Kleppman, <i>Making Sense of Stream Processing</i>, 1st ed.
+                Sebastopol, CA, USA. O’Reilly, 2016. <a href="#ref2" class="reference-backref">2.1 ↩︎</a> <a href="#ref2" class="reference-backref">2.3.2 ↩︎</a>
+              </li>
 
-          <div class="footnotes">
-            <ol class="footnotes-list">
-              <li id="fn1" class="footnote-item">
-                <p>
-                  A container orchestrator has several other critical
-                  responsibilities, as we’ll see in the next section on service
-                  discovery. <a href="#fnref1" class="footnote-backref">↩︎</a>
-                </p>
+              <li id="two-phase-commit" class="reference-item">
+                “Consensus Protocols: Two-Phase-Commit”, The Paper Trail blog,
+                <a
+                  href="https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/"
+                  target="_blank"
+                  >https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/</a
+                >
+                (April 13, 2020). <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn2" class="footnote-item">
-                <p>
-                  Officially, Docker Swarm was a separate product from Docker
-                  that is now deprecated, while <em>Swarm Mode</em> is the
-                  current container orchestrator built into Docker as of v1.12.
-                  Whenever we say “Docker Swarm”, we are referring to “Docker in
-                  Swarm Mode.” <a href="#fnref2" class="footnote-backref">↩︎</a>
-                </p>
+
+              <li id="ddia" class="reference-item">
+                M. Kleppmann, <i>Designing Data Intensive Applications</i>, 1st ed.
+                Sebastopol, CA, USA. O’Reilly, 2017. <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn3" class="footnote-item">
-                <p>
-                  Manager nodes in Docker Swarm are convenient in that they can
-                  serve dual-duty as worker nodes. This makes it possible to
-                  have a cluster with a single node, which is how Mothership
-                  operates on first setup.
-                  <a href="#fnref3" class="footnote-backref">↩︎</a>
-                </p>
+  
+              <li id="okay-store-data" class="reference-item">
+                J. Kreps, “It’s Okay To Store Data In Apache Kafka”, Confluent.io
+                blog,
+                <a
+                  href="https://www.confluent.io/blog/okay-store-data-apache-kafka/"
+                  target="_blank"
+                  >https://www.confluent.io/blog/okay-store-data-apache-kafka/</a
+                >
+                (April 16, 2020). <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn4" class="footnote-item">
-                <p>
-                  There is a subtle distinction between a task and a container
-                  that is immaterial to the present discussion.
-                  <a href="#fnref4" class="footnote-backref">↩︎</a>
-                </p>
+
+              <li id="streaming-systems" class="reference-item">
+                T. Akidau, S. Chernyak, and R. Lax, <i>Streaming Systems</i>, 1st ed.
+                Sebastopol, CA, USA. O’Reilly, 2018. <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn5" class="footnote-item">
-                <p>
-                  Since containers are ephemeral, but database data is
-                  persistent, we make use of Docker volumes to persist database
-                  data. <a href="#fnref5" class="footnote-backref">↩︎</a>
-                </p>
+
+              <li id="kafka-streams" class="reference-item">
+                J. Kreps, “Introducing Kafka Streams: Stream Processing Made
+                Simple”, Confluent.io blog,
+                <a
+                  href="https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/"
+                  target="_blank"
+                  >https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/</a
+                >
+                (April 14, 2020). <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn6" class="footnote-item">
-                <p>
-                  The implementation details of Docker overlay networks get
-                  pretty hairy, but
-                  <a
-                    href="https://success.docker.com/article/networking#overlaydrivernetworkarchitecture"
-                    target="_blank"
-                    rel="noopener"
-                    >this reference article</a
-                  >
-                  is a good place to start.
-                  <a href="#fnref6" class="footnote-backref">↩︎</a>
-                </p>
+
+              <!-- placeholders  -->
+              <li id="item-placeholder1" class="reference-item">
+                 <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn7" class="footnote-item">
-                <p>
-                  This is an oversimplification because there may be
-                  <em>multiple</em> running containers for a given service.
-                  Docker Swarm uses DNS round-robin load-balancing to distribute
-                  requests to services among running containers.
-                  <a href="#fnref7" class="footnote-backref">↩︎</a>
-                </p>
+
+              <li id="item-placeholder2" class="reference-item">
+                 <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn8" class="footnote-item">
-                <p>
-                  Under the hood, Docker accomplishes this via heavy use of
-                  Linux iptables rules.
-                  <a href="#fnref8" class="footnote-backref">↩︎</a>
-                </p>
+
+              <li id="item-placeholder3" class="reference-item">
+                 <a href="#ref3" class="reference-backref">↩︎</a>
               </li>
-              <li id="fn9" class="footnote-item">
-                <p>
-                  We don’t go into details here due to space, but even here
-                  there were surprising complexities. For example, scaling a
-                  Convoy <em>down</em> requires telling a pod to leave the
-                  swarm, and then telling the Convoy to delete that pod. This
-                  requires two Docker API calls. Unfortunately, the call for the
-                  pod to leave returns a response before it has fully left, but
-                  the call for the Convoy to delete it can only succeed after it
-                  has fully left – an unfortunate race condition with no clean
-                  solution. <a href="#fnref9" class="footnote-backref">↩︎</a>
-                </p>
-              </li>
+              <!-- end placeholders --> 
+
+              <li id="docker-compose" class="reference-item">Docker documentation: Docker Compose, <a href=”https://docs.docker.com/compose/” target=”_blank”>https://docs.docker.com/compose/</a> (April 12, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+              
+              <li id="compose-networking" class="reference-item">Docker documentation: Docker Compose networking, <a href=”https://docs.docker.com/compose/networking/” target=”_blank”>https://docs.docker.com/compose/networking/</a> (April 12, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+  
+              <li id="compose-startup" class="reference-item">Docker documentation: Docker Compose startup order, <a href=”https://docs.docker.com/compose/startup-order/” target=”_blank”>https://docs.docker.com/compose/startup-order/</a> (April 10, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+
+              <li id="rmoff-tips" class="reference-item">R. Moffatt, “Docker Tips with KSQL and Kafka”, Professional Blog of Robin Moffatt, <a href=”https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/” target=”_blank”>https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/</a> (April 9, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+
             </ol>
-          </div>
         </section>
       </main>
     </div>

@@ -1142,6 +1142,36 @@ small {
 
 /* ---------------------------------
 
+    design goals
+
+------------------------------------ */
+
+#design-goals {
+  background-color: var(--dark-blue);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#design-goals p {
+  text-align: center;
+}
+
+#design-goals ul {
+  display: flex;
+}
+
+#design-goals li {
+  list-style-type: none;
+  margin: 5px 10px 0 0;
+}
+
+.goals {
+  width: 70px;
+  margin-bottom: 10px;
+}
+
+/* ---------------------------------
+
     responsive design (height)
 
 ------------------------------------ */
