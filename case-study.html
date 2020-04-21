@@ -198,7 +198,7 @@
               alt="data source feeds message broker feeds stream processing engine feeds data sink"
             />
             <figcaption>
-              Figure 1. A high-level overview of a generalized event-stream
+              Figure 1. A high-level overview of a generalized event-stream.
               processing pipeline
             </figcaption>
           </figure>
@@ -359,7 +359,8 @@
               alt="A customer order is written to one database but the accompanying inventory update fails"
             />
             <figcaption>
-              Successful write to one database and a failed write to the second
+              A successful write to one database and a failed write to the
+              second.
             </figcaption>
           </figure>
 
@@ -391,7 +392,7 @@
               style="max-height: 400px;"
               alt="order event object with properties for order_id, customer_id, seller_id, product_id, quantity, price_in_cents, timestamp"
             />
-            <figcaption>Figure 3. Example of an order event</figcaption>
+            <figcaption>Figure 3. An example of an order event.</figcaption>
           </figure>
 
           <p>
@@ -743,48 +744,291 @@
             </li>
           </ul>
 
-          <!-- this is as far as I got -->
-          <hr />
-          <h2 id="Application-Packaging" class="sec-header">
-            5. Application Packaging
+          <h2 id="Venice" class="sec-header">
+            3. Venice
           </h2>
 
           <p>
-            Now that we have decided to deploy multiple applications on a single
-            server, we have some problems to address. It is a major security
-            vulnerability for all applications to share a single filesystem (ask
-            anyone who ran a WordPress site on a shared host back in the 2000s)
-            – that would mean if one application is compromised, all others are
-            as well. Additionally, applications’ dependencies can come into
-            conflict – for example, one app may require PHP 5 and another PHP 7.
-            What we need is a way to create an isolated environment for each
-            application, but where we can efficiently run multiple environments
-            on a single node.
+            Venice is an open-source framework that enables developers starting
+            out with event-stream processing to quickly deploy and manage an
+            event-stream processing pipeline.
           </p>
 
-          <h3 id="Containers" class="sec-header">5.1 Containers</h3>
-
           <p>
-            As it happens, there is a robust solution for exactly this problem:
-            containers. Containers provide isolated environments that appear to
-            be unique OS instances from the inside, but which in fact share the
-            resources of the host OS. This technology is made possible by
-            low-level Linux features such as cgroups, union mount filesystems,
-            and network namespaces. If we run each application inside of a
-            container, it will be able to install its own dependencies and will
-            not be able to interact with other applications, which is exactly
-            what we want.
+            Venice is built for smaller applications and for developers with
+            limited event-streaming knowledge. It uses open source components to
+            set up a stream processing pipeline with reasonable default settings
+            and simple management tools within minutes.
           </p>
 
-          <h3 id="Docker" class="sec-header">5.2 Docker</h3>
+          <p>
+            Large companies typically use stream processing to perform the
+            following tasks:
+          </p>
+
+          <ul>
+            <li>
+              Process complex real-time event data to make applications more
+              responsive.
+            </li>
+            <li>Detect anomalies in events.</li>
+            <li>
+              Deliver real-time analytics without interfering with the
+              application’s ability to write new data.
+            </li>
+          </ul>
 
           <p>
-            There are various containerization technologies available, but the
-            dominant implementation is from Docker. We decided to use Docker for
-            Mothership’s containerization stack because of its ample
-            documentation, ease-of-use, and vast ecosystem. Equally important is
-            Docker’s <em>client-server architecture</em>. Docker has three main
-            components:
+            The desire to perform these tasks, however, is not unique to large
+            enterprises with applications that process millions of events per
+            day. Any growing application might benefit from event stream
+            processing. The implementation of these pipelines differs, but they
+            have several interconnected components that achieve the following
+            workflow:
+          </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/Pipeline-Generalized.png"
+              alt="one or more event processors (data sources) feed into a message broker (typically Kafka - a log) which feeds into a stream processing engine ending at event consumers also known as data sinks (visualization tools, caches, databases, Kafka topic, etc.)"
+            />
+            <figcaption>
+              Figure 10. A generalized event-stream processing pipeline.
+            </figcaption>
+          </figure>
+
+          <h3>3.1 Venice sits between DIY and managed solutions</h3>
+
+          <p>
+            The existing choices available to developers roughly fall into two
+            categories: managed solutions and do-it-yourself (DIY).
+          </p>
+
+          <p>
+            Managed solutions (such as Confluent’s Cloud Platform or Landoop)
+            empower developers to focus on their applications by offering
+            configuration guidance and on-going support for teams implementing
+            streaming systems. However, they have high price tags, are generally
+            designed for large enterprises, and can lock the team into using one
+            vendor.
+          </p>
+
+          <p>
+            The DIY approach is an option for teams newer to this space.
+            However, it trades monetary cost for complexity. First, application
+            developers must deal with an abundance of choice. For the stream
+            processing engine alone, there are multiple open-source options and
+            several paid ones (figure 11).
+          </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/streamProcessingEngines.png"
+              alt="logos for AWS Kinesis, Google CloudData, and Apache products: Samza, Spark, Flink, Apex, Flume, Heron, Storm, Kafka Streams, Beam, ksqlDB"
+            />
+            <figcaption>
+              Figure 11. A sampling of the options for stream processing
+              engines.
+            </figcaption>
+          </figure>
+
+          <p>
+            Second, because the stream-processing space is emerging,
+            configuration tutorials become quickly outdated and documentation is
+            minimal or challenging to parse. Choosing and learning how to
+            configure a single component in the pipeline could take days or
+            weeks. The problem compounds when attempting to learn which
+            components best integrate together to form a pipeline with tradeoffs
+            that are acceptable for the project.
+          </p>
+
+          <p>
+            Existing managed solutions and open source options may not be
+            suitable for cost-conscious developers with limited streaming
+            knowledge developing small streaming applications. Venice aims to be
+            the middle ground - balancing the need for affordability, simplicity
+            and control.
+          </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/VeniceVsDIY-Managed.png"
+              alt="Three arrows representing cost, ease of use, and user control with Venice, DIY, and managaged solutions arranged along them accordingly"
+            />
+            <figcaption>
+              Figure 12. Venice positions itself between DIY and managed
+              solutions in terms of cost, ease of use, and user control.
+            </figcaption>
+          </figure>
+
+          <!-- style this section & add icons for clock and plus -->
+          <h3>
+            3.2 Design goals for an approachable stream processing framework
+          </h3>
+
+          <div class="design-goals">
+            <p>
+              Venice is approachable for developers new to event-stream
+              processing. It allows them to:
+            </p>
+            <ul>
+              <li>
+                <!-- clock icon -->Set up common pipeline patterns in minutes so
+                they can minimize time spent on configuration and focus on
+                application code instead.
+              </li>
+              <li>
+                <!-- plus icon -->Retain extensibility and potential for
+                reconfiguration if their needs change or become more complex.
+              </li>
+            </ul>
+          </div>
+
+          <h2 id="" class="sec-header"></h2>
+
+          <h2 id="" class="sec-header"></h2>
+
+          <h2 id="Challenges" class="sec-header">6. Challenges</h2>
+
+          <p>
+            Venice solves for several challenges: persisting data, reliably
+            launching and connecting component containers, and consistently
+            serializing data.
+          </p>
+
+          <h3 id="Data-Persistence">
+            6.1 How can Venice persist data to make materialized views and new
+            services possible?
+          </h3>
+          <p>
+            This challenge has three parts: data persistence, storage choice,
+            and log retention strategy.
+          </p>
+
+          <h4>6.1.1 How should Venice persist data?</h4>
+
+          <p>
+            Retaining events indefinitely in Kafka allows users to build new
+            services or re-design existing services that can consume the entire
+            history of events to recreate application state. This is a critical
+            feature for teams new to streaming applications who will be
+            experimenting to discover what works.
+          </p>
+
+          Docker provides two ways to persist data for containers -
+          <b>volumes</b> and <b>bind mounts</b>.
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/DockerVolumes_bindMounts.png"
+              alt="An arrow points from the Docker container to the Docker area within the host machine created by a volume. A second arrow points to host machine in general to represent a bind mount."
+            />
+            <figcaption>
+              Figure XX. Docker containers interact with the host machine’s file
+              system through bind mounts or volumes.
+            </figcaption>
+          </figure>
+
+          <p>
+            The main difference, shown in figure xxxx, is where data is saved on
+            the host machine. With volumes, Docker manages storing data in a
+            restricted Docker directory. With a bind mount, a specific path on
+            the host machine is loaded on the container at startup.
+          </p>
+
+          <p>
+            Venice uses bind mounts to ensure Docker loads a specific path from
+            the host machine into the container everytime a container starts.
+            When using volumes, new volumes are created when containers are
+            re-configured and rebuilt. Bind mounts are a more reliable and
+            consistent way of reloading data into the container for developers
+            experimenting with new pipelines.
+          </p>
+
+          <h4>
+            6.1.2 What is the optimal way for Venice to provide event
+            persistence?
+          </h4>
+
+          <p>
+            There are three options for persisting Kafka events indefinitely:
+            permanent log retention, external backups, and compacted topics.
+          </p>
+
+          <h5>Choice 1: Permanent Log Retention</h5>
+
+          <p>
+            Typically, Kafka will delete events after a predetermined amount of
+            time (e.g., 7 days) or when the log reaches a certain byte size.
+            However, permanently preserving events is possible by overriding the
+            default retention settings. A new consumer could then consume
+            everything from the beginning of the log to derive the current
+            state.
+          </p>
+
+          <h5>Choice 2: External Backup</h5>
+
+          <p>
+            Another option is to periodically copy older events to an external
+            data store and remove them from Kafka. To recreate state for a new
+            consumer, the backed up data must be reloaded and configured in
+            Kafka.
+          </p>
+
+          <h5>Choice 3: Compacted Topics</h5>
+
+          <p>
+            Finally, log compaction refers to retaining the last known value for
+            each message <b>key</b> within a single topic partition. Compaction
+            guarantees event order by only removing older events whose state has
+            changed.
+          </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/TopicCompaction.png"
+              alt="Two event objects. One has the email adddress 'daviddd@gmail.com'; the other, 'david@gmail.com'. A box around the second indicates it will be preserved."
+            />
+            <figcaption>
+              Figure XX. An example of a user updating their email address. With
+              a compacted topic only the latest value related to the
+              <code>user_id: 1</code> is retained.
+            </figcaption>
+          </figure>
+
+          <p>
+            For example, figure xxx shows events that track a change to a user’s
+            email, where the user_id is the key. With a compacted topic, Kafka
+            would guarantee that the most recent update to the email would be
+            kept in the log.
+          </p>
+
+          <p>
+            Log compaction can be suitable for some topics. However, it means
+            losing the ability to <b>recreate</b> state, leaving only the option
+            to <b>restore</b> the latest state.
+          </p>
+
+          <h5>Venice: Permanent Log Retention</h5>
+
+          <p>
+            Venice uses permanent log retention because (1) it is a simpler
+            solution than external backup, and (2) log compaction does not not
+            fulfill the goal of extensibility. A compacted topic means users
+            would not be able to consume historical data.
+          </p>
+
+          <p>
+            Permanent log retention is a safe option: users have all of their
+            events stored by default, but they can choose to turn on log
+            compaction for individual topics if they decide that is appropriate
+            for their use case.
+          </p>
+
+          <p>
+            However, as a user’s application grows and events accumulate, they
+            may want to consider external backup to free up space on the
+            machines running the brokers.
           </p>
 
           <ol>
