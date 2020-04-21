@@ -1844,39 +1844,47 @@
               ><a href="#fn9" id="fnref9">[9]</a></sup
             >
           </p>
-
-          <p>
-            The first thing we did to ease the task of deploying Mothership was
-            to containerize the application. Mothership requires the main
-            Node.js app, as well as a Postgres database and a Redis server. We
-            provision and connect these three pieces with a Docker compose file.
-            But there are still quite a number of steps required before and
-            after typing <code>docker compose up</code>. Multiple servers must
-            be provisioned, a Swarm cluster must be established, many
-            configuration fields must be set in the database, and the proxy
-            service must be created.
+          <h2 id="Future-Work" class="sec-header">7. Future Work</h2>
+          <p>Venice meets many of the needs of developers new to event-stream processing. Venice provides a quick-to-deploy framework that has much of the configuration work automated. This means developers can get to their tasks of connecting their own data producers and implementing queries over their data in minutes. They can also verify things are running smoothly using the graphical user interface and CLI. </p>
+          <p>However, there are always areas for improvement. The following goals would likely add the most value to Venice:
           </p>
-
-          <p>
-            To make all of this as easy as possible, Mothership has a CLI tool
-            called <code>mothership-setup</code> that automates the entire
-            process. Currently, this tool only supports Digital Ocean, although
-            we’re working to support more IaaS providers in the future. The tool
-            prompts you for a Digital Ocean API token, along with the URL you’d
-            like your PaaS deployed to, and then handles the rest. After it work
-            is done, the tool gives you instructions on the two DNS entries you
-            must add to your domain to make Mothership live.
-          </p>
-
-          <h2 id="Future-Work" class="sec-header">9. Future Work</h2>
-
           <ul>
-            <li>Increase testing coverage</li>
-            <li>App versioning and deployment rollbacks</li>
-            <li>Support background jobs for apps</li>
-            <li>Achieve CLI feature-parity with web interface</li>
-            <li>Migrate automated setup to Terraform</li>
+            <li>Automate deployment and management across distributed servers</li>
+            <li>Enable auto-scaling (up and down) according to workload</li>
+            <li>Add more default pipelines</li>
+            <li>Add support for more connectors</li>
+            <li>Enable external network storage</li>
+            <li>Automate the process of adding producers to the pipeline</li>
           </ul>
+
+          <h2 id="References" class="sec-header">8. References</h2>
+
+          <ol>
+            <li id="microservices">S. Newman, Building Microservices, 1st ed. Sebastopol, CA, USA. O’Reilly, 2015.</li>
+            <li id="mssp">M. Kleppman, Making Sense of Stream Processing, 1st ed. Sebastopol, CA, USA. O’Reilly, 2016.</li>
+            <li id="ddia">M. Kleppmann, Designing Data Intensive Applications, 1st ed. Sebastopol, CA, USA. O’Reilly, 2017.</li>
+            <li id="two-phase-commit">“Consensus Protocols: Two-Phase-Commit”, The Paper Trail blog, 
+              <a href="https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/" target="_blank">https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/</a> (April 13, 2020).</li>
+            <li id="okay-store-data">J. Kreps, “It’s Okay To Store Data In Apache Kafka”, Confluent.io blog, 
+              <a href="https://www.confluent.io/blog/okay-store-data-apache-kafka/" target="_blank">https://www.confluent.io/blog/okay-store-data-apache-kafka/</a> (April 16, 2020).</li>
+            <li id="streaming-systems">T. Akidau, S. Chernyak, and R. Lax, Streaming Systems, 1st ed. Sebastopol, CA, USA. O’Reilly, 2018.</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ol>
 
           <hr class="footnotes-sep" />
 
