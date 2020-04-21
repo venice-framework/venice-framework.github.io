@@ -193,10 +193,13 @@
           </ol>
 
           <figure class="img-wrapper">
-            <img src="images/diagrams/Pipeline-Generalized.png" alt="data source feeds message broker feeds stream processing engine feeds data sink">
+            <img
+              src="images/diagrams/Pipeline-Generalized.png"
+              alt="data source feeds message broker feeds stream processing engine feeds data sink"
+            />
             <figcaption>
-              A high-level overview of a generalized event-stream processing
-              pipeline
+              Figure 1. A high-level overview of a generalized event-stream
+              processing pipeline
             </figcaption>
           </figure>
 
@@ -255,7 +258,7 @@
             Many applications start out as simple monoliths. Over time, as
             requirements grow and become more complex, the need for scale
             prompts many to shift to a service-oriented architecture, such as
-            microservices [1, Ch. 1].
+            microservices [<a href="#microservices">1, Ch. 1</a>].
           </p>
 
           <p>
@@ -288,13 +291,20 @@
           </p>
 
           <figure class="img-wrapper">
-            <img src="images/diagrams/PrimaryDatabaseDependency.png" style="max-height: 400px;" alt="A web application sends data to a primary database that feeds multiple other databases and processes">
+            <img
+              src="images/diagrams/PrimaryDatabaseDependency.png"
+              style="max-height: 400px;"
+              alt="A web application sends data to a primary database that feeds multiple other databases and processes"
+            />
             <figcaption>
-              The same data is needed for many different purposes. <sup>1</sup>
+              Figure 2. The same data is needed for many different purposes.
+              <sup>1</sup>
             </figcaption>
           </figure>
 
-          <p class="note"><sup>1</sup> Figure inspired by [2, Ch 2]</p>
+          <p class="note">
+            <sup>1</sup> Figure inspired by [<a href="#mssp">2, Ch 2</a>].
+          </p>
 
           <p>
             There are numerous ways to use data from this application, and
@@ -356,7 +366,8 @@
           <p>
             Distributed transactions can provide consistency, but may sacrifice
             availability, because partial failures can render the application
-            extremely slow or unresponsive [2, Ch. 2; 4].
+            extremely slow or unresponsive [<a href="mssp">2, Ch. 2</a>;
+            <a href="two-phase-commit">3</a>].
           </p>
 
           <p>
@@ -368,9 +379,10 @@
 
           <p>
             An event is an immutable object that describes something that
-            happened at some point in time in an application [3, Ch. 11]. For
-            example, if a new order is placed, that order can be modeled as an
-            event as follows:
+            happened at some point in time in an application [<a href="#ddia"
+              >4, Ch. 11</a
+            >]. For example, if a new order is placed, that order can be modeled
+            as an event as follows:
           </p>
 
           <figure class="img-wrapper">
@@ -379,7 +391,7 @@
               style="max-height: 400px;"
               alt="order event object with properties for order_id, customer_id, seller_id, product_id, quantity, price_in_cents, timestamp"
             />
-            <figcaption>Example of an order event</figcaption>
+            <figcaption>Figure 3. Example of an order event</figcaption>
           </figure>
 
           <p>
@@ -396,16 +408,18 @@
               alt="data from the order object in the previous figure is sent to three different services"
             />
             <figcaption>
-              A new order triggers the inventory management service, fulfillment
-              service, and notifications service.
+              Figure 4. A new order triggers the inventory management,
+              fulfillment, and notifications services.
             </figcaption>
           </figure>
 
           <p>
             In streaming terminology, a producer generates an event. Related
             events are grouped together into a stream (also known as a topic).
-            That event is then processed by one or many consumers [3, Ch. 11].
-            In the example above, the application is the producer. When a
+            That event is then processed by one or many consumers [<a
+              href="#ddia"
+              >4, Ch. 11</a
+            >]. In the example above, the application is the producer. When a
             customer creates a new order, the application produces an event to
             the orders stream. The inventory management, fulfillment and
             notifications services are the consumers who receive the event and
@@ -431,8 +445,8 @@
           </p>
 
           <h4>
-            2.3.1 Message queues do not retain events and may process events out of
-            order
+            2.3.1 Message queues do not retain events and may process events out
+            of order
           </h4>
 
           <figure class="img-wrapper">
@@ -442,7 +456,8 @@
               alt="gif of a message queue with messages enqueing and dequeuing"
             />
             <figcaption>
-              A message queue: new messages enqueue and old messages dequeue
+              Figure 5. A message queue: new messages enqueue and old messages
+              dequeue.
             </figcaption>
           </figure>
 
@@ -466,11 +481,13 @@
 
           <p>
             Message queues are not the answer because they may process events
-            out of order and do not retain events [3, Ch. 11].
+            out of order and do not retain events [<a href="#ddia">4, Ch. 11</a
+            >].
           </p>
 
           <h4>
-            2.3.2 Log-based message brokers retain events and help guarantee order
+            2.3.2 Log-based message brokers retain events and help guarantee
+            order
           </h4>
 
           <figure class="img-wrapper">
@@ -480,8 +497,8 @@
               alt="a row of numbers in boxes, each box represents a message written to the log"
             />
             <figcaption>
-              A log-based message broker: new messages are appended to an
-              immutable log
+              Figure 6. A log-based message broker: new messages are appended to
+              an immutable log.
             </figcaption>
           </figure>
 
@@ -493,7 +510,10 @@
           <ul>
             <li>each event can be processed quickly.</li>
             <li>processing order is important.</li>
-            <li>event retention is required [2, Ch. 2; 3, Ch. 11].</li>
+            <li>
+              event retention is required [<a href="#mssp">2, Ch. 2</a>;
+              <a href="#ddia">4, Ch. 11</a>].
+            </li>
           </ul>
 
           <p>
@@ -513,7 +533,7 @@
                 <li>
                   High Throughput: Logs can be split into partitions and
                   replicated across machines. This means many reads and writes
-                  can proceed concurrently [5].
+                  can proceed concurrently [<a href="#okay-store-data">5</a>].
                 </li>
               </ul>
             </li>
@@ -571,26 +591,62 @@
               alt="generic data sources send data to a log-based message broker that feeds into a data sink"
             />
             <figcaption>
-              Event producers send messages to a partitioned log-based broker.
-              Event consumers use these event messages in various ways.
+              Figure 7. Event producers send messages to a partitioned log-based
+              broker. Event consumers use these event messages in various ways.
             </figcaption>
           </figure>
 
           <h4>2.3.3 A note on the limitations of logs</h4>
-          <p>Log-based approaches are not the answer to all problems. If an event takes a long time to process, this could hold up processing of later events, because events are consumed in a linear fashion. [3, Ch. 11]. Ordering of events is only guaranteed within a single partition, which may be problematic as you scale. This system also does not support reading your own writes [3, Ch. 5], and other linearizability guarantees [3, Ch. 9, Ch. 12]. In many cases, the benefits outweigh the drawbacks, and log-based message brokers present a powerful solution to the problem of <b>propagating data to multiple services in real-time</b>, without sacrificing <b>availability</b> and <b>consistency</b>, while retaining the flexibility to <b>use historical data</b>.</p>
+          <p>
+            Log-based approaches are not the answer to all problems. Events are
+            consumed in a linear fashion, so a single event taking a long time
+            to process could delay processing of later events. [<a href="#ddia"
+              >4, Ch. 11</a
+            >]. Ordering of events is only guaranteed within an individual
+            partition, which may be problematic as the system scales. The system
+            also does not support reading self writes [<a href="#ddia"
+              >4, Ch. 5</a
+            >], and other linearizability guarantees [<a href="#ddia"
+              >4, Ch.9, Ch. 12</a
+            >]. In many cases, the benefits outweigh the drawbacks, and
+            log-based message brokers present a powerful solution to the problem
+            of <b>propagating data to multiple services in real-time</b>,
+            without sacrificing <b>availability</b> and <b>consistency</b>,
+            while retaining the flexibility to <b>use historical data</b>.
+          </p>
 
-          <h3>2.4 Stream processors abstract common operations out to a fast and fault-tolerant engine</h2>
+          <h3>
+            2.4 Stream processors abstract common operations out to a fast and
+            fault-tolerant engine
+          </h3>
 
           <p>
-            It is common to have multiple services use the same data to generate different outputs in an application. The outputs generated may be different, but many of the operations used by the services to process these events are the same. These operations include windowing, aggregation, joins, filters, and transformations [6].
+            It is common to have multiple services use the same data to generate
+            different outputs in an application. The outputs generated may be
+            different, but many of the operations used by the services to
+            process these events are the same. These operations include
+            windowing, aggregation, joins, filters, and transformations [<a
+              href="#streaming-systems"
+              >6</a
+            >].
           </p>
 
           <p>
-            Individual consumers can be written to perform these operations. This works well for operations such as filtering or transforming that process one message at a time. This approach becomes more challenging when operations are more complex, for example, aggregating over time or joining two different streams together.
+            Individual consumers can be written to perform these operations.
+            This works well for operations such as filtering or transforming
+            that process one message at a time. This approach becomes more
+            challenging when operations are more complex, for example,
+            aggregating over time or joining two different streams together.
           </p>
 
           <p>
-            Event stream processors abstract these common processing operations to an engine. Such an engine can provide additional benefits such as fault tolerance, efficient processing of events via clusters, maintenance of local state, and out-of-order events handling [7].
+            Event stream processors abstract these common processing operations
+            to an engine. Such an engine can provide additional benefits such as
+            fault tolerance, efficient processing of events via clusters,
+            maintenance of local state, and out-of-order events handling [<a
+              href="kafka-streams"
+              >7</a
+            >].
           </p>
 
           <figure class="img-wrapper">
@@ -600,21 +656,41 @@
               alt="gif of several consumers being replaced by a single stream processing engine"
             />
             <figcaption>
-              An event-stream processing engine replaces the need for individual consumers performing redundant processing tasks.
+              Figure 8. An event-stream processing engine replaces the need for
+              individual consumers performing redundant processing tasks.
             </figcaption>
           </figure>
 
-          <p>Adding a stream processor to a log-based architecture expands the benefits of the system. Services can write data efficiently by appending it to the log. The stream processor can complete operations shared by different services more efficiently. This means that services can share the same underlying data and easily transform that data into a format that is ideal for their needs. 
+          <p>
+            Adding a stream processor to a log-based architecture expands the
+            benefits of the system. Services can write data efficiently by
+            appending it to the log. The stream processor can complete
+            operations shared by different services more efficiently. This means
+            that services can share the same underlying data and easily
+            transform that data into a format that is ideal for their needs.
           </p>
 
           <h4>2.4.1 A note on the importance of databases</h4>
 
-          <p>This background emphasizes the benefits of an event-driven architecture with a distributed log at its core. However, event driven architecture does not replace databases completely.
+          <p>
+            This background emphasizes the benefits of an event-driven
+            architecture with a distributed log at its core. However, event
+            driven architecture does not replace databases completely.
           </p>
 
-          <p>Databases prioritize state, while events prioritize state changes. State is derived from events – for example, your physical location as you read this is the result of the event that moved you there. In an application, both events and state are useful. Databases in an architecture provide fast access to state.</p>
+          <p>
+            Databases prioritize state, while events prioritize state changes.
+            State is derived from events – for example, your physical location
+            as you read this is the result of the event that moved you there. In
+            an application, both events and state are useful. Databases in an
+            architecture provide fast access to state.
+          </p>
 
-          <p>A log-based, event-driven architecture utilizes distributed logs and databases to provide the benefits of both in a fault-tolerant and scalable way.</p>
+          <p>
+            A log-based, event-driven architecture utilizes distributed logs and
+            databases to provide the benefits of both in a fault-tolerant and
+            scalable way.
+          </p>
 
           <figure class="img-wrapper">
             <img
@@ -623,24 +699,52 @@
               alt="producers or sources such as user activity, sensor data, or database writes feed events to a replicated log-based message broker which sends them to a stream processing engine and eventually they wind up in various consumers or sinks such as a cache, graph database, or search index"
             />
             <figcaption>
-              An example of a log-based stream processing architecture.
+              Figure 9. An example of a log-based stream processing
+              architecture.
             </figcaption>
           </figure>
 
-          <h3>2.5 Summary</h3>         
+          <h3>2.5 Summary</h3>
 
-<ul>
-  <li>In a microservices architecture, many services <b>require access to the same data</b>.</li>
-  <li>Propagating data to many services is difficult with architecture centered on <b>databases</b>.</li>
-  <li><b>Events</b> can help address this problem. Events represent what happened in the application and when.</li>
-  <li><b>Message brokers</b> help move events between <b>producers</b> (data creators, such as an application) and <b>consumers</b> (services that need the data).</li>
-  <li><b>Log-based message brokers</b> can propagate data to services in real time in a fault-tolerant, consistent, and scalable way, and provide the flexibility to use historical data.</li>
-  <li><b>Event stream processors</b> abstract out common operations on event data to a fault-tolerant and scalable engine that maintains event order.</li>
-  <li>An architecture with a distributed event log at its core and databases to store outputs provides <b>fast access to both events and state</b>. Multiple services can now use the same data in different ways, and the application has the agility to grow with changing requirements.</li>
-</ul>
+          <ul>
+            <li>
+              In a microservices architecture, many services
+              <b>require access to the same data</b>.
+            </li>
+            <li>
+              Propagating data to many services is difficult with architecture
+              centered on <b>databases</b>.
+            </li>
+            <li>
+              <b>Events</b> can help address this problem. Events represent what
+              happened in the application and when.
+            </li>
+            <li>
+              <b>Message brokers</b> help move events between
+              <b>producers</b> (data creators, such as an application) and
+              <b>consumers</b> (services that need the data).
+            </li>
+            <li>
+              <b>Log-based message brokers</b> can propagate data to services in
+              real time in a fault-tolerant, consistent, and scalable way, and
+              provide the flexibility to use historical data.
+            </li>
+            <li>
+              <b>Event stream processors</b> abstract out common operations on
+              event data to a fault-tolerant and scalable engine that maintains
+              event order.
+            </li>
+            <li>
+              An architecture with a distributed event log at its core and
+              databases to store outputs provides
+              <b>fast access to both events and state</b>. Multiple services can
+              now use the same data in different ways, and the application has
+              the agility to grow with changing requirements.
+            </li>
+          </ul>
 
-<!-- this is as far as I got -->
-<hr>
+          <!-- this is as far as I got -->
+          <hr />
           <h2 id="Application-Packaging" class="sec-header">
             5. Application Packaging
           </h2>
@@ -1845,11 +1949,23 @@
             >
           </p>
           <h2 id="Future-Work" class="sec-header">7. Future Work</h2>
-          <p>Venice meets many of the needs of developers new to event-stream processing. Venice provides a quick-to-deploy framework that has much of the configuration work automated. This means developers can get to their tasks of connecting their own data producers and implementing queries over their data in minutes. They can also verify things are running smoothly using the graphical user interface and CLI. </p>
-          <p>However, there are always areas for improvement. The following goals would likely add the most value to Venice:
+          <p>
+            Venice meets many of the needs of developers new to event-stream
+            processing. Venice provides a quick-to-deploy framework that has
+            much of the configuration work automated. This means developers can
+            get to their tasks of connecting their own data producers and
+            implementing queries over their data in minutes. They can also
+            verify things are running smoothly using the graphical user
+            interface and CLI.
+          </p>
+          <p>
+            However, there are always areas for improvement. The following goals
+            would likely add the most value to Venice:
           </p>
           <ul>
-            <li>Automate deployment and management across distributed servers</li>
+            <li>
+              Automate deployment and management across distributed servers
+            </li>
             <li>Enable auto-scaling (up and down) according to workload</li>
             <li>Add more default pipelines</li>
             <li>Add support for more connectors</li>
@@ -1860,15 +1976,51 @@
           <h2 id="References" class="sec-header">8. References</h2>
 
           <ol>
-            <li id="microservices">S. Newman, Building Microservices, 1st ed. Sebastopol, CA, USA. O’Reilly, 2015.</li>
-            <li id="mssp">M. Kleppman, Making Sense of Stream Processing, 1st ed. Sebastopol, CA, USA. O’Reilly, 2016.</li>
-            <li id="ddia">M. Kleppmann, Designing Data Intensive Applications, 1st ed. Sebastopol, CA, USA. O’Reilly, 2017.</li>
-            <li id="two-phase-commit">“Consensus Protocols: Two-Phase-Commit”, The Paper Trail blog, 
-              <a href="https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/" target="_blank">https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/</a> (April 13, 2020).</li>
-            <li id="okay-store-data">J. Kreps, “It’s Okay To Store Data In Apache Kafka”, Confluent.io blog, 
-              <a href="https://www.confluent.io/blog/okay-store-data-apache-kafka/" target="_blank">https://www.confluent.io/blog/okay-store-data-apache-kafka/</a> (April 16, 2020).</li>
-            <li id="streaming-systems">T. Akidau, S. Chernyak, and R. Lax, Streaming Systems, 1st ed. Sebastopol, CA, USA. O’Reilly, 2018.</li>
-            <li></li>
+            <li id="microservices">
+              S. Newman, Building Microservices, 1st ed. Sebastopol, CA, USA.
+              O’Reilly, 2015.
+            </li>
+            <li id="mssp">
+              M. Kleppman, Making Sense of Stream Processing, 1st ed.
+              Sebastopol, CA, USA. O’Reilly, 2016.
+            </li>
+            <li id="ddia">
+              M. Kleppmann, Designing Data Intensive Applications, 1st ed.
+              Sebastopol, CA, USA. O’Reilly, 2017.
+            </li>
+            <li id="two-phase-commit">
+              “Consensus Protocols: Two-Phase-Commit”, The Paper Trail blog,
+              <a
+                href="https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/"
+                target="_blank"
+                >https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/</a
+              >
+              (April 13, 2020).
+            </li>
+            <li id="okay-store-data">
+              J. Kreps, “It’s Okay To Store Data In Apache Kafka”, Confluent.io
+              blog,
+              <a
+                href="https://www.confluent.io/blog/okay-store-data-apache-kafka/"
+                target="_blank"
+                >https://www.confluent.io/blog/okay-store-data-apache-kafka/</a
+              >
+              (April 16, 2020).
+            </li>
+            <li id="streaming-systems">
+              T. Akidau, S. Chernyak, and R. Lax, Streaming Systems, 1st ed.
+              Sebastopol, CA, USA. O’Reilly, 2018.
+            </li>
+            <li id="kafka-streams">
+              J. Kreps, “Introducing Kafka Streams: Stream Processing Made
+              Simple”, Confluent.io blog,
+              <a
+                href="https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/"
+                target="_blank"
+                >https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/</a
+              >
+              (April 14, 2020).
+            </li>
             <li></li>
             <li></li>
             <li></li>
