@@ -26,7 +26,7 @@ body {
   scroll-behavior: smooth;
 }
 
-.study-wrapper {
+.study-wrapper, .docs-wrapper {
   display: flex;
   justify-content: center;
 }
@@ -50,22 +50,22 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 h3 {
-  font-size: 1.7rem;
+  font-size: 2.5rem;
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: 1.7rem;
 }
 
 code {
   font-family: 'Fira Code', monospace;
 }
 
-p > code {
+p > code, li > code {
   color: var(--bright-orange);
   /* background: var(--light-blue); */
   padding: 0 .2rem;
@@ -96,7 +96,9 @@ p > code {
 }
 
 .text-box h2 {
+  color: var(--bright-orange);
   font-size: 3rem;
+  text-align: center;  
 }
 
 .text-box p {
@@ -231,6 +233,28 @@ img {
   filter: invert(25%);
 }
 
+.img-wrapper {
+  position: relative;
+  margin: 50px 0;
+  width: 100%;
+}
+
+.img-wrapper img {
+  max-width: 100%;
+}
+
+#case-study .img-wrapper p, 
+#docs .img-wrapper p, 
+figcaption {
+  font-style: italic;
+  font-size: 90%;
+  text-align: center;
+  width: 75%;
+  line-height: 1rem;
+  margin: 5px auto 0 auto;
+  margin-bottom: 0;
+}
+
 /* ---------------------------------
 
                 intro
@@ -327,7 +351,7 @@ nav ul li img {
 
 /* ---------------------------------
 
-            case study
+        case study & docs
 
 ------------------------------------ */
 .sidebar {
@@ -393,7 +417,8 @@ nav ul li img {
   height: auto;
 }
 
-#case-study nav {
+#case-study nav, 
+#docs nav {
   display: none;
   left: 2rem;
   position: fixed;
@@ -401,18 +426,21 @@ nav ul li img {
   transform: translateY(-60%);
 }
 
-#case-study nav li {
+#case-study nav li,
+#docs nav li {
   color: var(--light-blue);
   font-size: 1.3rem;
   list-style: circle;
   margin-bottom: 2vh;
 }
 
-#case-study nav li:last-of-type {
+#case-study nav li:last-of-type,
+#docs nav li:last-of-type {
   margin-bottom: 0;
 }
 
-#case-study nav a {
+#case-study nav a,
+#docs nav a {
   color: #999;
   font-size: 0.9rem;
   margin-left: 1rem;
@@ -420,115 +448,123 @@ nav ul li img {
   vertical-align: 0.1rem;
 }
 
-#case-study nav a:hover {
+#case-study nav a:hover,
+#docs nav a:hover {
   color: var(--bright-orange);
 }
 
-#case-study a {
+#case-study a,
+#docs a {
   color: var(--bright-orange);
 }
 
 #case-study h3,
+#docs h3,
 #case-study h4,
+#docs h4,
 #case-study h5,
+#docs h5,
 #case-study p,
+#docs p,
 #case-study pre,
+#docs pre,
 #case-study ul,
-#case-study ol {
+#docs ul,
+#case-study ol,
+#docs ol {
   margin-bottom: 20px;
 }
 
-#case-study ul ul {
+#case-study ul ul,
+#docs ul ul {
   margin-bottom: 0px;
 }
 
-#case-study h1 {
+#case-study h1,
+#docs h1 {
   color: var(--bright-orange);
   text-align: center;
   margin: 4rem 0;
 }
 
-#case-study h2 {
-  color: var(--dark-blue);
+#case-study h2,
+#docs h2 {
+  color: var(--bright-blue);
   margin: 75px auto 20px auto;
   text-align: left;
 }
 
-#case-study h2:first-of-type {
+#case-study h2:first-of-type,
+#docs h2:first-of-type {
   margin-top: 50px;
 }
 
 #case-study h2,
+#docs h2,
 h3 {
   letter-spacing: 0.02rem;
 }
 
 #case-study h3,
+#docs h3,
 #case-study h4,
-#case-study h5 {
-  color: var(--bright-blue);
+#docs h4,
+#case-study h5,
+#docs h5 {
+  color: var(--dark-blue);
 }
 
-#case-study p {
+#case-study p,
+#docs p {
   font-size: 1.2rem;
   line-height: 1.8rem;
 }
 
-.img-wrapper {
-  position: relative;
-  margin: 50px 0;
-  width: 100%;
-}
-
-.img-wrapper img {
-  max-width: 100%;
-}
-
-#case-study .img-wrapper p {
-  font-size: 80%;
-  text-align: center;
-  width: 50%;
-  line-height: 1rem;
-  margin: 0 auto;
-  margin-bottom: 0;
-}
-
-#case-study blockquote p {
+#case-study blockquote p,
+#docs blockquote p {
   font-size: 1.1rem;
 }
 
-#case-study blockquote p:first-of-type {
+#case-study blockquote p:first-of-type,
+#docs blockquote p:first-of-type {
   font-style: italic;
 }
 
-#case-study blockquote p:last-of-type {
+#case-study blockquote p:last-of-type,
+#docs blockquote p:last-of-type {
   margin-bottom: 0;
 }
 
-#case-study li {
+#case-study li,
+#docs li {
   font-size: 1.1rem;
   line-height: 1.6rem;
   list-style: disc;
   margin-left: 2rem;
 }
 
-#case-study li code {
+#case-study li code,
+#docs li code {
   font-size: 1.1rem;
 }
 
-#case-study ol li code {
+#case-study ol li code,
+#docs ol li code {
   font-size: 1.1rem;
 }
 
-#case-study ol li {
+#case-study ol li,
+#docs ol li {
   list-style: decimal;
 }
 
-#case-study .lower-alpha-list li {
+#case-study .lower-alpha-list li,
+#docs .lower-alpha-list li {
   list-style: lower-alpha;
 }
 
-#case-study .number-list li {
+#case-study .number-list li,
+#docs .number-list li {
   list-style: decimal;
 }
 
@@ -578,15 +614,19 @@ footer,
   padding-bottom: 25px;
 }
 
-#our-team h1, h2 {
+#our-team h1, footer h2 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 4.5rem;
   font-weight: 700;
+  font-size: 4.5rem;
   padding-top: 30px;
   margin-bottom: 30px;
   text-align: center;
   line-height: 4rem;
   color: var(--bright-orange);
+}
+
+footer h3 {
+  font-size: 1.7rem;
 }
 
 #our-team > p {
