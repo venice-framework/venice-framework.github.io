@@ -568,6 +568,10 @@ h3 {
   list-style: decimal;
 }
 
+#case-study ul li {
+  list-style: disc;
+}
+
 #case-study .lower-alpha-list li,
 #docs .lower-alpha-list li {
   list-style: lower-alpha;
