@@ -515,7 +515,7 @@ h3 {
 #docs h4,
 #case-study h5,
 #docs h5 {
-  color: var(--dark-blue);
+  color: var(--bright-blue);
 }
 
 #case-study p,
@@ -726,7 +726,7 @@ small {
   color: var(--bright-orange);
 }
 
-.supported-languages {
+.connectors {
   max-width: 550px;
 }
 
