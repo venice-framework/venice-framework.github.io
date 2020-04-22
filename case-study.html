@@ -807,7 +807,7 @@
             However, it trades monetary cost for complexity. First, application
             developers must deal with an abundance of choice. For the stream
             processing engine alone, there are multiple open-source options and
-            several paid ones (figure 11).
+            several paid ones [figure 11].
           </p>
 
           <figure class="img-wrapper">
@@ -1062,7 +1062,7 @@
 
 <p>Event stream processing is complex. For developers new to the domain, there is a lot to learn. Venice keeps things as simple as possible. Many stream processing engines (Apache Spark, Apache Flink, Apache Kafka Streams) require developers to write event-stream processing tasks in Java or Scala. This presents a barrier to entry for developers unfamiliar with these languages. Additionally, several Java stream processing engines (Spark, Flink) require dependencies for Java JDK and Apache Maven. These introduce additional complexity that might make it more challenging for the Venice user to troubleshoot problems in the pipeline. </p>
 
-<p>Venice implements ksqlDB as the primary stream processor. ksqlDB is not technically a stream processing framework, but an abstraction over the Kafka Streams stream processing library. ksqlDB provides much of the functionality of the more robust engines while allowing developers to use the declarative SQL-like syntax seen in figure 20. </p>
+<p>Venice implements ksqlDB as the primary stream processor. ksqlDB is not technically a stream processing framework, but an abstraction over the Kafka Streams stream processing library. ksqlDB provides much of the functionality of the more robust engines while allowing developers to use the declarative SQL-like syntax seen in Figure 20. </p>
 
 <figure class="img-wrapper">
   <img
@@ -1220,13 +1220,13 @@
               alt="An arrow points from the Docker container to the Docker area within the host machine created by a volume. A second arrow points to host machine in general to represent a bind mount."
             />
             <figcaption>
-              Figure XX. Docker containers interact with the host machine’s file
+              Figure 25. Docker containers interact with the host machine’s file
               system through bind mounts or volumes.
             </figcaption>
           </figure>
 
           <p>
-            The main difference, shown in figure xxxx, is where data is saved on
+            The main difference, shown in Figure 25, is where data is saved on
             the host machine. With volumes, Docker manages storing data in a
             restricted Docker directory. With a bind mount, a specific path on
             the host machine is loaded on the container at startup.
@@ -1286,14 +1286,14 @@
               alt="Two event objects. One has the email adddress 'daviddd@gmail.com'; the other, 'david@gmail.com'. A box around the second indicates it will be preserved."
             />
             <figcaption>
-              Figure XX. An example of a user updating their email address. With
+              Figure 26. An example of a user updating their email address. With
               a compacted topic only the latest value related to the
               <code>user_id: 1</code> is retained.
             </figcaption>
           </figure>
 
           <p>
-            For example, figure xxx shows events that track a change to a user’s
+            For example, figure 26 shows events that track a change to a user’s
             email, where the user_id is the key. With a compacted topic, Kafka
             would guarantee that the most recent update to the email would be
             kept in the log.
@@ -1360,7 +1360,7 @@
           <p>Venice encourages developers to use <a href="https://avro.apache.org/docs/current/" target="_blank">Avro</a> but Avro keys are incompatible with ksqlDB.
           </p>
 
-          <p>In Kafka, each event key and value is written as a pair of raw bytes. If a producer serializes the event in one format and the consumer deserializes it in another, the application will produce errors or the data will be unusable (see figure xxx). 
+          <p>In Kafka, each event key and value is written as a pair of raw bytes. If a producer serializes the event in one format and the consumer deserializes it in another, the application will produce errors or the data will be unusable [Figure 27]. 
           </p>
 
           <figure class="img-wrapper">
@@ -1369,7 +1369,7 @@
               alt="screen capture of the Kafdrop UI showing message key and value as empty squares in place of characters"
             />
             <figcaption>
-              Figure XX. Incorrect deserialization format causes unreadable key and value on Kafdrop.
+              Figure 27. Incorrect deserialization format causes unreadable key and value on Kafdrop.
             </figcaption>
           </figure>
 
