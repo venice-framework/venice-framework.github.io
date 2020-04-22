@@ -992,19 +992,128 @@
           <p>The commands to interact with a containerized event streaming system can be a source of frustration. Many of the commands to manage the Venice containerized components are unwieldy and require an intimate knowledge of container names, ports, etc. Venice provides a CLI with 14 commands to streamline these interactions for developers.
           </p>
 
-          <figure class="img-wrapper">
-            <img
-              src="images/diagrams/CLI-Admin-Commands.png"
-              alt="list of Venice CLI administrative commands"
-            />
-            <img
-              src="images/diagrams/CLI-Connector-Topic-Commands.png"
-              alt="list of Venice CLI connector and topic commands"
-            />
-            <figcaption>
-              Figure 18. Commands for the Venice CLI.
-            </figcaption>
-          </figure>
+          <div id="CLI-commands">
+            <div class="table1">
+              <h4>Adminstrative Commands</h4>
+              <table id="table1">
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Alias</th>
+                    <th>Function</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>down</code></td>
+                    <td></td>
+                    <td>shut down the venice pipeline</td>
+                  </tr>
+                  <tr>
+                    <td><code>install</code></td>
+                    <td><code>-i</code></td>
+                    <td>
+                      download / install a venice component from GitHub
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>ksql</code></td>
+                    <td><code>-k</code></td>
+                    <td>launch the KSQL CLI</td>
+                  </tr>
+                  <tr>
+                    <td><code>logs</code></td>
+                    <td><code>-l</code></td>
+                    <td>view logs of venice components</td>
+                  </tr>
+                  <tr>
+                    <td><code>psql</code></td>
+                    <td><code>-p</code></td>
+                    <td>launch the postgreSQL CLI</td>
+                  </tr>
+                  <tr>
+                    <td><code>restart</code></td>
+                    <td><code>-r</code></td>
+                    <td>restart venice components</td>
+                  </tr>
+                  <tr>
+                    <td><code>schemas</code></td>
+                    <td><code>-s</code></td>
+                    <td>view schemas saved in the Schema Registry</td>
+                  </tr>
+                  <tr>
+                    <td><code>status</code></td>
+                    <td><code>-st</code></td>
+                    <td>view the status of venice components</td>
+                  </tr>
+                  <tr>
+                    <td><code>up</code></td>
+                    <td></td>
+                    <td>launch the venice pipeline</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table2">
+              <h4>Connector Commands</h4>
+              <table id="table2">
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Alias</th>
+                    <th>Function</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>connectors</code></td>
+                    <td><code>-c</code></td>
+                    <td>view existing connectors and their status</td>
+                  </tr>
+                  <tr>
+                    <td><code>connectors new</code></td>
+                    <td><code>-c new</code></td>
+                    <td>
+                      create a new connection to an existing data sink
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>connectors delete</code></td>
+                    <td><code>-c delete</code></td>
+                    <td>delete an existing connection</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table3">
+              <h4>Topic Commands</h4>
+              <table id="table3">
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Alias</th>
+                    <th>Function</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>topics</code></td>
+                    <td><code>-t</code></td>
+                    <td>view a list of the current topics</td>
+                  </tr>
+                  <tr>
+                    <td><code>topics show</code></td>
+                    <td><code>-t show</code></td>
+                    <td>view the event stream from an existing topic</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <p>Figure 18. Commands for the Venice CLI</p>
+          </div>
 
           <h2 id="Implementation" class="sec-header">5. Venice Implementation</h2>
 

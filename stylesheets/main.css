@@ -253,18 +253,6 @@ img {
   max-width: 100%;
 }
 
-#case-study .img-wrapper p,
-#docs .img-wrapper p,
-figcaption {
-  font-style: italic;
-  font-size: 90%;
-  text-align: center;
-  width: 75%;
-  line-height: 1rem;
-  margin: 5px auto 0 auto;
-  margin-bottom: 0;
-}
-
 /* ---------------------------------
 
                 intro
@@ -588,14 +576,6 @@ h3 {
   line-height: 1rem;
 }
 
-#slideshow img {
-  display: none;
-}
-
-#slidehow img.active {
-  display: block;
-}
-
 .buttons {
   margin: 0 auto;
   text-align: center;
@@ -605,6 +585,80 @@ h3 {
   margin-left: 8px;
   margin-right: 8px;
 }
+
+/* ---------------------------------
+        CLI commands table 
+------------------------------------ */
+
+#CLI-commands {
+  display: grid;
+  justify-items: center;
+}
+
+#CLI-commands table th {
+  text-align: left;
+}
+
+#CLI-commands h4 {
+  color: var(--light-orange);
+  text-align: center;
+}
+
+#CLI-commands div {
+  width: 700px;
+}
+
+#table1,
+#table2 {
+  margin-bottom: 10px;
+}
+
+#CLI-commands tbody tr:nth-child(odd) {
+  opacity: 0.55;
+}
+
+#table1 td:first-child {
+  padding-right: 120px;
+}
+
+#table2 td:first-child {
+  padding-right: 20px;
+}
+
+#table3 td:first-child {
+  padding-right: 80px;
+}
+
+#table1 td:last-child,
+#table1 th:last-child {
+  padding-left: 70px;
+}
+
+#table2 td:last-child,
+#table2 th:last-child {
+  padding-left: 20px;
+}
+
+#table3 td:last-child,
+#table3 th:last-child {
+  padding-left: 40px;
+}
+
+/* ---------------------- */
+
+#case-study .img-wrapper p,
+#docs .img-wrapper p,
+figcaption,
+#CLI-commands p {
+  font-style: italic;
+  font-size: 90%;
+  text-align: center;
+  width: 75%;
+  line-height: 1rem;
+  margin: 5px auto 0 auto;
+  margin-bottom: 0;
+}
+
 /* ---------------------------------
 
             our team
