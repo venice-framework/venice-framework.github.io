@@ -258,9 +258,9 @@
 
           <p>
             How might an organization
-            <b>propagate data to multiple services in real-time</b> without
-            sacrificing <b>availability</b><sup>1</sup> or <b>consistency</b>,
-            while retaining the flexibility to <b>use historical data</b>?
+            <strong>propagate data to multiple services in real-time</strong> without
+            sacrificing <strong>availability</strong><sup>1</sup> or <strong>consistency</strong>,
+            while retaining the flexibility to <strong>use historical data</strong>?
           </p>
 
           <p class="note">
@@ -316,7 +316,7 @@
           </ul>
 
           <p>
-            These outputs are all <b>derived views</b> of the same underlying
+            These outputs are all <strong>derived views</strong> of the same underlying
             data. Typically, it is difficult to maintain real-time services –
             such as the stock inventory, search index, or product recommendation
             services from above –
@@ -512,7 +512,7 @@
 
           <ol>
             <li>
-              <b>Data can be propagated to services in real-time.</b><br />
+              <strong>Data can be propagated to services in real-time.</strong><br />
               Logs support low latency and high throughput writes and reads.<br />
               <ul>
                 <li>
@@ -528,7 +528,7 @@
               </ul>
             </li>
             <li>
-              <b>The system is fault-tolerant.</b>
+              <strong>The system is fault-tolerant.</strong>
               <ul>
                 <li>
                   With multiple brokers, messages are rerouted to replicas if
@@ -541,7 +541,7 @@
               </ul>
             </li>
             <li>
-              <b>Data is consistent across services.</b>
+              <strong>Data is consistent across services.</strong>
               <ul>
                 <li>
                   Events are ordered within partitions. Keyed partitions route
@@ -559,7 +559,7 @@
               </ul>
             </li>
             <li>
-              <b>Historical data is preserved.</b>
+              <strong>Historical data is preserved.</strong>
               <ul>
                 <li>
                   Logs contain historical information and new information. New
@@ -600,9 +600,9 @@
               >4, Ch.9, Ch. 12</a
             >]. In many cases, the benefits outweigh the drawbacks, and
             log-based message brokers present a powerful solution to the problem
-            of <b>propagating data to multiple services in real-time</b>,
-            without sacrificing <b>availability</b> and <b>consistency</b>,
-            while retaining the flexibility to <b>use historical data</b>.
+            of <strong>propagating data to multiple services in real-time</strong>,
+            without sacrificing <strong>availability</strong> and <strong>consistency</strong>,
+            while retaining the flexibility to <strong>use historical data</strong>.
           </p>
 
           <h3>
@@ -699,35 +699,35 @@
           <ul>
             <li>
               In a microservices architecture, many services
-              <b>require access to the same data</b>.
+              <strong>require access to the same data</strong>.
             </li>
             <li>
               Propagating data to many services is difficult with architecture
-              centered on <b>databases</b>.
+              centered on <strong>databases</strong>.
             </li>
             <li>
-              <b>Events</b> can help address this problem. Events represent what
+              <strong>Events</strong> can help address this problem. Events represent what
               happened in the application and when.
             </li>
             <li>
-              <b>Message brokers</b> help move events between
-              <b>producers</b> (data creators, such as an application) and
-              <b>consumers</b> (services that need the data).
+              <strong>Message brokers</strong> help move events between
+              <strong>producers</strong> (data creators, such as an application) and
+              <strong>consumers</strong> (services that need the data).
             </li>
             <li>
-              <b>Log-based message brokers</b> can propagate data to services in
+              <strong>Log-based message brokers</strong> can propagate data to services in
               real time in a fault-tolerant, consistent, and scalable way, and
               provide the flexibility to use historical data.
             </li>
             <li>
-              <b>Event stream processors</b> abstract out common operations on
+              <strong>Event stream processors</strong> abstract out common operations on
               event data to a fault-tolerant and scalable engine that maintains
               event order.
             </li>
             <li>
               An architecture with a distributed event log at its core and
               databases to store outputs provides
-              <b>fast access to both events and state</b>. Multiple services can
+              <strong>fast access to both events and state</strong>. Multiple services can
               now use the same data in different ways, and the application has
               the agility to grow with changing requirements.
             </li>
@@ -1020,6 +1020,8 @@
 
           <p>Each included component helps developers with these tasks.</p>
 
+          <hr />
+
           <h3 id="Kafka" class="sec-header">5.1 Kafka is at the heart of the Venice pipeline</h3>
 
           <figure class="img-wrapper">
@@ -1039,7 +1041,7 @@
 <p>Kafka is part of an event streaming ecosystem that includes some additional components used in Venice’s default pipeline: </p>
 
   <ul>
-    <li><b>ksqlDB</b>: an event streaming database that Venice uses primarily as an approachable stream processor. </li>
+<li><b>ksqlDB</b>: an event streaming database that Venice uses primarily as an approachable stream processor. </li>
 <li><b>Kafka Connect</b>: a framework for automatically copying data between Kafka and external systems.</li>
 <li><b>Confluent Schema Registry</b>: a tool to validate and manage schemas.</li>
   </ul>
@@ -1301,8 +1303,8 @@
 
           <p>
             Log compaction can be suitable for some topics. However, it means
-            losing the ability to <b>recreate</b> state, leaving only the option
-            to <b>restore</b> the latest state.
+            losing the ability to <strong>recreate</strong> state, leaving only the option
+            to <strong>restore</strong> the latest state.
           </p>
 
           <h5>Venice: Permanent Log Retention</h5>
@@ -1356,7 +1358,7 @@
             Venice solves these dependency issues with shell scripts that ping for confirmation that the Schema Registry and Kafka Connect are ready to receive connections before running producers or initializing connectors [<a href="#rmoff-tricks" id="ref17">14</a>].
           </p>
 
-          <h3 id="Serialization-Format">What default serialization format should Venice recommend?</h3>
+          <h3 id="Serialization-Format">6.3 What default serialization format should Venice recommend?</h3>
           <p>Venice encourages developers to use <a href="https://avro.apache.org/docs/current/" target="_blank">Avro</a> but Avro keys are incompatible with ksqlDB.
           </p>
 
@@ -1374,43 +1376,6 @@
           </figure>
 
           <p>ksqlDB requires <code>STRING</code> event keys, but the default configuration for many connectors is Avro keys and values. Encoding the key as a <code>STRING</code> and the value in Avro allows users to leverage all of ksqlDB’s functionalities while retaining many of the benefits of using Avro (since values typically contain more data than keys). </p>
-
-          <hr />
-          <!-- mothership text -->
-          <p>These are problems of <i>service discovery:</i></p>
-
-          <blockquote>
-            <p>
-              [A] modern microservice-based application typically runs in a
-              virtualized or containerized environment where the number of
-              instances of a service and their locations changes dynamically.
-              Consequently, you must implement a mechanism that enables the
-              clients of service to make requests to a dynamically changing set
-              of ephemeral service instances.
-              <a
-                href="https://microservices.io/patterns/server-side-discovery.html"
-                target="_blank"
-                rel="noopener"
-                >link</a
-              >
-            </p>
-          </blockquote>
-
-          <p>
-            Mothership uses Docker Machine to handle server provisioning. Docker
-            Machine comes with “providers” for many IaaS providers (Digital
-            Ocean, Linode, AWS, and many others). These providers do the work of
-            sending the requisite API calls to the IaaS provider in question to
-            get a server provisioned with Docker installed and the correct ports
-            open. By using Docker Machine, we freed ourselves to work at a
-            higher level of abstraction in implementing scaling. Once we have
-            this new Docker host, we can send it an API request instructing it
-            to register itself on our Convoy.<sup class="footnote-ref"
-              ><a href="#fn9" id="fnref9">[9]</a></sup
-            >
-          </p>
-<hr> 
-<!-- mothership text preserved to see how they used the blockquote and internal return links -->
 
           <h2 id="Future-Work" class="sec-header">7. Future Work</h2>
           <p>
@@ -1525,10 +1490,9 @@
         <a href="docs.html" class="button button-link button-wide banner-cta"
           >Docs</a
         >
-        <a href="" class="button button-primary button-wide banner-cta"
+        <a href="docs.html#Quickstart" class="button button-primary button-wide banner-cta"
           >Quick Start</a
         >
-        <!-- TODO: add link to quick start -->
         <a
           href="https://github.com/venice-framework"
           target="_blank"
