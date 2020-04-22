@@ -12,11 +12,11 @@
   --bright-blue: #3282b8;
   --light-blue: #bbe1fa;
   --off-white: #f7f7f7;
-  --header: 'Barlow Condensed', sans-serif;
-  --text: 'Open Sans', sans-serif;
+  --header: "Barlow Condensed", sans-serif;
+  --text: "Open Sans", sans-serif;
   --italic: italic;
   --bold: 600;
-  --code: 'Fira Code', monospace; 
+  --code: "Fira Code", monospace;
 }
 
 body {
@@ -26,7 +26,8 @@ body {
   scroll-behavior: smooth;
 }
 
-.study-wrapper, .docs-wrapper {
+.study-wrapper,
+.docs-wrapper {
   display: flex;
   justify-content: center;
 }
@@ -35,14 +36,12 @@ main {
   max-width: 50rem;
 }
 
-h1, h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-}
-
+h1,
+h2,
 h3,
 h4,
 h5 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 h1 {
@@ -58,17 +57,22 @@ h3 {
 }
 
 h4 {
-  font-size: 1.7rem;
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.5rem;
 }
 
 code {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
 }
 
-p > code, li > code {
+p > code,
+li > code {
   color: var(--bright-orange);
   /* background: var(--light-blue); */
-  padding: 0 .2rem;
+  padding: 0 0.2rem;
   border-radius: 4px;
 }
 
@@ -98,7 +102,7 @@ p > code, li > code {
 .text-box h2 {
   color: var(--bright-orange);
   font-size: 3rem;
-  text-align: center;  
+  text-align: center;
 }
 
 .text-box p {
@@ -129,7 +133,7 @@ p > code, li > code {
 .browser-screenshot {
   padding: 0;
   margin: 0;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.25);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 }
 
@@ -243,8 +247,8 @@ img {
   max-width: 100%;
 }
 
-#case-study .img-wrapper p, 
-#docs .img-wrapper p, 
+#case-study .img-wrapper p,
+#docs .img-wrapper p,
 figcaption {
   font-style: italic;
   font-size: 90%;
@@ -321,7 +325,7 @@ nav ul li img {
 .banner {
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain; 
+  background-size: contain;
   box-sizing: border-box;
   text-align: center;
   margin-top: 10px;
@@ -356,7 +360,7 @@ nav ul li img {
 ------------------------------------ */
 .sidebar {
   position: -webkit-sticky;
-  position: sticky; 
+  position: sticky;
   align-self: flex-start;
   top: 0;
   margin-top: 13rem;
@@ -380,7 +384,7 @@ nav ul li img {
   color: var(--bright-orange);
   text-decoration: none;
   width: 100%;
-  padding: .35rem;
+  padding: 0.35rem;
   display: inline-block;
   list-style: none;
   box-sizing: border-box;
@@ -417,7 +421,7 @@ nav ul li img {
   height: auto;
 }
 
-#case-study nav, 
+#case-study nav,
 #docs nav {
   display: none;
   left: 2rem;
@@ -511,7 +515,7 @@ h3 {
 #docs h4,
 #case-study h5,
 #docs h5 {
-  color: var(--dark-blue);
+  color: var(--bright-blue);
 }
 
 #case-study p,
@@ -568,6 +572,12 @@ h3 {
   list-style: decimal;
 }
 
+#case-study .note {
+  font-size: 80%;
+  font-style: italic;
+  line-height: 1rem;
+}
+
 #slideshow img {
   display: none;
 }
@@ -614,8 +624,9 @@ footer,
   padding-bottom: 25px;
 }
 
-#our-team h1, footer h2 {
-  font-family: 'Barlow Condensed', sans-serif;
+#our-team h1,
+footer h2 {
+  font-family: "Barlow Condensed", sans-serif;
   font-weight: 700;
   font-size: 4.5rem;
   padding-top: 30px;
@@ -694,7 +705,7 @@ footer h3 {
 
 .design-credit {
   color: #999;
-  font-size: .75rem;
+  font-size: 0.75rem;
   margin: 0 10px 10px 0;
   text-align: right;
   vertical-align: bottom;
@@ -715,7 +726,7 @@ small {
   color: var(--bright-orange);
 }
 
-.supported-languages {
+.connectors {
   max-width: 550px;
 }
 
@@ -724,7 +735,6 @@ small {
     responsive design (width)
 
 ------------------------------------ */
-
 
 @media (max-width: 1400px) {
   .sidebar {
@@ -793,7 +803,6 @@ small {
 }
 
 @media (max-width: 975px) {
-
   /* section */
 
   .box {
@@ -893,10 +902,6 @@ small {
 
   pre code {
     font-size: 1.5vw;
-  }
-
-  #footnotes {
-    word-wrap: break-word;
   }
 
   .sidebar {
@@ -1131,6 +1136,41 @@ small {
   }
 }
 
+.reference-item {
+  padding-bottom: 20px;
+  word-wrap: break-word;
+}
+
+/* ---------------------------------
+
+    design goals
+
+------------------------------------ */
+
+#design-goals {
+  background-color: var(--dark-blue);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#design-goals p {
+  text-align: center;
+}
+
+#design-goals ul {
+  display: flex;
+}
+
+#design-goals li {
+  list-style-type: none;
+  margin: 5px 10px 0 0;
+}
+
+.goals {
+  width: 70px;
+  margin-bottom: 10px;
+}
+
 /* ---------------------------------
 
     responsive design (height)
@@ -1200,5 +1240,3 @@ hr.minor {
   margin: 0 auto;
   text-align: center;
 }
-
-
