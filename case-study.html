@@ -502,7 +502,7 @@
             <li>processing order is important.</li>
             <li>
               event retention is required [<a href="#mssp" id="ref7">2, Ch. 2</a>;
-              <a href="#ddia" id="ref8">4, Ch. 11</a>].
+              <a href="#ddia">4, Ch. 11</a>].
             </li>
           </ul>
 
@@ -523,7 +523,7 @@
                 <li>
                   High Throughput: Logs can be split into partitions and
                   replicated across machines. This means many reads and writes
-                  can proceed concurrently [<a href="#okay-store-data" id="ref9">5</a>].
+                  can proceed concurrently [<a href="#okay-store-data" id="ref8">5</a>].
                 </li>
               </ul>
             </li>
@@ -590,7 +590,7 @@
           <p>
             Log-based approaches are not the answer to all problems. Events are
             consumed in a linear fashion, so a single event taking a long time
-            to process could delay processing of later events. [<a href="#ddia" id="ref10"
+            to process could delay processing of later events. [<a href="#ddia" id="ref9"
               >4, Ch. 11</a
             >]. Ordering of events is only guaranteed within an individual
             partition, which may be problematic as the system scales. The system
@@ -616,7 +616,7 @@
             different, but many of the operations used by the services to
             process these events are the same. These operations include
             windowing, aggregation, joins, filters, and transformations [<a
-              href="#streaming-systems" id="ref11"
+              href="#streaming-systems" id="ref10"
               >6</a
             >].
           </p>
@@ -634,7 +634,7 @@
             to an engine. Such an engine can provide additional benefits such as
             fault tolerance, efficient processing of events via clusters,
             maintenance of local state, and out-of-order events handling [<a
-              href="kafka-streams" id="ref12"
+              href="kafka-streams" id="ref11"
               >7</a
             >].
           </p>
@@ -807,7 +807,7 @@
             However, it trades monetary cost for complexity. First, application
             developers must deal with an abundance of choice. For the stream
             processing engine alone, there are multiple open-source options and
-            several paid ones [figure 11].
+            several paid ones [Figure 11].
           </p>
 
           <figure class="img-wrapper">
@@ -1076,7 +1076,7 @@
 
 <p>ksqlDB, with its support for a SQL-like syntax, allows developers to learn how to write streaming applications more quickly. ksqlDB has a CLI that Venice includes as an optional component. It is not available within the base Venice Docker pipeline but is easily accessible via the CLI.</p>
 
-<p>It should be noted that Java- or Scala-fluent developers requiring higher complexity in their stream processing applications can still use the base Venice pipeline with Kafka Streams, which is simply a Kafka client library readily available to the system [@streams-vs-ksql]. Developers with differing skill sets can use the pipeline in various ways to maximize their experience. </p>
+<p>It should be noted that Java- or Scala-fluent developers requiring higher complexity in their stream processing applications can still use the base Venice pipeline with Kafka Streams, which is simply a Kafka client library readily available to the system [<a href="#streams-vs-ksql" id="ref12">8</a>]. Developers with differing skill sets can use the pipeline in various ways to maximize their experience. </p>
 
 <hr />
 
@@ -1105,7 +1105,7 @@
 
 <p>ksqlDB writes the results of transformations back to Kafka as a new topic.  As user can write consumer applications in the language of their choice<sup>1</sup> that respond in real-time to the results of stream processing. For example, a user can filter high priority events into a new topic and have an application consume that topic. </p>
 
-<p class="note"><sup>1</sup> There is the requirement that the chosen language can connect to Kafka and the Schema Registry and deserialize Avro. This capability is available in most popular languages [@kafka_clients].</p>
+<p class="note"><sup>1</sup> There is the requirement that the chosen language can connect to Kafka and the Schema Registry and deserialize Avro. This capability is available in most popular languages [<a href="#kafka-clients" id="ref13">9</a>].</p>
 
 <h4>Pattern 2. Use Kafka Connect to automatically send events to a data sink.</h4>
 
@@ -1126,7 +1126,7 @@
 
 <hr />
 
-<h3 id="Schema-Registry" class="sec-header>5.4 Confluent Schema Registry and Avro data format help provide data consistency and correctness for consumers</h3>
+<h3 id="Schema-Registry" class="sec-header">5.4 Confluent Schema Registry and Avro data format help provide data consistency and correctness for consumers</h3>
 
 <figure class="img-wrapper">
   <img
@@ -1167,7 +1167,7 @@
 
 <h4>5.4.2 Avro Data Format</h4>
 
-<p>Venice recommends users format their data using Avro [Figure 24]. Avro provides a rich schema definition language, integrates with the Confluent Schema Registry, and is sent efficiently over the network in a compact binary format. </p>
+<p>Venice recommends users format their data using Avro [Figure 24]. Avro provides a rich schema definition language, integrates with the Confluent Schema Registry, and is sent efficiently over the network in a compact binary format [<a href="#avro" id="ref14">10</a>]. </p>
 
 <figure class="img-wrapper">
   <img
@@ -1338,12 +1338,12 @@
           
           <h4>6.2.2 How can containers securely and reliably communicate with each other? </h4>
 
-          <p>Docker Compose automatically creates a network for all components defined in the YAML file. This network enables communication between containers while isolating them from the host network. However, the name of this automatically generated network is dependent on the name of the directory where the YAML file is located[<a href="#docker-compose">11</a>, <a href="#compose-networking">12</a>]. For example, if the directory was called “venice”, the name of the default network would be “venice_default”. </p>
+          <p>Docker Compose automatically creates a network for all components defined in the YAML file. This network enables communication between containers while isolating them from the host network. However, the name of this automatically generated network is dependent on the name of the directory where the YAML file is located[<a href="#docker-compose" id="ref15">11</a>, <a href="#compose-networking">12</a>]. For example, if the directory was called “venice”, the name of the default network would be “venice_default”. </p>
           <p>The Venice CLI needs to work with components on the network regardless of the names of the directories, so it uses Docker Compose’s custom networks feature to define a network named “venice”.</p>
 
           <h4>6.2.3 How can Venice address race conditions between containers?</h4>
 
-          <p>Venice can dictate the startup order for each container, but sometimes this is not enough [<a href="#compose-startup">13</a>]. Just because a container is running does not mean it is listening on a port or ready to send or receive messages.</p>
+          <p>Venice can dictate the startup order for each container, but sometimes this is not enough [<a href="#compose-startup" id="ref16">13</a>]. Just because a container is running does not mean it is listening on a port or ready to send or receive messages.</p>
 
           <p>Two problems stemming from this are: </p>
 
@@ -1353,7 +1353,7 @@
           </ol>
 
           <p>
-            Venice solves these dependency issues with shell scripts that ping for confirmation that the Schema Registry and Kafka Connect are ready to receive connections before running producers or initializing connectors [<a href="#rmoff-tricks">14</a>].
+            Venice solves these dependency issues with shell scripts that ping for confirmation that the Schema Registry and Kafka Connect are ready to receive connections before running producers or initializing connectors [<a href="#rmoff-tricks" id="ref17">14</a>].
           </p>
 
           <h3 id="Serialization-Format">What default serialization format should Venice recommend?</h3>
@@ -1447,7 +1447,7 @@
 
               <li id="mssp" class="reference-item">
                 M. Kleppman, <i>Making Sense of Stream Processing</i>, 1st ed.
-                Sebastopol, CA, USA. O’Reilly, 2016. <a href="#ref2" class="reference-backref">2.1 ↩︎</a> <a href="#ref2" class="reference-backref">2.3.2 ↩︎</a>
+                Sebastopol, CA, USA. O’Reilly, 2016. <a href="#ref2" class="reference-backref">Fig. 2 ↩︎</a>  <a href="#ref3" class="reference-backref">2.1 p.5 ↩︎</a>  <a href="#ref7" class="reference-backref">2.3.2 ↩︎</a>
               </li>
 
               <li id="two-phase-commit" class="reference-item">
@@ -1462,7 +1462,8 @@
 
               <li id="ddia" class="reference-item">
                 M. Kleppmann, <i>Designing Data Intensive Applications</i>, 1st ed.
-                Sebastopol, CA, USA. O’Reilly, 2017. <a href="#ref3" class="reference-backref">↩︎</a>
+                Sebastopol, CA, USA. O’Reilly, 2017. <a href="#ref4" class="reference-backref">2.2 p.1 ↩︎</a> <a href="#ref5" class="reference-backref">2.2 p.3 ↩︎</a> <a href="#ref6" class="reference-backref">2.3.1 ↩︎</a>
+                <a href="#ref7" class="reference-backref">2.3.2 ↩︎</a> <a href="#ref9" class="reference-backref">2.3.3 ↩︎</a>
               </li>
   
               <li id="okay-store-data" class="reference-item">
@@ -1473,12 +1474,12 @@
                   target="_blank"
                   >https://www.confluent.io/blog/okay-store-data-apache-kafka/</a
                 >
-                (April 16, 2020). <a href="#ref3" class="reference-backref">↩︎</a>
+                (April 16, 2020). <a href="#ref8" class="reference-backref">↩︎</a>
               </li>
 
               <li id="streaming-systems" class="reference-item">
                 T. Akidau, S. Chernyak, and R. Lax, <i>Streaming Systems</i>, 1st ed.
-                Sebastopol, CA, USA. O’Reilly, 2018. <a href="#ref3" class="reference-backref">↩︎</a>
+                Sebastopol, CA, USA. O’Reilly, 2018. <a href="#ref10" class="reference-backref">↩︎</a>
               </li>
 
               <li id="kafka-streams" class="reference-item">
@@ -1489,30 +1490,29 @@
                   target="_blank"
                   >https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/</a
                 >
-                (April 14, 2020). <a href="#ref3" class="reference-backref">↩︎</a>
+                (April 14, 2020). <a href="#ref11" class="reference-backref">↩︎</a>
               </li>
 
-              <!-- placeholders  -->
-              <li id="item-placeholder1" class="reference-item">
-                 <a href="#ref3" class="reference-backref">↩︎</a>
+              <li id="streams-vs-ksql" class="reference-item">
+                D. Traphagen, “Kafka Streams and ksqlDB Compared - How to Choose”, Confluent.io blog, <a href=”https://www.confluent.io/blog/kafka-streams-vs-ksqldb-compared/” target=”_blank”>https://www.confluent.io/blog/kafka-streams-vs-ksqldb-compared/</a> (March 20, 2020).
+                 <a href="#ref12" class="reference-backref">↩︎</a>
               </li>
 
-              <li id="item-placeholder2" class="reference-item">
-                 <a href="#ref3" class="reference-backref">↩︎</a>
+              <li id="kafka-clients" class="reference-item">
+                Apache Kafka documentation: Kafka Clients, <a href=”https://cwiki.apache.org/confluence/display/KAFKA/Clients” target=”_blank”> https://cwiki.apache.org/confluence/display/KAFKA/Clients</a> (April 13, 2020). <a href="#ref13" class="reference-backref">↩︎</a>
               </li>
 
-              <li id="item-placeholder3" class="reference-item">
-                 <a href="#ref3" class="reference-backref">↩︎</a>
+              <li id="avro" class="reference-item">
+                J. Kreps, “Why Avro for Kafka Data?”, Confluent.io blog, <a href=”https://www.confluent.io/blog/avro-kafka-data/” target=”_blank”>https://www.confluent.io/blog/avro-kafka-data/</a> (April 15, 2020). <a href="#ref14" class="reference-backref">↩︎</a>
               </li>
-              <!-- end placeholders --> 
 
-              <li id="docker-compose" class="reference-item">Docker documentation: Docker Compose, <a href=”https://docs.docker.com/compose/” target=”_blank”>https://docs.docker.com/compose/</a> (April 12, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+              <li id="docker-compose" class="reference-item">Docker documentation: Docker Compose, <a href=”https://docs.docker.com/compose/” target=”_blank”>https://docs.docker.com/compose/</a> (April 12, 2020). <a href="#ref15" class="reference-backref">↩︎</a></li>
               
-              <li id="compose-networking" class="reference-item">Docker documentation: Docker Compose networking, <a href=”https://docs.docker.com/compose/networking/” target=”_blank”>https://docs.docker.com/compose/networking/</a> (April 12, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+              <li id="compose-networking" class="reference-item">Docker documentation: Docker Compose networking, <a href=”https://docs.docker.com/compose/networking/” target=”_blank”>https://docs.docker.com/compose/networking/</a> (April 12, 2020). <a href="#ref15" class="reference-backref">↩︎</a></li>
   
-              <li id="compose-startup" class="reference-item">Docker documentation: Docker Compose startup order, <a href=”https://docs.docker.com/compose/startup-order/” target=”_blank”>https://docs.docker.com/compose/startup-order/</a> (April 10, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+              <li id="compose-startup" class="reference-item">Docker documentation: Docker Compose startup order, <a href=”https://docs.docker.com/compose/startup-order/” target=”_blank”>https://docs.docker.com/compose/startup-order/</a> (April 10, 2020). <a href="#ref16" class="reference-backref">↩︎</a></li>
 
-              <li id="rmoff-tips" class="reference-item">R. Moffatt, “Docker Tips with KSQL and Kafka”, Professional Blog of Robin Moffatt, <a href=”https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/” target=”_blank”>https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/</a> (April 9, 2020). <a href="#ref3" class="reference-backref">↩︎</a></li>
+              <li id="rmoff-tips" class="reference-item">R. Moffatt, “Docker Tips with KSQL and Kafka”, Professional Blog of Robin Moffatt, <a href=”https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/” target=”_blank”>https://rmoff.net/2018/12/15/docker-tips-and-tricks-with-ksql-and-kafka/</a> (April 9, 2020). <a href="#ref17" class="reference-backref">↩︎</a></li>
 
             </ol>
         </section>
