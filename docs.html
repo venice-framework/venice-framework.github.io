@@ -97,16 +97,15 @@
             developers to focus on application code rather than infrastructure.
           </p>
 
-          <div class="img-wrapper">
-            <video style="max-width: 100%;" controls>
-              <source src="/images/rails-demo-website.mp4" type="video/mp4" />
-            </video>
-            <p>
-              A demo of deploying a pipeline where data is written to Kafka,
-              aggregated in KSQL, and written to a Postgres database via Kafka
-              Connect.
-            </p>
-          </div>
+          <figure class="img-wrapper">
+            <img
+              src="/images/diagrams/venice_up_and_status.png"
+              alt="console showing active Venice Docker containers"
+            />
+            <figcaption>
+              A Venice pipeline is launched and the status is returned.
+            </figcaption>
+          </figure>
 
           <h3 id="features" class="sec-header">Features</h3>
           <p>
@@ -350,13 +349,19 @@
           <h4>Show the status of all components of the pipeline.</h4>
           <p><code>venice status</code> or <code>venice -st</code></p>
           <h4>
-            To follow the logs of one or more components (press space bar to
-            select before pressing enter/return)
+            To follow the logs of one or more components
           </h4>
-          <p>
-            <code>venice logs</code>
-            <img src="gifs/venice-logs.gif" alt="venice logs demo" />
-          </p>
+
+          <p><code>venice logs</code></p>
+          <p>press space bar to select before pressing enter/return</p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/gifs/venice_logs_broker.gif"
+              alt="venice logs demo"
+            />
+            <figcaption><code>venice logs</code> demo</figcaption>
+          </figure>
 
           <p>
             The output is piped to <code>less</code>, so you can navigate up and
@@ -370,19 +375,42 @@
             <code>venice schemas</code> or <code>venice -s</code><br />
             <code>venice connectors</code> or <code>venice -c</code>
           </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/gifs/venice_topics_schemas_connectors.gif"
+              alt="gif of venice commands to view topics, schemas, and connectors"
+            />
+            <figcaption>
+              view topics, schemas, and connectors
+            </figcaption>
+          </figure>
+
           <h4>Open the KSQL CLI to see the data being written to the topic.</h4>
           <p>
             This will download the KSQL CLI if you have not already used it.
             There will be a notable delay as it loads for the first time.
-            <code>venice ksql</code>
           </p>
+          <p><code>venice ksql</code></p>
           <p>
-            If you get an error message that
+            <i>If you get an error message that</i>
             <code
               >Remote server at http://ksql-server:8088 does not appear to be a
               valid KSQL server</code
-            >, exit the KSQL CLI and try again.
+            ><i>, exit the KSQL CLI and try again.</i>
           </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/gifs/venice_ksql.gif"
+              alt="gif of venice KSQL commands"
+            />
+            <figcaption>
+              <code>SHOW TOPICS</code> and <code>PRINT bus_locations</code> KSQL
+              commands.
+            </figcaption>
+          </figure>
+
           <p>
             Try these KSQL commands: Show all topics. You should see
             <code>bus_locations</code> among the list of topics.
@@ -451,6 +479,17 @@
             correctly. You can also verify message distribution among partitions
             to ensure balance.
           </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/gifs/kafdrop_view_messages.gif"
+              alt="gif of viewing messages through the Kafdrop graphical user interface"
+            />
+            <figcaption>
+              View partition messages in Kafdrop.
+            </figcaption>
+          </figure>
+
           <h4 id="shut-down-the-venice-pipeline">
             Shut down the Venice pipeline
           </h4>
