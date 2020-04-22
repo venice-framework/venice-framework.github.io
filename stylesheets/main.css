@@ -1221,18 +1221,19 @@ small {
   text-align: center;
 }
 
-#design-goals ul {
-  display: flex;
+#goals-container {
+  display: grid;
+  grid-template-columns: 100px auto;
+  /* flex-direction: column; */
 }
 
-#design-goals li {
-  list-style-type: none;
-  margin: 5px 10px 0 0;
+#goals-container p {
+  text-align: left;
 }
 
 .goals {
   width: 70px;
-  margin-bottom: 10px;
+  margin: 10px 0 20px 0;
 }
 
 /* ---------------------------------
