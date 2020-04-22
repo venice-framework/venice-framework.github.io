@@ -68,6 +68,12 @@ code {
   font-family: "Fira Code", monospace;
 }
 
+strong,
+b {
+  font-weight: var(--bold);
+  color: var(--light-orange);
+}
+
 p > code,
 li > code {
   color: var(--bright-orange);
