@@ -820,10 +820,10 @@ small {
     width: 100vw;
     padding: 0 10px 100px 10px;
   }
-  /* 
+
   section#case-study {
     margin: 70px auto;
-  } */
+  }
 
   #case-study h2:first-of-type {
     margin-top: 20px;
@@ -1008,9 +1008,9 @@ small {
 
   /* Main */
 
-  /* section#case-study {
+  section#case-study {
     margin: 40px auto;
-  } */
+  }
 
   section.lower-cta div.buttons {
     display: flex;
@@ -1082,8 +1082,13 @@ small {
   }
 
   main {
+    min-width: 500px;
     padding: 0 25px;
     margin-left: 0;
+  }
+
+  section#case-study {
+    margin: 20px;
   }
 
   nav ul li a,
