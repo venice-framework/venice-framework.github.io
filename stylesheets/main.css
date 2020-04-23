@@ -14,7 +14,6 @@
   --off-white: #f7f7f7;
   --header: "Barlow Condensed", sans-serif;
   --text: "Open Sans", sans-serif;
-  --italic: italic;
   --bold: 600;
   --code: "Fira Code", monospace;
 }
@@ -68,31 +67,36 @@ code {
   font-family: "Fira Code", monospace;
 }
 
+strong,
+b {
+  font-weight: var(--bold);
+  color: var(--light-orange);
+}
+
 p > code,
 li > code {
   color: var(--bright-orange);
-  /* background: var(--light-blue); */
   padding: 0 0.2rem;
   border-radius: 4px;
 }
 
-.integration {
+.features {
   width: 100%;
-  display: flex;
-  color: #262335;
+  display: grid;
+  grid-template-columns: repeat(2, 50vw);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "deploy-article deploy-figure"
+    "integrate-figure integrate-article"
+    "manage-article manage-figure";
 }
 
-.integration:first-of-type {
-  padding-top: 20px;
-  padding-bottom: 40px;
+figure.integrate {
+  grid-area: integrate-figure;
 }
 
-.integration:nth-of-type(2) {
-  padding: 40px 0;
-}
-
-.integration:nth-of-type(3) {
-  padding-top: 40px;
+.box {
+  width: 50vw;
 }
 
 .text-box {
@@ -120,12 +124,12 @@ li > code {
   align-items: center;
 }
 
-.integration div.box {
+.features div.box {
   display: block;
   text-align: center;
 }
 
-.integration img {
+.features img {
   width: 100%;
   margin: 0 auto;
 }
@@ -181,22 +185,6 @@ li > code {
   background: #fff;
 }
 
-blockquote {
-  border-left: 0.3rem solid var(--bright-orange);
-  background: #ececec;
-  color: #393551;
-  margin: 1rem 0;
-  padding: 1.5rem 1rem;
-}
-
-blockquote:before {
-  color: #ccc;
-  font-size: 4rem;
-  line-height: 0.1rem;
-  margin-right: 0.25rem;
-  vertical-align: -0.4rem;
-}
-
 i,
 em {
   font-style: italic;
@@ -245,18 +233,6 @@ img {
 
 .img-wrapper img {
   max-width: 100%;
-}
-
-#case-study .img-wrapper p,
-#docs .img-wrapper p,
-figcaption {
-  font-style: italic;
-  font-size: 90%;
-  text-align: center;
-  width: 75%;
-  line-height: 1rem;
-  margin: 5px auto 0 auto;
-  margin-bottom: 0;
 }
 
 /* ---------------------------------
@@ -524,21 +500,6 @@ h3 {
   line-height: 1.8rem;
 }
 
-#case-study blockquote p,
-#docs blockquote p {
-  font-size: 1.1rem;
-}
-
-#case-study blockquote p:first-of-type,
-#docs blockquote p:first-of-type {
-  font-style: italic;
-}
-
-#case-study blockquote p:last-of-type,
-#docs blockquote p:last-of-type {
-  margin-bottom: 0;
-}
-
 #case-study li,
 #docs li {
   font-size: 1.1rem;
@@ -562,28 +523,14 @@ h3 {
   list-style: decimal;
 }
 
-#case-study .lower-alpha-list li,
-#docs .lower-alpha-list li {
-  list-style: lower-alpha;
-}
-
-#case-study .number-list li,
-#docs .number-list li {
-  list-style: decimal;
+#case-study ul li {
+  list-style: disc;
 }
 
 #case-study .note {
   font-size: 80%;
   font-style: italic;
   line-height: 1rem;
-}
-
-#slideshow img {
-  display: none;
-}
-
-#slidehow img.active {
-  display: block;
 }
 
 .buttons {
@@ -595,6 +542,80 @@ h3 {
   margin-left: 8px;
   margin-right: 8px;
 }
+
+/* ---------------------------------
+        CLI commands table 
+------------------------------------ */
+
+#CLI-commands {
+  display: grid;
+  justify-items: center;
+}
+
+#CLI-commands table th {
+  text-align: left;
+}
+
+#CLI-commands h4 {
+  color: var(--light-orange);
+  text-align: center;
+}
+
+#CLI-commands div {
+  width: 700px;
+}
+
+#table1,
+#table2 {
+  margin-bottom: 10px;
+}
+
+#CLI-commands tbody tr:nth-child(odd) {
+  opacity: 0.55;
+}
+
+#table1 td:first-child {
+  padding-right: 120px;
+}
+
+#table2 td:first-child {
+  padding-right: 20px;
+}
+
+#table3 td:first-child {
+  padding-right: 80px;
+}
+
+#table1 td:last-child,
+#table1 th:last-child {
+  padding-left: 70px;
+}
+
+#table2 td:last-child,
+#table2 th:last-child {
+  padding-left: 20px;
+}
+
+#table3 td:last-child,
+#table3 th:last-child {
+  padding-left: 40px;
+}
+
+/* ---------------------- */
+
+#case-study .img-wrapper p,
+#docs .img-wrapper p,
+figcaption,
+#CLI-commands p {
+  font-style: italic;
+  font-size: 90%;
+  text-align: center;
+  width: 75%;
+  line-height: 1rem;
+  margin: 5px auto 0 auto;
+  margin-bottom: 0;
+}
+
 /* ---------------------------------
 
             our team
@@ -732,6 +753,38 @@ small {
 
 /* ---------------------------------
 
+    design goals
+
+------------------------------------ */
+
+#design-goals {
+  background-color: var(--dark-blue);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#design-goals p {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#goals-container {
+  display: grid;
+  grid-template-columns: 100px auto;
+  /* flex-direction: column; */
+}
+
+#goals-container p {
+  text-align: left;
+}
+
+.goals {
+  width: 70px;
+  margin: 10px 0 20px 10px;
+}
+
+/* ---------------------------------
+
     responsive design (width)
 
 ------------------------------------ */
@@ -743,20 +796,8 @@ small {
 }
 
 @media (max-width: 1100px) {
-  #case-study nav {
-    display: none;
-  }
-
-  nav#case-study-mobile ul {
-    margin: 0;
-  }
-
-  nav#site-navigation #case-study-mobile li {
-    margin-left: 0;
-  }
-
-  nav#site-navigation #case-study-mobile li:last-child {
-    margin-bottom: 0;
+  .banner img {
+    width: 35%;
   }
 
   main {
@@ -764,33 +805,28 @@ small {
     margin-left: 1rem;
   }
 
-  section#integration {
+  section.features {
     flex-direction: column;
     align-items: center;
   }
 
-  #integration article {
+  .features article {
     width: 100vw;
     text-align: center;
     padding-bottom: 100px;
   }
 
-  #integration div.box {
+  .features div.box {
     width: 100vw;
     padding: 0 10px 100px 10px;
   }
-
+  /* 
   section#case-study {
     margin: 70px auto;
-  }
+  } */
 
   #case-study h2:first-of-type {
     margin-top: 20px;
-  }
-
-  #flowchart {
-    max-width: 100%;
-    height: auto;
   }
 
   #our-team h1 {
@@ -803,6 +839,10 @@ small {
 }
 
 @media (max-width: 975px) {
+  .banner img {
+    width: 40%;
+  }
+
   /* section */
 
   .box {
@@ -810,11 +850,12 @@ small {
     padding: 1rem 0;
   }
 
-  .integration {
+  .features {
+    display: flex;
     flex-direction: column;
   }
 
-  .integration a.button {
+  .features a.button {
     display: inline-block;
     margin: 1rem auto;
     padding: 0.4rem;
@@ -822,7 +863,7 @@ small {
     font-size: 1rem;
   }
 
-  .integration img {
+  .features img {
     max-width: 90%;
   }
 
@@ -850,13 +891,15 @@ small {
   }
 }
 
-@media (min-width: 1100px) {
-  nav#case-study-mobile {
-    display: none;
-  }
-}
-
 @media (max-width: 800px) {
+  .banner img {
+    width: 45%;
+  }
+
+  .banner h1 {
+    font-size: 2rem;
+  }
+
   /* General */
 
   h1 {
@@ -877,22 +920,9 @@ small {
 
   /* Main */
 
-  #home p {
-    font-size: 2.5rem;
-  }
-
-  section#case-study {
-    width: 100%;
-  }
-
   #case-study p {
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-
-  #case-study blockquote p {
-    font-size: 1.1rem;
-    line-height: 1.6rem;
   }
 
   code,
@@ -924,8 +954,8 @@ small {
 }
 
 @media (max-width: 600px) {
-  .banner h1 {
-    font-size: 4rem;
+  .banner img {
+    width: 75%;
   }
 
   /* General */
@@ -948,7 +978,7 @@ small {
 
   /* section */
 
-  .integration {
+  .features {
     flex-direction: column;
   }
 
@@ -978,13 +1008,18 @@ small {
 
   /* Main */
 
-  #home p {
-    font-size: 2.3rem;
-    padding: 0 60px;
+  /* section#case-study {
+    margin: 40px auto;
+  } */
+
+  section.lower-cta div.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  section#case-study {
-    margin: 40px auto;
+  section.lower-cta .button {
+    width: 50%;
   }
 
   /* Our Team */
@@ -1038,6 +1073,14 @@ small {
 }
 
 @media (max-width: 500px) {
+  .banner img {
+    width: 75%;
+  }
+
+  .banner h1 {
+    font-size: 2rem;
+  }
+
   main {
     padding: 0 25px;
     margin-left: 0;
@@ -1080,18 +1123,6 @@ small {
 }
 
 @media (max-width: 400px) {
-  #toTop-logo {
-    bottom: 20px;
-    width: 23px;
-    right: 20px;
-  }
-
-  #medium-logo {
-    bottom: 20px;
-    right: 20px;
-    width: 23px;
-  }
-
   /* section */
 
   .text-box p {
@@ -1123,10 +1154,6 @@ small {
     margin-bottom: 3.5vh;
   }
 
-  nav#case-study-mobile {
-    margin-top: 1.75vh;
-  }
-
   #our-team {
     padding-bottom: 18px;
   }
@@ -1139,36 +1166,6 @@ small {
 .reference-item {
   padding-bottom: 20px;
   word-wrap: break-word;
-}
-
-/* ---------------------------------
-
-    design goals
-
------------------------------------- */
-
-#design-goals {
-  background-color: var(--dark-blue);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-#design-goals p {
-  text-align: center;
-}
-
-#design-goals ul {
-  display: flex;
-}
-
-#design-goals li {
-  list-style-type: none;
-  margin: 5px 10px 0 0;
-}
-
-.goals {
-  width: 70px;
-  margin-bottom: 10px;
 }
 
 /* ---------------------------------
@@ -1190,32 +1187,9 @@ small {
 
 /* (Writeup) */
 
-hr.minor {
-  background: #6df0de;
-  width: 100%;
-  height: 3px;
-  border: none;
-  padding: 0;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
 #case-study {
   color: var(--off-white);
   margin-bottom: 0;
-}
-
-.spacer {
-  height: 125px;
-}
-
-.spacer-top {
-  background: linear-gradient(180deg, #d8d8d8, var(--off-white));
-  border-radius: 3px 3px 0 0;
-}
-
-.spacer-bottom {
-  background: linear-gradient(180deg, var(--darkest-blue), var(--dark-blue));
 }
 
 .header-backdrop {

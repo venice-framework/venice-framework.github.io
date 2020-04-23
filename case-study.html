@@ -78,50 +78,50 @@
             <a href="#Venice"> 3. Venice</a>
           </li>
           <li>
-            <a href="#Architecture"> 4. Architecture & Deployment</a>
-          </li>
-          <li>
-            <ul>
-              <li>
-                <a href="#Docker">
-                  4.1 Docker
-                </a>
-              </li>
-              <li>
-                <a href="#Kafka-UI">
-                  4.2 Kafka UI - Kafdrop
-                </a>
-              </li>
-              <li>
-                <a href="#Venice-CLI">
-                  4.3 Venice CLI
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#Implementation"> 5. Implementation</a>
+            <a href="#Implementation"> 4. Implementation</a>
           </li>
           <li>
             <ul>
               <li>
                 <a href="#Kafka">
-                  5.1 Kafka
+                  4.1 Kafka
                 </a>
               </li>
               <li>
                 <a href="#ksqlDB">
-                  5.2 ksqlDB
+                  4.2 ksqlDB
                 </a>
               </li>
               <li>
                 <a href="#Kafka-Connect">
-                  5.3 Kafka Connect + PostgeSQL
+                  4.3 Kafka Connect + PostgeSQL
                 </a>
               </li>
               <li>
                 <a href="#Schema-Registry">
-                  5.4 Schema Registry
+                  4.4 Schema Registry
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#Architecture"> 5. Architecture & Deployment</a>
+          </li>
+          <li>
+            <ul>
+              <li>
+                <a href="#Docker">
+                  5.1 Docker
+                </a>
+              </li>
+              <li>
+                <a href="#Kafka-UI">
+                  5.2 Kafka UI - Kafdrop
+                </a>
+              </li>
+              <li>
+                <a href="#Venice-CLI">
+                  5.3 Venice CLI
                 </a>
               </li>
             </ul>
@@ -282,7 +282,6 @@
           <figure class="img-wrapper">
             <img
               src="images/diagrams/PrimaryDatabaseDependency.png"
-              style="max-height: 400px;"
               alt="A web application sends data to a primary database that feeds multiple other databases and processes"
             />
             <figcaption>
@@ -348,7 +347,7 @@
               alt="A customer order is written to one database but the accompanying inventory update fails"
             />
             <figcaption>
-              A successful write to one database and a failed write to the
+              Figure 3. A successful write to one database and a failed write to the
               second.
             </figcaption>
           </figure>
@@ -381,7 +380,7 @@
               style="max-height: 400px;"
               alt="order event object with properties for order_id, customer_id, seller_id, product_id, quantity, price_in_cents, timestamp"
             />
-            <figcaption>Figure 3. An example of an order event.</figcaption>
+            <figcaption>Figure 4. An example of an order event.</figcaption>
           </figure>
 
           <p>
@@ -398,7 +397,7 @@
               alt="data from the order object in the previous figure is sent to three different services"
             />
             <figcaption>
-              Figure 4. A new order triggers the inventory management,
+              Figure 5. A new order triggers the inventory management,
               fulfillment, and notifications services.
             </figcaption>
           </figure>
@@ -446,7 +445,7 @@
               alt="gif of a message queue with messages enqueing and dequeuing"
             />
             <figcaption>
-              Figure 5. A message queue: new messages enqueue and old messages
+              Figure 6. A message queue: new messages enqueue and old messages
               dequeue.
             </figcaption>
           </figure>
@@ -487,7 +486,7 @@
               alt="a row of numbers in boxes, each box represents a message written to the log"
             />
             <figcaption>
-              Figure 6. A log-based message broker: new messages are appended to
+              Figure 7. A log-based message broker: new messages are appended to
               an immutable log.
             </figcaption>
           </figure>
@@ -512,8 +511,7 @@
 
           <ol>
             <li>
-              <strong>Data can be propagated to services in real-time.</strong><br />
-              Logs support low latency and high throughput writes and reads.<br />
+              <strong>Data can be propagated to services in real-time.</strong>
               <ul>
                 <li>
                   Low Latency: Each write is an append operation, and a read is
@@ -527,6 +525,7 @@
                 </li>
               </ul>
             </li>
+            
             <li>
               <strong>The system is fault-tolerant.</strong>
               <ul>
@@ -581,7 +580,7 @@
               alt="generic data sources send data to a log-based message broker that feeds into a data sink"
             />
             <figcaption>
-              Figure 7. Event producers send messages to a partitioned log-based
+              Figure 8. Event producers send messages to a partitioned log-based
               broker. Event consumers use these event messages in various ways.
             </figcaption>
           </figure>
@@ -646,7 +645,7 @@
               alt="gif of several consumers being replaced by a single stream processing engine"
             />
             <figcaption>
-              Figure 8. An event-stream processing engine replaces the need for
+              Figure 9. An event-stream processing engine replaces the need for
               individual consumers performing redundant processing tasks.
             </figcaption>
           </figure>
@@ -689,7 +688,7 @@
               alt="producers or sources such as user activity, sensor data, or database writes feed events to a replicated log-based message broker which sends them to a stream processing engine and eventually they wind up in various consumers or sinks such as a cache, graph database, or search index"
             />
             <figcaption>
-              Figure 9. An example of a log-based stream processing
+              Figure 10. An example of a log-based stream processing
               architecture.
             </figcaption>
           </figure>
@@ -782,7 +781,7 @@
               alt="one or more event processors (data sources) feed into a message broker (typically Kafka - a log) which feeds into a stream processing engine ending at event consumers also known as data sinks (visualization tools, caches, databases, Kafka topic, etc.)"
             />
             <figcaption>
-              Figure 10. A generalized event-stream processing pipeline.
+              Figure 11. A generalized event-stream processing pipeline.
             </figcaption>
           </figure>
 
@@ -807,7 +806,7 @@
             However, it trades monetary cost for complexity. First, application
             developers must deal with an abundance of choice. For the stream
             processing engine alone, there are multiple open-source options and
-            several paid ones [Figure 11].
+            several paid ones [Figure 12].
           </p>
 
           <figure class="img-wrapper">
@@ -816,7 +815,7 @@
               alt="logos for AWS Kinesis, Google CloudData, and Apache products: Samza, Spark, Flink, Apex, Flume, Heron, Storm, Kafka Streams, Beam, ksqlDB"
             />
             <figcaption>
-              Figure 11. A sampling of the options for stream processing
+              Figure 12. A sampling of the options for stream processing
               engines.
             </figcaption>
           </figure>
@@ -845,7 +844,7 @@
               alt="Three arrows representing cost, ease of use, and user control with Venice, DIY, and managaged solutions arranged along them accordingly"
             />
             <figcaption>
-              Figure 12. Venice positions itself between DIY and managed
+              Figure 13. Venice positions itself between DIY and managed
               solutions in terms of cost, ease of use, and user control.
             </figcaption>
           </figure>
@@ -859,30 +858,208 @@
               Venice is approachable for developers new to event-stream
               processing.<br> It allows them to:
             </p>
-            <ul>
-              <li><img src="images/icons/clock.png" alt="clock" class="goals"/>Set up common pipeline patterns in minutes so
+
+            <div id="goals-container">
+              <img src="images/icons/clock.png" alt="clock" class="goals"/>
+              <p>Set up common pipeline patterns in minutes so
                 they can minimize time spent on configuration and focus on
-                application code instead.
-              </li>
-              
-              <li><img src="images/icons/plus.png" alt="plus" class="goals"/>Retain extensibility and potential for
+                application code instead.</p>
+            
+              <img src="images/icons/plus.png" alt="plus" class="goals"/>
+              <p>
+                Retain extensibility and potential for
                 reconfiguration if their needs change or become more complex.
-              </li>
-            </ul>
+              </p>
+            </div>
           </div>
 
-          <h2 id="Architecture" class="sec-header">4. Architecture and Deployment</h2>
+          <h2 id="Implementation" class="sec-header">4. Venice Implementation</h2>
 
-          <p>Venice consists of these components:</p>
+          <p>Venice collects open-source components into a basic pipeline that developers can use with minimal configuration. It is stripped down to reduce troubleshooting headaches but filled with enough tools and features to help developers new to the space ramp up quickly. Venice allows teams to:</p>
+
+          <ul>
+            <li>Connect their own producer(s) or build from the available Venice producer.</li>
+            <li>Process streaming data using SQL-like syntax.</li>
+            <li>Connect consumers to the pipeline to read the processed data. </li>
+            <li>Ensure consistency and correctness of data at all stages of the pipeline. </li>
+          </ul>
+
+          <p>Each included component helps developers with these tasks.</p>
+
+          <h3 id="Kafka" class="sec-header">4.1 Kafka is at the heart of the Venice pipeline</h3>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/Pipeline-Kafka.png"
+              alt="A cluster of Kafka brokers managed by Zookeeper replaces the generic log from the generic pipeline diagram"
+            />
+            <figcaption>
+              Figure 14. A cluster of log-based Kafka brokers (managed by Zookeeper) receive event data from the user’s producer(s).
+            </figcaption>
+          </figure>
+
+          <p>Kafka is a message broker built on a distributed append-only log and is by far the most popular open-source log-based message broker. It has a robust ecosystem, good documentation, and active development. </p>
+
+          <p>Venice has a three-broker cluster with partitions distributed across the brokers to enable higher throughput and fault tolerance via redundancy. This cluster is managed by an instance of Apache Zookeeper which handles tasks like leader elections.</p>
+
+          <p>Kafka is part of an event streaming ecosystem that includes some additional components used in Venice’s default pipeline: </p>
+
+          <ul>
+            <li><b>ksqlDB</b>: an event streaming database that Venice uses primarily as an approachable stream processor. </li>
+            <li><b>Kafka Connect</b>: a framework for automatically copying data between Kafka and external systems.</li>
+            <li><b>Confluent Schema Registry</b>: a tool to validate and manage schemas.</li>
+          </ul>
+
+          <p>The importance of these components is addressed in turn.</p>
+
+          <h3 id="ksqlDB" class="sec-header">4.2 ksqlDB: a stream processor with SQL-like syntax</h3>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/Pipeline-ksqlDB.png"
+              alt="ksqlDB replaces the stream processor from the generic pipeline diagram"
+            />
+            <figcaption>
+              Figure 15. ksqlDB (and its optional CLI) provides an approachable stream-processing engine.
+            </figcaption>
+          </figure>
+
+          <p>Event stream processing is complex. For developers new to the domain, there is a lot to learn. Venice keeps things as simple as possible. Many stream processing engines (Apache Spark, Apache Flink, Apache Kafka Streams) require developers to write event-stream processing tasks in Java or Scala. This presents a barrier to entry for developers unfamiliar with these languages. Additionally, several Java stream processing engines (Spark, Flink) require dependencies for Java JDK and Apache Maven. These introduce additional complexity that might make it more challenging for the Venice user to troubleshoot problems in the pipeline. </p>
+
+          <p>Venice implements ksqlDB as the primary stream processor. ksqlDB is not technically a stream processing framework, but an abstraction over the Kafka Streams stream processing library. ksqlDB provides much of the functionality of the more robust engines while allowing developers to use the declarative SQL-like syntax seen in Figure 16. </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/SQL-KSQL.png"
+              alt="code samples of SQL and KSQL"
+            />
+            <figcaption>
+              Figure 16. An example for both SQL and KSQL filtering orders from platinum customers. TheSQL query provides a snapshot of these orders for a moment in time. The KSQL STREAM, is a standing query that will continuously update as new orders arrive.  
+            </figcaption>
+          </figure>
+
+          <p>ksqlDB, with its support for a SQL-like syntax, allows developers to learn how to write streaming applications more quickly. ksqlDB has a CLI that Venice includes as an optional component. It is not available within the base Venice Docker pipeline but is easily accessible via the CLI.</p>
+
+          <p>It should be noted that Java- or Scala-fluent developers requiring higher complexity in their stream processing applications can still use the base Venice pipeline with Kafka Streams, which is simply a Kafka client library readily available to the system [<a href="#streams-vs-ksql" id="ref12">8</a>]. Developers with differing skill sets can use the pipeline in various ways to maximize their experience. </p>
+
+          <h3 id="Kafka-Connect" class="sec-header">4.3 Connecting Consumers: Kafka Connect and PostgreSQL</h3>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/Pipeline-KafkaConnect+Postgres.png"
+              alt="Kafka Connect builds into the generalized pipeline to add a PostgreSQL database and optionally links to the generic Event Consumer(s)"
+            />
+            <figcaption>
+              Figure 17. Kafka Connect simplifies adding data sinks and sources; PostgreSQL provides developers a familiar database for their transformed data.
+            </figcaption>
+          </figure>
+
+          <p>In a streaming application there are common patterns to consume data.</p>
+
+          <ol>
+            <li>Consume events directly from Kafka to perform real-time actions. </li>
+            <li>Consume events automatically to keep a data store in sync with specific topic(s) on Kafka. </li>
+          </ol>
+
+          <p>Venice is configured to enable both patterns as an application will often require a combination.</p>
+
+          <h4>Pattern 1. Connect to Kafka Broker and Schema Registry directly.</h4>
+
+          <p>ksqlDB writes the results of transformations back to Kafka as a new topic.  As user can write consumer applications in the language of their choice<sup>1</sup> that respond in real-time to the results of stream processing. For example, a user can filter high priority events into a new topic and have an application consume that topic. </p>
+
+          <p class="note"><sup>1</sup> There is the requirement that the chosen language can connect to Kafka and the Schema Registry and deserialize Avro. This capability is available in most popular languages [<a href="#kafka-clients" id="ref13">9</a>].</p>
+
+          <h4>Pattern 2. Use Kafka Connect to automatically send events to a data sink.</h4>
+
+          <p>Kafka Connect is a framework for copying data between systems. Kafka Connect serves as a centralised hub for connectors that synchronize data between Kafka and various data stores. Sink connectors can be considered consumers - configured instead of written - to synchronize data between Kafka and a datastore. This is useful for: </p>
+
+          <ul>
+            <li>Ad-hoc queries that are too infrequent to run as stream processing jobs, but still benefit from up-to date data. </li>
+            <li>Automatically syncing data to data stores like databases or caches.</li>
+          </ul>
+
+          <p>Venice uses Kafka Connect in the default pipeline to connect to a PostgreSQL database. A user can sink any topic on Kafka to a new table in Postgres via the Venice CLI. The table will be updated as new events arrive in Kafka. Users can then perform ad-hoc queries on this database and know that the results will be in sync with the rest of their pipeline. </p>
+
+          <p><a href="https://www.confluent.io/hub/" target="_blank">Confluent Hub</a> hosts hundreds of Connectors for popular data sources and sinks that can extend the pipeline<sup>1</sup>.</p>
+
+          <p>Consuming real-time data from the pipeline is the overarching goal of an event-stream processing pipeline. Kafka Connect and PostgreSQL bolster the functionality of ksqlDB to ensure Venice meets the most common consumer patterns for a streaming application.</p>
+
+          <p class="note"><sup>1</sup> Adding additional connectors requires configuration of connectors, tasks, and convertors.</p>
+
+          <h3 id="Schema-Registry" class="sec-header">4.4 Confluent Schema Registry and Avro data format help provide data consistency and correctness for consumers</h3>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/Pipeline-SchemaRegistry.png"
+              alt="the Schema Registry connects to the Kafka brokers, Kafka Connect, and the ksqlDB - sharing schemas throughout the pipeline"
+            />
+            <figcaption>
+              Figure 18. The Schema Registry assists with data consistency and correctness.
+            </figcaption>
+          </figure>
+
+          <p>Kafka, ksqlDB, and Kafka Connect provide the previously-discussed  functionality: ingest and store in the log, manipulate in the stream processor, and connect to output in the sink. Venice also includes the Schema Registry to help the entire system operate more smoothly.</p>
+          
+          <p>Kafka does not enforce any particular format for event data beyond a simple key/value pair. Kafka is not aware of the data format as all records are stored as byte arrays. While Kafka doesn’t care about the data format, consumers do. Attempting to deserialize an event from byte array to the wrong data format is one of the most common problems when writing new consumers. </p>
+
+          <h4>4.4.1 Confluent Schema Registry</h4>
+          
+          <p>The simplicity of Kafka comes from having all the data in one place and having all the data follow similar conventions. Venice includes the Confluent Schema Registry and encourages developers to use the open source Avro data format. These two tools bolster the benefits of Kafka by supporting data consistency and minimizing the data transfer burden on the network. </p>
+
+          <p>The Schema Registry exists apart from the Kafka brokers. Producers and consumers interact directly with Kafka to write and read data and concurrently communicate with the Schema Registry [Figure 19] to send and retrieve schemas.</p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/SchemaRegistry.png"
+              alt="Producer feeds feeds data to Kafka; schema to the registry. Consumer pulls data from Kafka; schema from registry"
+            />
+            <figcaption>
+              Figure 19. Producers write events to Kafka while submitting the event schema to the Schema Registry. Consumers retrieve the schema from the Registry when they read the event from the Kafka broker.
+            </figcaption>
+          </figure>
+
+          <p>A schema registry provides three main benefits: </p>
+
+          <ul>
+            <li><strong>Schemas are stored in one place.</strong> Any service requiring the data in a topic can request the schema.</li>
+            <li><strong>Schema changes are tracked.</strong> Tracking schema changes and when they occurred allows users to interpret and use all of the data.  </li>
+            <li><strong>Schema validations can be performed.</strong> Data that does not conform to the schema can be rejected from the log. This prevents typos or incorrect data types from being written to the log. </li>
+          </ul>
+
+          <h4>4.4.2 Avro Data Format</h4>
+
+          <p>Venice recommends users format their data using Avro [Figure 20]. Avro provides a rich schema definition language, integrates with the Confluent Schema Registry, and is sent efficiently over the network in a compact binary format [<a href="#avro" id="ref14">10</a>]. </p>
+
+          <figure class="img-wrapper">
+            <img
+              src="images/diagrams/Avro.png"
+              alt="Two JSON objects: one describing event data; one the schema dictating the data type of each property in the object."
+            />
+            <figcaption>
+              Figure 20. An Avro event data object and accompanying schema - both are written in JSON, but translated to a more compact binary format when sent over the network.
+            </figcaption>
+          </figure>
+
+          <p>The Schema Registry doesn’t eliminate issues of consistency and correctness. That depends on how Venice users develop event producers and event-streaming queries. However, with this component users have a tool to reduce the risk of introducing incorrect or incompatible data in their pipeline. </p>
+
+          <p>The above four components - Kafka, ksqlDB, Kafka Connect, and the Schema Registry - provide the foundation of the Venice pipeline. They help make Venice flexible, extensible, and robust. </p>
+
+          <h2 id="Architecture" class="sec-header">5. Architecture and Deployment</h2>
+
+          <p>As explained in the previous section, Venice consists of these components:</p>
 
           <ul>
             <li><strong>Kafka brokers</strong> for logging events</li>
             <li>A <strong>Zookeeper</strong> instance for managing the cluster of Kafka brokers</li>
-            <li>A <strong>Schema Registry</strong> for managing schemas</li>
             <li>A <strong>ksqlDB server</strong> for performing aggregations, filtrations, transformations, and joins over real-time data</li>
             <li><strong>KSQL CLI</strong> for interacting with the ksqlDB server</li>
             <li><strong>Kafka Connect</strong> workers for moving data in and out of Kafka and simplifying the process of adding new sources and sinks</li>
             <li>A <strong>PostgreSQL</strong> data sink for storing the data in multiple formats</li>
+            <li>A <strong>Schema Registry</strong> for managing schemas</li>
+          </ul>
+
+          <p>It also includes the following components to enhance the user's experience:</p>
+          <ul>
             <li><strong>Kafdrop</strong> UI for monitoring message brokers</li>
             <li><strong>Venice CLI</strong> for deploying and managing the pipeline</li>
           </ul>
@@ -895,7 +1072,7 @@
               alt="Venice pipeline architecture diagram"
             />
             <figcaption>
-              Figure 13. The complete Venice pipeline.
+              Figure 21. The complete Venice pipeline.
             </figcaption>
           </figure>
 
@@ -905,11 +1082,11 @@
             <li>The user installs and launches Venice through the Venice CLI.
               <figure class="img-wrapper">
                 <img
-                  src="images/diagrams/venice_up_and_status.png"
-                  alt="the result of 'venice up' and 'venice status' commands"
+                  src="images/diagrams/gifs/setup.gif"
+                  alt="gif: 'venice install' allows a user to select which directory to clone from github; 'venice up' launches the pipeline."
                 />
                 <figcaption>
-                  Figure 14. Viewing a deployed Venice pipeline in the console.
+                  Figure 22. CLI commands <code>venice install</code> and <code>venice up</code> in action.
                 </figcaption>
               </figure>
             </li>
@@ -948,7 +1125,7 @@
 
           <p>Each of the components in the <i>“Managed by Venice CLI”</i> box runs within a separate Docker container.</p>
 
-          <h3 id="Docker" class="sec-header">4.1 Docker isolates pipeline components</h3>
+          <h3 id="Docker" class="sec-header">5.1 Docker isolates pipeline components</h3>
 
           <p>The Venice pipeline contains multiple components and each has its own set of dependencies. These dependencies could conflict with each other or a user’s existing software. Docker isolates each component, preventing such dependency collisions. This provides streamlined installation as well as smoother addition of additional components. 
           </p>
@@ -959,11 +1136,11 @@
               alt="Three services with their dependencies isolated from one another in solid boxes inside a dotted box 'Managed by Docker' all within a larger 'Host Machine' box"
             />
             <figcaption>
-              Figure 15. Docker isolates each service and its dependencies in containers.
+              Figure 23. Docker isolates each service and its dependencies in containers.
             </figcaption>
           </figure>
 
-          <h3 id="Kafka-UI" class="sec-header">4.2 Kafdrop provides visual insights to help manage stream processing pipelines</h3>
+          <h3 id="Kafka-UI" class="sec-header">5.2 Kafdrop provides visual insights to help manage stream processing pipelines</h3>
 
           <p>A source of complexity for a developer new to event stream processing is the difficulty of gaining insight into the system. For a developer new to stream processing  it is often arduous to: 
           </p>
@@ -984,207 +1161,137 @@
               alt="gif of a user viewing bus event data in the Kafkdrop Kafka graphical user interface"
             />
             <figcaption>
-              Figure 16. The Kafdrop Kafka cluster graphical user interface
+              Figure 24. The Kafdrop Kafka cluster graphical user interface
             </figcaption>
           </figure>
 
-          <h3 id="Venice-CLI" class="sec-header">4.3 Venice CLI streamlines developer experience</h3>
+          <h3 id="Venice-CLI" class="sec-header">5.3 Venice CLI streamlines developer experience</h3>
 
           <p>The commands to interact with a containerized event streaming system can be a source of frustration. Many of the commands to manage the Venice containerized components are unwieldy and require an intimate knowledge of container names, ports, etc. Venice provides a CLI with 14 commands to streamline these interactions for developers.
           </p>
 
-          <figure class="img-wrapper">
-            <img
-              src="images/diagrams/CLI-Admin-Commands.png"
-              alt="list of Venice CLI administrative commands"
-            />
-            <img
-              src="images/diagrams/CLI-Connector-Topic-Commands.png"
-              alt="list of Venice CLI connector and topic commands"
-            />
-            <figcaption>
-              Figure 17. Commands for the Venice CLI.
-            </figcaption>
-          </figure>
+          <div id="CLI-commands">
+            <div class="table1">
+              <h4>Adminstrative Commands</h4>
+              <table id="table1">
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Alias</th>
+                    <th>Function</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>down</code></td>
+                    <td></td>
+                    <td>shut down the venice pipeline</td>
+                  </tr>
+                  <tr>
+                    <td><code>install</code></td>
+                    <td><code>-i</code></td>
+                    <td>
+                      download / install a venice component from GitHub
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>ksql</code></td>
+                    <td><code>-k</code></td>
+                    <td>launch the KSQL CLI</td>
+                  </tr>
+                  <tr>
+                    <td><code>logs</code></td>
+                    <td><code>-l</code></td>
+                    <td>view logs of venice components</td>
+                  </tr>
+                  <tr>
+                    <td><code>psql</code></td>
+                    <td><code>-p</code></td>
+                    <td>launch the postgreSQL CLI</td>
+                  </tr>
+                  <tr>
+                    <td><code>restart</code></td>
+                    <td><code>-r</code></td>
+                    <td>restart venice components</td>
+                  </tr>
+                  <tr>
+                    <td><code>schemas</code></td>
+                    <td><code>-s</code></td>
+                    <td>view schemas saved in the Schema Registry</td>
+                  </tr>
+                  <tr>
+                    <td><code>status</code></td>
+                    <td><code>-st</code></td>
+                    <td>view the status of venice components</td>
+                  </tr>
+                  <tr>
+                    <td><code>up</code></td>
+                    <td></td>
+                    <td>launch the venice pipeline</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-          <h2 id="Implementation" class="sec-header">5. Venice Implementation</h2>
+            <div class="table2">
+              <h4>Connector Commands</h4>
+              <table id="table2">
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Alias</th>
+                    <th>Function</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>connectors</code></td>
+                    <td><code>-c</code></td>
+                    <td>view existing connectors and their status</td>
+                  </tr>
+                  <tr>
+                    <td><code>connectors new</code></td>
+                    <td><code>-c new</code></td>
+                    <td>
+                      create a new connection to an existing data sink
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>connectors delete</code></td>
+                    <td><code>-c delete</code></td>
+                    <td>delete an existing connection</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-          <p>Venice collects open-source components into a basic pipeline that developers can use with minimal configuration. It is stripped down to reduce troubleshooting headaches but filled with enough tools and features to help developers new to the space ramp up quickly. Venice allows teams to:</p>
-
-          <ul>
-            <li>Connect their own producer(s) or build from the available Venice producer.</li>
-            <li>Process streaming data using SQL-like syntax.</li>
-            <li>Connect consumers to the pipeline to read the processed data. </li>
-            <li>Ensure consistency and correctness of data at all stages of the pipeline. </li>
-          </ul>
-
-          <p>Each included component helps developers with these tasks.</p>
-
-          <hr />
-
-          <h3 id="Kafka" class="sec-header">5.1 Kafka is at the heart of the Venice pipeline</h3>
-
-          <figure class="img-wrapper">
-            <img
-              src="images/diagrams/Pipeline-Kafka.png"
-              alt="A cluster of Kafka brokers managed by Zookeeper replaces the generic log from the generic pipeline diagram"
-            />
-            <figcaption>
-              Figure 18. A cluster of log-based Kafka brokers (managed by Zookeeper) receive event data from the user’s producer(s).
-            </figcaption>
-          </figure>
-
-          <p>Kafka is a message broker built on a distributed append-only log and is by far the most popular open-source log-based message broker. It has a robust ecosystem, good documentation, and active development. </p>
-
-<p>Venice has a three-broker cluster with partitions distributed across the brokers to enable higher throughput and fault tolerance via redundancy. This cluster is managed by an instance of Apache Zookeeper which handles tasks like leader elections.</p>
-
-<p>Kafka is part of an event streaming ecosystem that includes some additional components used in Venice’s default pipeline: </p>
-
-  <ul>
-<li><b>ksqlDB</b>: an event streaming database that Venice uses primarily as an approachable stream processor. </li>
-<li><b>Kafka Connect</b>: a framework for automatically copying data between Kafka and external systems.</li>
-<li><b>Confluent Schema Registry</b>: a tool to validate and manage schemas.</li>
-  </ul>
-
-  <p>The importance of these components is addressed in turn.</p>
-
-  <hr />
-
-<h3 id="ksqlDB" class="sec-header">5.2 ksqlDB: a stream processor with SQL-like syntax</h3>
-
-<figure class="img-wrapper">
-  <img
-    src="images/diagrams/Pipeline-ksqlDB.png"
-    alt="ksqlDB replaces the stream processor from the generic pipeline diagram"
-  />
-  <figcaption>
-    Figure 19. ksqlDB (and its optional CLI) provides an approachable stream-processing engine.
-  </figcaption>
-</figure>
-
-<p>Event stream processing is complex. For developers new to the domain, there is a lot to learn. Venice keeps things as simple as possible. Many stream processing engines (Apache Spark, Apache Flink, Apache Kafka Streams) require developers to write event-stream processing tasks in Java or Scala. This presents a barrier to entry for developers unfamiliar with these languages. Additionally, several Java stream processing engines (Spark, Flink) require dependencies for Java JDK and Apache Maven. These introduce additional complexity that might make it more challenging for the Venice user to troubleshoot problems in the pipeline. </p>
-
-<p>Venice implements ksqlDB as the primary stream processor. ksqlDB is not technically a stream processing framework, but an abstraction over the Kafka Streams stream processing library. ksqlDB provides much of the functionality of the more robust engines while allowing developers to use the declarative SQL-like syntax seen in Figure 20. </p>
-
-<figure class="img-wrapper">
-  <img
-    src="images/diagrams/SQL-KSQL.png"
-    alt="code samples of SQL and KSQL"
-  />
-  <figcaption>
-    Figure 20. An example for both SQL and KSQL filtering orders from platinum customers. TheSQL query provides a snapshot of these orders for a moment in time. The KSQL STREAM, is a standing query that will continuously update as new orders arrive.  
-  </figcaption>
-</figure>
-
-<p>ksqlDB, with its support for a SQL-like syntax, allows developers to learn how to write streaming applications more quickly. ksqlDB has a CLI that Venice includes as an optional component. It is not available within the base Venice Docker pipeline but is easily accessible via the CLI.</p>
-
-<p>It should be noted that Java- or Scala-fluent developers requiring higher complexity in their stream processing applications can still use the base Venice pipeline with Kafka Streams, which is simply a Kafka client library readily available to the system [<a href="#streams-vs-ksql" id="ref12">8</a>]. Developers with differing skill sets can use the pipeline in various ways to maximize their experience. </p>
-
-<hr />
-
-<h3 id="Kafka-Connect" class="sec-header">5.3 Connecting Consumers: Kafka Connect and PostgreSQL</h3>
-
-<figure class="img-wrapper">
-  <img
-    src="images/diagrams/Pipeline-KafkaConnect+Postgres.png"
-    alt="Kafka Connect builds into the generalized pipeline to add a PostgreSQL database and optionally links to the generic Event Consumer(s)"
-  />
-  <figcaption>
-    Figure 21. Kafka Connect simplifies adding data sinks and sources; PostgreSQL provides developers a familiar database for their transformed data.
-  </figcaption>
-</figure>
-
-<p>In a streaming application there are common patterns to consume data.</p>
-
-<ol>
-  <li>Consume events directly from Kafka to perform real-time actions. </li>
-<li>Consume events automatically to keep a data store in sync with specific topic(s) on Kafka. </li>
-</ol>
-
-<p>Venice is configured to enable both patterns as an application will often require a combination.</p>
-
-<h4>Pattern 1. Connect to Kafka Broker and Schema Registry directly.</h4>
-
-<p>ksqlDB writes the results of transformations back to Kafka as a new topic.  As user can write consumer applications in the language of their choice<sup>1</sup> that respond in real-time to the results of stream processing. For example, a user can filter high priority events into a new topic and have an application consume that topic. </p>
-
-<p class="note"><sup>1</sup> There is the requirement that the chosen language can connect to Kafka and the Schema Registry and deserialize Avro. This capability is available in most popular languages [<a href="#kafka-clients" id="ref13">9</a>].</p>
-
-<h4>Pattern 2. Use Kafka Connect to automatically send events to a data sink.</h4>
-
-<p>Kafka Connect is a framework for copying data between systems. Kafka Connect serves as a centralised hub for connectors that synchronize data between Kafka and various data stores. Sink connectors can be considered consumers - configured instead of written - to synchronize data between Kafka and a datastore. This is useful for: </p>
-
-<ul>
-<li>Ad-hoc queries that are too infrequent to run as stream processing jobs, but still benefit from up-to date data. </li>
-<li>Automatically syncing data to data stores like databases or caches.</li>
-</ul>
-
-<p>Venice uses Kafka Connect in the default pipeline to connect to a PostgreSQL database. A user can sink any topic on Kafka to a new table in Postgres via the Venice CLI. The table will be updated as new events arrive in Kafka. Users can then perform ad-hoc queries on this database and know that the results will be in sync with the rest of their pipeline. </p>
-
-<p><a href="https://www.confluent.io/hub/" target="_blank">Confluent Hub</a> hosts hundreds of Connectors for popular data sources and sinks that can extend the pipeline<sup>1</sup>.</p>
-
-<p>Consuming real-time data from the pipeline is the overarching goal of an event-stream processing pipeline. Kafka Connect and PostgreSQL bolster the functionality of ksqlDB to ensure Venice meets the most common consumer patterns for a streaming application.</p>
-
-<p class="note"><sup>1</sup> Adding additional connectors requires configuration of connectors, tasks, and convertors.</p>
-
-<hr />
-
-<h3 id="Schema-Registry" class="sec-header">5.4 Confluent Schema Registry and Avro data format help provide data consistency and correctness for consumers</h3>
-
-<figure class="img-wrapper">
-  <img
-    src="images/diagrams/Pipeline-SchemaRegistry.png"
-    alt="the Schema Registry connects to the Kafka brokers, Kafka Connect, and the ksqlDB - sharing schemas throughout the pipeline"
-  />
-  <figcaption>
-    Figure 22. The Schema Registry assists with data consistency and correctness.
-  </figcaption>
-</figure>
-
-<p>Kafka, ksqlDB, and Kafka Connect provide the previously-discussed  functionality: ingest and store in the log, manipulate in the stream processor, and connect to output in the sink. Venice also includes the Schema Registry to help the entire system operate more smoothly.</p>
- 
-<p>Kafka does not enforce any particular format for event data beyond a simple key/value pair. Kafka is not aware of the data format as all records are stored as byte arrays. While Kafka doesn’t care about the data format, consumers do. Attempting to deserialize an event from byte array to the wrong data format is one of the most common problems when writing new consumers. </p>
-
-<h4>5.4.1 Confluent Schema Registry</h4>
-<p>The simplicity of Kafka comes from having all the data in one place and having all the data follow similar conventions. Venice includes the Confluent Schema Registry and encourages developers to use the open source Avro data format. These two tools bolster the benefits of Kafka by supporting data consistency and minimizing the data transfer burden on the network. </p>
-
-<p>The Schema Registry exists apart from the Kafka brokers. Producers and consumers interact directly with Kafka to write and read data and concurrently communicate with the Schema Registry [Figure 23] to send and retrieve schemas.</p>
-
-<figure class="img-wrapper">
-  <img
-    src="images/diagrams/SchemaRegistry.png"
-    alt="Producer feeds feeds data to Kafka; schema to the registry. Consumer pulls data from Kafka; schema from registry"
-  />
-  <figcaption>
-    Figure 23. Producers write events to Kafka while submitting the event schema to the Schema Registry. Consumers retrieve the schema from the Registry when they read the event from the Kafka broker.
-  </figcaption>
-</figure>
-
-<p>A schema registry provides three main benefits: </p>
-
-<ul>
-<li><strong>Schemas are stored in one place.</strong> Any service requiring the data in a topic can request the schema.</li>
-<li><strong>Schema changes are tracked.</strong> Tracking schema changes and when they occurred allows users to interpret and use all of the data.  </li>
-<li><strong>Schema validations can be performed.</strong> Data that does not conform to the schema can be rejected from the log. This prevents typos or incorrect data types from being written to the log. </li>
-</ul>
-
-<h4>5.4.2 Avro Data Format</h4>
-
-<p>Venice recommends users format their data using Avro [Figure 24]. Avro provides a rich schema definition language, integrates with the Confluent Schema Registry, and is sent efficiently over the network in a compact binary format [<a href="#avro" id="ref14">10</a>]. </p>
-
-<figure class="img-wrapper">
-  <img
-    src="images/diagrams/Avro.png"
-    alt="Two JSON objects: one describing event data; one the schema dictating the data type of each property in the object."
-  />
-  <figcaption>
-    Figure 24. An Avro event data object and accompanying schema - both are written in JSON, but translated to a more compact binary format when sent over the network.
-  </figcaption>
-</figure>
-
-<p>The Schema Registry doesn’t eliminate issues of consistency and correctness. That depends on how Venice users develop event producers and event-streaming queries. However, with this component users have a tool to reduce the risk of introducing incorrect or incompatible data in their pipeline. </p>
-
-<p>The above four components - Kafka, ksqlDB, Kafka Connect, and the Schema Registry - provide the foundation of the Venice pipeline. They help make Venice flexible, extensible, and robust. </p>
-
+            <div class="table3">
+              <h4>Topic Commands</h4>
+              <table id="table3">
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Alias</th>
+                    <th>Function</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>topics</code></td>
+                    <td><code>-t</code></td>
+                    <td>view a list of the current topics</td>
+                  </tr>
+                  <tr>
+                    <td><code>topics show</code></td>
+                    <td><code>-t show</code></td>
+                    <td>view the event stream from an existing topic</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <p>Figure 25. Commands for the Venice CLI</p>
+          </div>
 
 <h2 id="Challenges" class="sec-header">6. Challenges</h2>
 
@@ -1222,13 +1329,13 @@
               alt="An arrow points from the Docker container to the Docker area within the host machine created by a volume. A second arrow points to host machine in general to represent a bind mount."
             />
             <figcaption>
-              Figure 25. Docker containers interact with the host machine’s file
+              Figure 26. Docker containers interact with the host machine’s file
               system through bind mounts or volumes.
             </figcaption>
           </figure>
 
           <p>
-            The main difference, shown in Figure 25, is where data is saved on
+            The main difference, shown in Figure 26, is where data is saved on
             the host machine. With volumes, Docker manages storing data in a
             restricted Docker directory. With a bind mount, a specific path on
             the host machine is loaded on the container at startup.
@@ -1288,14 +1395,14 @@
               alt="Two event objects. One has the email adddress 'daviddd@gmail.com'; the other, 'david@gmail.com'. A box around the second indicates it will be preserved."
             />
             <figcaption>
-              Figure 26. An example of a user updating their email address. With
+              Figure 27. An example of a user updating their email address. With
               a compacted topic only the latest value related to the
               <code>user_id: 1</code> is retained.
             </figcaption>
           </figure>
 
           <p>
-            For example, figure 26 shows events that track a change to a user’s
+            For example, Figure 27 shows events that track a change to a user’s
             email, where the user_id is the key. With a compacted topic, Kafka
             would guarantee that the most recent update to the email would be
             kept in the log.
@@ -1362,7 +1469,7 @@
           <p>Venice encourages developers to use <a href="https://avro.apache.org/docs/current/" target="_blank">Avro</a> but Avro keys are incompatible with ksqlDB.
           </p>
 
-          <p>In Kafka, each event key and value is written as a pair of raw bytes. If a producer serializes the event in one format and the consumer deserializes it in another, the application will produce errors or the data will be unusable [Figure 27]. 
+          <p>In Kafka, each event key and value is written as a pair of raw bytes. If a producer serializes the event in one format and the consumer deserializes it in another, the application will produce errors or the data will be unusable [Figure 28]. 
           </p>
 
           <figure class="img-wrapper">
@@ -1371,7 +1478,7 @@
               alt="screen capture of the Kafdrop UI showing message key and value as empty squares in place of characters"
             />
             <figcaption>
-              Figure 27. Incorrect deserialization format causes unreadable key and value on Kafdrop.
+              Figure 28. Incorrect deserialization format causes unreadable key and value on Kafdrop.
             </figcaption>
           </figure>
 
