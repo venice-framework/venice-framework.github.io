@@ -186,22 +186,6 @@ figure.integrate {
   background: #fff;
 }
 
-blockquote {
-  border-left: 0.3rem solid var(--bright-orange);
-  background: #ececec;
-  color: #393551;
-  margin: 1rem 0;
-  padding: 1.5rem 1rem;
-}
-
-blockquote:before {
-  color: #ccc;
-  font-size: 4rem;
-  line-height: 0.1rem;
-  margin-right: 0.25rem;
-  vertical-align: -0.4rem;
-}
-
 i,
 em {
   font-style: italic;
@@ -517,21 +501,6 @@ h3 {
   line-height: 1.8rem;
 }
 
-#case-study blockquote p,
-#docs blockquote p {
-  font-size: 1.1rem;
-}
-
-#case-study blockquote p:first-of-type,
-#docs blockquote p:first-of-type {
-  font-style: italic;
-}
-
-#case-study blockquote p:last-of-type,
-#docs blockquote p:last-of-type {
-  margin-bottom: 0;
-}
-
 #case-study li,
 #docs li {
   font-size: 1.1rem;
@@ -806,20 +775,12 @@ small {
 }
 
 @media (max-width: 1100px) {
+  .banner img {
+    width: 35%;
+  }
+
   #case-study nav {
     display: none;
-  }
-
-  nav#case-study-mobile ul {
-    margin: 0;
-  }
-
-  nav#site-navigation #case-study-mobile li {
-    margin-left: 0;
-  }
-
-  nav#site-navigation #case-study-mobile li:last-child {
-    margin-bottom: 0;
   }
 
   main {
@@ -827,18 +788,18 @@ small {
     margin-left: 1rem;
   }
 
-  section#integration {
+  section.features {
     flex-direction: column;
     align-items: center;
   }
 
-  #integration article {
+  .features article {
     width: 100vw;
     text-align: center;
     padding-bottom: 100px;
   }
 
-  #integration div.box {
+  .features div.box {
     width: 100vw;
     padding: 0 10px 100px 10px;
   }
@@ -851,11 +812,6 @@ small {
     margin-top: 20px;
   }
 
-  #flowchart {
-    max-width: 100%;
-    height: auto;
-  }
-
   #our-team h1 {
     padding-top: 70px;
   }
@@ -866,6 +822,10 @@ small {
 }
 
 @media (max-width: 975px) {
+  .banner img {
+    width: 40%;
+  }
+
   /* section */
 
   .box {
@@ -873,11 +833,12 @@ small {
     padding: 1rem 0;
   }
 
-  .integration {
+  .features {
+    display: flex;
     flex-direction: column;
   }
 
-  .integration a.button {
+  .features a.button {
     display: inline-block;
     margin: 1rem auto;
     padding: 0.4rem;
@@ -885,7 +846,7 @@ small {
     font-size: 1rem;
   }
 
-  .integration img {
+  .features img {
     max-width: 90%;
   }
 
@@ -913,13 +874,15 @@ small {
   }
 }
 
-@media (min-width: 1100px) {
-  nav#case-study-mobile {
-    display: none;
-  }
-}
-
 @media (max-width: 800px) {
+  .banner img {
+    width: 45%;
+  }
+
+  .banner h1 {
+    font-size: 2rem;
+  }
+
   /* General */
 
   h1 {
@@ -940,22 +903,9 @@ small {
 
   /* Main */
 
-  #home p {
-    font-size: 2.5rem;
-  }
-
-  section#case-study {
-    width: 100%;
-  }
-
   #case-study p {
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-
-  #case-study blockquote p {
-    font-size: 1.1rem;
-    line-height: 1.6rem;
   }
 
   code,
@@ -987,8 +937,8 @@ small {
 }
 
 @media (max-width: 600px) {
-  .banner h1 {
-    font-size: 4rem;
+  .banner img {
+    width: 75%;
   }
 
   /* General */
@@ -1011,7 +961,7 @@ small {
 
   /* section */
 
-  .integration {
+  .features {
     flex-direction: column;
   }
 
@@ -1041,13 +991,18 @@ small {
 
   /* Main */
 
-  #home p {
-    font-size: 2.3rem;
-    padding: 0 60px;
-  }
-
   section#case-study {
     margin: 40px auto;
+  }
+
+  section.lower-cta div.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  section.lower-cta .button {
+    width: 50%;
   }
 
   /* Our Team */
@@ -1101,6 +1056,14 @@ small {
 }
 
 @media (max-width: 500px) {
+  .banner img {
+    width: 75%;
+  }
+
+  .banner h1 {
+    font-size: 2rem;
+  }
+
   main {
     padding: 0 25px;
     margin-left: 0;
@@ -1218,6 +1181,7 @@ small {
 
 #design-goals p {
   text-align: center;
+  padding-top: 20px;
 }
 
 #goals-container {
@@ -1232,7 +1196,7 @@ small {
 
 .goals {
   width: 70px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 20px 10px;
 }
 
 /* ---------------------------------
@@ -1254,32 +1218,9 @@ small {
 
 /* (Writeup) */
 
-hr.minor {
-  background: #6df0de;
-  width: 100%;
-  height: 3px;
-  border: none;
-  padding: 0;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
 #case-study {
   color: var(--off-white);
   margin-bottom: 0;
-}
-
-.spacer {
-  height: 125px;
-}
-
-.spacer-top {
-  background: linear-gradient(180deg, #d8d8d8, var(--off-white));
-  border-radius: 3px 3px 0 0;
-}
-
-.spacer-bottom {
-  background: linear-gradient(180deg, var(--darkest-blue), var(--dark-blue));
 }
 
 .header-backdrop {
