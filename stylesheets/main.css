@@ -77,28 +77,27 @@ b {
 p > code,
 li > code {
   color: var(--bright-orange);
-  /* background: var(--light-blue); */
   padding: 0 0.2rem;
   border-radius: 4px;
 }
 
-.integration {
+.features {
   width: 100%;
-  display: flex;
-  color: #262335;
+  display: grid;
+  grid-template-columns: repeat(2, 50vw);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "deploy-article deploy-figure"
+    "integrate-figure integrate-article"
+    "manage-article manage-figure";
 }
 
-.integration:first-of-type {
-  padding-top: 20px;
-  padding-bottom: 40px;
+figure.integrate {
+  grid-area: integrate-figure;
 }
 
-.integration:nth-of-type(2) {
-  padding: 40px 0;
-}
-
-.integration:nth-of-type(3) {
-  padding-top: 40px;
+.box {
+  width: 50vw;
 }
 
 .text-box {
@@ -126,12 +125,12 @@ li > code {
   align-items: center;
 }
 
-.integration div.box {
+.features div.box {
   display: block;
   text-align: center;
 }
 
-.integration img {
+.features img {
   width: 100%;
   margin: 0 auto;
 }
