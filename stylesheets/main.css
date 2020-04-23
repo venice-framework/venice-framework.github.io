@@ -256,7 +256,6 @@ header p {
   position: initial;
   transform: none;
   margin: 1rem 0;
-  /* margin-bottom: 1rem; */
 }
 
 nav {
@@ -744,7 +743,6 @@ small {
 #goals-container {
   display: grid;
   grid-template-columns: 100px auto;
-  /* flex-direction: column; */
 }
 
 #goals-container p {
@@ -992,6 +990,10 @@ small {
     line-height: 1.5rem;
   }
 
+  section#case-study {
+    width: 90%;
+  }
+
   code,
   .command {
     font-size: 0.9rem;
@@ -1205,17 +1207,8 @@ small {
   }
 
   main {
-    min-width: 100vw;
-  }
-
-  main {
     padding: 0 25px;
     margin-left: 5px;
-  }
-
-  section#case-study,
-  section#docs {
-    margin: 20px;
   }
 
   nav ul li a,
