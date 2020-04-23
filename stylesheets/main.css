@@ -562,7 +562,7 @@ h3 {
 }
 
 #CLI-commands div {
-  width: 700px;
+  width: 90%;
 }
 
 #table1,
@@ -572,33 +572,6 @@ h3 {
 
 #CLI-commands tbody tr:nth-child(odd) {
   opacity: 0.55;
-}
-
-#table1 td:first-child {
-  padding-right: 120px;
-}
-
-#table2 td:first-child {
-  padding-right: 20px;
-}
-
-#table3 td:first-child {
-  padding-right: 80px;
-}
-
-#table1 td:last-child,
-#table1 th:last-child {
-  padding-left: 70px;
-}
-
-#table2 td:last-child,
-#table2 th:last-child {
-  padding-left: 20px;
-}
-
-#table3 td:last-child,
-#table3 th:last-child {
-  padding-left: 40px;
 }
 
 /* ---------------------- */
@@ -789,6 +762,40 @@ small {
 
 ------------------------------------ */
 
+@media (min-width: 1100px) {
+  /* first column */
+
+  th:first-child,
+  td:first-child {
+    padding-right: 120px;
+  }
+
+  #table2 td:first-child {
+    padding-right: 10px;
+  }
+
+  #table3 td:first-child {
+    padding-right: 65px;
+  }
+
+  /* third column */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding-left: 70px;
+  }
+
+  #table2 th:nth-child(3),
+  #table2 td:nth-child(3) {
+    padding-left: 20px;
+  }
+
+  #table3 th:nth-child(3),
+  #table3 td:nth-child(3) {
+    padding-left: 35px;
+  }
+}
+
 @media (max-width: 1400px) {
   .sidebar {
     margin-left: 0;
@@ -820,13 +827,45 @@ small {
     width: 100vw;
     padding: 0 10px 100px 10px;
   }
-  /* 
+
   section#case-study {
     margin: 70px auto;
-  } */
+  }
 
   #case-study h2:first-of-type {
     margin-top: 20px;
+  }
+
+  /* first column */
+
+  th:first-child,
+  td:first-child {
+    padding-right: 90px;
+  }
+
+  #table2 td:first-child {
+    padding-right: 15px;
+  }
+
+  #table3 td:first-child {
+    padding-right: 65px;
+  }
+
+  /* third column */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding-left: 50px;
+  }
+
+  #table2 th:nth-child(3),
+  #table2 td:nth-child(3) {
+    padding-left: 10px;
+  }
+
+  #table3 th:nth-child(3),
+  #table3 td:nth-child(3) {
+    padding-left: 15px;
   }
 
   #our-team h1 {
@@ -876,6 +915,34 @@ small {
     font-size: 1.25rem;
     padding: 0;
     margin: 0;
+  }
+
+  /* first column */
+
+  th:first-child,
+  td:first-child {
+    padding-right: 65px;
+  }
+
+  #table2 td:first-child {
+    padding-right: 15px;
+  }
+
+  /* third column */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding-left: 50px;
+  }
+
+  #table2 th:nth-child(3),
+  #table2 td:nth-child(3) {
+    padding-left: 10px;
+  }
+
+  #table3 th:nth-child(3),
+  #table3 td:nth-child(3) {
+    padding-left: 15px;
   }
 
   #our-team > p {
@@ -936,6 +1003,34 @@ small {
 
   .sidebar {
     display: none;
+  }
+
+  /* first column */
+
+  th:first-child,
+  td:first-child {
+    padding-right: 65px;
+  }
+
+  #table2 td:first-child {
+    padding-right: 15px;
+  }
+
+  /* third column */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding-left: 50px;
+  }
+
+  #table2 th:nth-child(3),
+  #table2 td:nth-child(3) {
+    padding-left: 10px;
+  }
+
+  #table3 th:nth-child(3),
+  #table3 td:nth-child(3) {
+    padding-left: 15px;
   }
 
   /* Our Team */
@@ -1008,9 +1103,9 @@ small {
 
   /* Main */
 
-  /* section#case-study {
+  section#case-study {
     margin: 40px auto;
-  } */
+  }
 
   section.lower-cta div.buttons {
     display: flex;
@@ -1020,6 +1115,34 @@ small {
 
   section.lower-cta .button {
     width: 50%;
+  }
+
+  /* first column */
+
+  th:first-child,
+  td:first-child {
+    padding-right: 40px;
+  }
+
+  #table2 td:first-child {
+    padding-right: 15px;
+  }
+
+  /* third column */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding-left: 50px;
+  }
+
+  #table2 th:nth-child(3),
+  #table2 td:nth-child(3) {
+    padding-left: 20px;
+  }
+
+  #table3 th:nth-child(3),
+  #table3 td:nth-child(3) {
+    padding-left: 35px;
   }
 
   /* Our Team */
@@ -1082,8 +1205,17 @@ small {
   }
 
   main {
+    min-width: 100vw;
+  }
+
+  main {
     padding: 0 25px;
-    margin-left: 0;
+    margin-left: 5px;
+  }
+
+  section#case-study,
+  section#docs {
+    margin: 20px;
   }
 
   nav ul li a,
@@ -1093,6 +1225,34 @@ small {
 
   #home p {
     font-size: 1.5rem;
+  }
+
+  /* first column */
+
+  th:first-child,
+  td:first-child {
+    padding-right: 30px;
+  }
+
+  #table2 td:first-child {
+    padding-right: 10px;
+  }
+
+  /* third column */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding-left: 40px;
+  }
+
+  #table2 th:nth-child(3),
+  #table2 td:nth-child(3) {
+    padding-left: 20px;
+  }
+
+  #table3 th:nth-child(3),
+  #table3 td:nth-child(3) {
+    padding-left: 25px;
   }
 
   #our-team .individual ul {
