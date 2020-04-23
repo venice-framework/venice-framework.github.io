@@ -894,7 +894,7 @@
               alt="A cluster of Kafka brokers managed by Zookeeper replaces the generic log from the generic pipeline diagram"
             />
             <figcaption>
-              Figure 19. A cluster of log-based Kafka brokers (managed by Zookeeper) receive event data from the user’s producer(s).
+              Figure 14. A cluster of log-based Kafka brokers (managed by Zookeeper) receive event data from the user’s producer(s).
             </figcaption>
           </figure>
 
@@ -920,13 +920,13 @@
               alt="ksqlDB replaces the stream processor from the generic pipeline diagram"
             />
             <figcaption>
-              Figure 20. ksqlDB (and its optional CLI) provides an approachable stream-processing engine.
+              Figure 15. ksqlDB (and its optional CLI) provides an approachable stream-processing engine.
             </figcaption>
           </figure>
 
           <p>Event stream processing is complex. For developers new to the domain, there is a lot to learn. Venice keeps things as simple as possible. Many stream processing engines (Apache Spark, Apache Flink, Apache Kafka Streams) require developers to write event-stream processing tasks in Java or Scala. This presents a barrier to entry for developers unfamiliar with these languages. Additionally, several Java stream processing engines (Spark, Flink) require dependencies for Java JDK and Apache Maven. These introduce additional complexity that might make it more challenging for the Venice user to troubleshoot problems in the pipeline. </p>
 
-          <p>Venice implements ksqlDB as the primary stream processor. ksqlDB is not technically a stream processing framework, but an abstraction over the Kafka Streams stream processing library. ksqlDB provides much of the functionality of the more robust engines while allowing developers to use the declarative SQL-like syntax seen in Figure 21. </p>
+          <p>Venice implements ksqlDB as the primary stream processor. ksqlDB is not technically a stream processing framework, but an abstraction over the Kafka Streams stream processing library. ksqlDB provides much of the functionality of the more robust engines while allowing developers to use the declarative SQL-like syntax seen in Figure 16. </p>
 
           <figure class="img-wrapper">
             <img
@@ -934,7 +934,7 @@
               alt="code samples of SQL and KSQL"
             />
             <figcaption>
-              Figure 21. An example for both SQL and KSQL filtering orders from platinum customers. TheSQL query provides a snapshot of these orders for a moment in time. The KSQL STREAM, is a standing query that will continuously update as new orders arrive.  
+              Figure 16. An example for both SQL and KSQL filtering orders from platinum customers. TheSQL query provides a snapshot of these orders for a moment in time. The KSQL STREAM, is a standing query that will continuously update as new orders arrive.  
             </figcaption>
           </figure>
 
@@ -950,7 +950,7 @@
               alt="Kafka Connect builds into the generalized pipeline to add a PostgreSQL database and optionally links to the generic Event Consumer(s)"
             />
             <figcaption>
-              Figure 22. Kafka Connect simplifies adding data sinks and sources; PostgreSQL provides developers a familiar database for their transformed data.
+              Figure 17. Kafka Connect simplifies adding data sinks and sources; PostgreSQL provides developers a familiar database for their transformed data.
             </figcaption>
           </figure>
 
@@ -994,7 +994,7 @@
               alt="the Schema Registry connects to the Kafka brokers, Kafka Connect, and the ksqlDB - sharing schemas throughout the pipeline"
             />
             <figcaption>
-              Figure 23. The Schema Registry assists with data consistency and correctness.
+              Figure 18. The Schema Registry assists with data consistency and correctness.
             </figcaption>
           </figure>
 
@@ -1006,7 +1006,7 @@
           
           <p>The simplicity of Kafka comes from having all the data in one place and having all the data follow similar conventions. Venice includes the Confluent Schema Registry and encourages developers to use the open source Avro data format. These two tools bolster the benefits of Kafka by supporting data consistency and minimizing the data transfer burden on the network. </p>
 
-          <p>The Schema Registry exists apart from the Kafka brokers. Producers and consumers interact directly with Kafka to write and read data and concurrently communicate with the Schema Registry [Figure 24] to send and retrieve schemas.</p>
+          <p>The Schema Registry exists apart from the Kafka brokers. Producers and consumers interact directly with Kafka to write and read data and concurrently communicate with the Schema Registry [Figure 19] to send and retrieve schemas.</p>
 
           <figure class="img-wrapper">
             <img
@@ -1014,7 +1014,7 @@
               alt="Producer feeds feeds data to Kafka; schema to the registry. Consumer pulls data from Kafka; schema from registry"
             />
             <figcaption>
-              Figure 24. Producers write events to Kafka while submitting the event schema to the Schema Registry. Consumers retrieve the schema from the Registry when they read the event from the Kafka broker.
+              Figure 19. Producers write events to Kafka while submitting the event schema to the Schema Registry. Consumers retrieve the schema from the Registry when they read the event from the Kafka broker.
             </figcaption>
           </figure>
 
@@ -1028,7 +1028,7 @@
 
           <h4>4.4.2 Avro Data Format</h4>
 
-          <p>Venice recommends users format their data using Avro [Figure 25]. Avro provides a rich schema definition language, integrates with the Confluent Schema Registry, and is sent efficiently over the network in a compact binary format [<a href="#avro" id="ref14">10</a>]. </p>
+          <p>Venice recommends users format their data using Avro [Figure 20]. Avro provides a rich schema definition language, integrates with the Confluent Schema Registry, and is sent efficiently over the network in a compact binary format [<a href="#avro" id="ref14">10</a>]. </p>
 
           <figure class="img-wrapper">
             <img
@@ -1036,7 +1036,7 @@
               alt="Two JSON objects: one describing event data; one the schema dictating the data type of each property in the object."
             />
             <figcaption>
-              Figure 25. An Avro event data object and accompanying schema - both are written in JSON, but translated to a more compact binary format when sent over the network.
+              Figure 20. An Avro event data object and accompanying schema - both are written in JSON, but translated to a more compact binary format when sent over the network.
             </figcaption>
           </figure>
 
@@ -1072,7 +1072,7 @@
               alt="Venice pipeline architecture diagram"
             />
             <figcaption>
-              Figure 14. The complete Venice pipeline.
+              Figure 21. The complete Venice pipeline.
             </figcaption>
           </figure>
 
@@ -1086,7 +1086,7 @@
                   alt="gif: 'venice install' allows a user to select which directory to clone from github; 'venice up' launches the pipeline."
                 />
                 <figcaption>
-                  Figure 15. CLI commands <code>venice install</code> and <code>venice up</code> in action.
+                  Figure 22. CLI commands <code>venice install</code> and <code>venice up</code> in action.
                 </figcaption>
               </figure>
             </li>
@@ -1136,7 +1136,7 @@
               alt="Three services with their dependencies isolated from one another in solid boxes inside a dotted box 'Managed by Docker' all within a larger 'Host Machine' box"
             />
             <figcaption>
-              Figure 16. Docker isolates each service and its dependencies in containers.
+              Figure 23. Docker isolates each service and its dependencies in containers.
             </figcaption>
           </figure>
 
@@ -1161,7 +1161,7 @@
               alt="gif of a user viewing bus event data in the Kafkdrop Kafka graphical user interface"
             />
             <figcaption>
-              Figure 17. The Kafdrop Kafka cluster graphical user interface
+              Figure 24. The Kafdrop Kafka cluster graphical user interface
             </figcaption>
           </figure>
 
@@ -1290,7 +1290,7 @@
               </table>
             </div>
             
-            <p>Figure 18. Commands for the Venice CLI</p>
+            <p>Figure 25. Commands for the Venice CLI</p>
           </div>
 
 <h2 id="Challenges" class="sec-header">6. Challenges</h2>
