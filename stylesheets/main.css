@@ -763,37 +763,36 @@ small {
 ------------------------------------ */
 
 @media (min-width: 1100px) {
-    /* first column */
+  /* first column */
 
-    th:first-child,
-    td:first-child {
-      padding-right: 120px;
-    }
-  
-    #table2 td:first-child {
-      padding-right: 10px;
-    }
-  
-    #table3 td:first-child {
-      padding-right: 65px;
-    }
-  
-    /* third column */
-  
-    th:nth-child(3),
-    td:nth-child(3) {
-      padding-left: 70px;
-    }
-  
-    #table2 th:nth-child(3),
-    #table2 td:nth-child(3) {
-      padding-left: 20px;
-    }
-  
-    #table3 th:nth-child(3),
-    #table3 td:nth-child(3) {
-      padding-left: 35px;
-    }
+  th:first-child,
+  td:first-child {
+    padding-right: 120px;
+  }
+
+  #table2 td:first-child {
+    padding-right: 10px;
+  }
+
+  #table3 td:first-child {
+    padding-right: 65px;
+  }
+
+  /* third column */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding-left: 70px;
+  }
+
+  #table2 th:nth-child(3),
+  #table2 td:nth-child(3) {
+    padding-left: 20px;
+  }
+
+  #table3 th:nth-child(3),
+  #table3 td:nth-child(3) {
+    padding-left: 35px;
   }
 }
 
@@ -801,6 +800,7 @@ small {
   .sidebar {
     margin-left: 0;
   }
+}
 
 @media (max-width: 1100px) {
   .banner img {
