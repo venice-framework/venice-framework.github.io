@@ -18,6 +18,10 @@
   --code: "Fira Code", monospace;
 }
 
+html {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--darkest-blue);
   color: var(--off-white);
@@ -32,7 +36,8 @@ body {
 }
 
 main {
-  max-width: 50rem;
+  width: 100%;
+  margin: 0 20px;
 }
 
 h1,
@@ -83,7 +88,7 @@ li > code {
 .features {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 50vw);
+  grid-template-columns: repeat(2, 100%);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
     "deploy-article deploy-figure"
@@ -93,10 +98,6 @@ li > code {
 
 figure.integrate {
   grid-area: integrate-figure;
-}
-
-.box {
-  width: 50vw;
 }
 
 .text-box {
@@ -117,11 +118,12 @@ figure.integrate {
 }
 
 .box {
-  width: 50vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   padding: 2rem;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .features div.box {
@@ -794,7 +796,7 @@ small {
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 2000px) {
   .sidebar {
     margin-left: 0;
   }
@@ -803,11 +805,6 @@ small {
 @media (max-width: 1100px) {
   .banner img {
     width: 35%;
-  }
-
-  main {
-    padding: 0 1rem;
-    margin-left: 1rem;
   }
 
   section.features {
@@ -990,8 +987,9 @@ small {
     line-height: 1.5rem;
   }
 
-  section#case-study {
-    width: 90%;
+  section#case-study,
+  section#docs {
+    margin: 20px;
   }
 
   code,
@@ -1105,10 +1103,6 @@ small {
 
   /* Main */
 
-  section#case-study {
-    margin: 40px auto;
-  }
-
   section.lower-cta div.buttons {
     display: flex;
     flex-direction: column;
@@ -1206,18 +1200,13 @@ small {
     font-size: 2rem;
   }
 
-  main {
-    padding: 0 25px;
-    margin-left: 5px;
-  }
-
   nav ul li a,
   header nav ul li a {
     font-size: 1rem;
   }
 
   #home p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   /* first column */
@@ -1279,15 +1268,11 @@ small {
   /* section */
 
   .text-box p {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
   }
 
-  .text-box h1 {
-    font-size: 2.5rem;
-  }
-
-  main {
-    padding: 0 70px 0 25px;
+  .text-box h2 {
+    font-size: 2rem;
   }
 
   h1 {
