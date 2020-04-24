@@ -954,7 +954,8 @@ small {
 }
 
 @media (min-width: 800px) {
-  section#case-study {
+  section#case-study,
+  section#docs {
     max-width: 1000px;
   }
 
