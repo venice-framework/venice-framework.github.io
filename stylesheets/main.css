@@ -953,6 +953,16 @@ small {
   }
 }
 
+@media (min-width: 800px) {
+  section#case-study {
+    max-width: 1000px;
+  }
+
+  .img-wrapper img {
+    max-width: 80%;
+  }
+}
+
 @media (max-width: 800px) {
   .banner img {
     width: 45%;
