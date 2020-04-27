@@ -88,7 +88,7 @@ li > code {
 .features {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 100%);
+  grid-template-columns: repeat(2, 50%);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
     "deploy-article deploy-figure"
@@ -163,7 +163,6 @@ figure.integrate {
 
 .button.button-primary:hover {
   background: var(--bright-orange);
-  /* color: #ececec; */
   color: var(--light-blue);
   border-color: var(--bright-orange);
   box-shadow: 0 0 4px var(--bright-orange);
@@ -807,19 +806,14 @@ small {
     width: 35%;
   }
 
-  section.features {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .features article {
-    width: 100vw;
+    width: 100%;
     text-align: center;
     padding-bottom: 100px;
   }
 
   .features div.box {
-    width: 100vw;
+    width: 100%;
     padding: 0 10px 100px 10px;
   }
 
