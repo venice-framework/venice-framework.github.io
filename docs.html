@@ -73,9 +73,9 @@
         <h2 id="What is Venice?">What is Venice?</h2>
 
 
-        <p>Venice is an open-source framework that enables users to deploy and manage stream processing pipelines.
-          Venice abstracts away much of the complexity of creating and managing a pipeline, allowing developers to focus
-          on application code rather than infrastructure.
+        <p>Venice is an open-source framework that enables users to deploy and manage stream processing pipelines.</p>
+        <p>Venice is designed for users who want to set up a streaming pipeline with minimal hassle, and may be most
+          suitable for developers who want to quickly deploy a streaming pipeline for a small application.</p>
         </p>
 
         <div class="img-wrapper">
@@ -102,13 +102,16 @@
           The Venice default pipeline consists of multiple components:
           <ul>
             <li>Kafka brokers for logging events</li>
-            <li>A Zookeeper instance for managing the cluster of Kafka brokers</li>
-            <li>A Schema Registry for managing schemas</li>
-            <li>ksqlDB servers for performing aggregations, filtration, transformations, and joins over real-time data
+            <li>Zookeeper for managing the Kafka brokers</li>
+            <li>Confluent Schema Registry for managing schemas</li>
+            <li>ksqlDB and ksqlCLI for performing aggregations, filtration, transformations, and joins over real-time
+              data
             </li>
-            <li>Kafka Connect workers for moving data in and out of Kafka and simplifying the process of adding new
+            <li>Kafka Connect for pushing data into and pulling data out of Kafka and for simplifying the process of
+              adding new
               sources and sinks</li>
-            <li>A PostgreSQL data sink for storing or presenting the data in multiple formats</li>
+            <li>PostgreSQL data sink for storing or presenting the data in multiple formats</li>
+            <li></li>
           </ul>
         </p>
 
@@ -130,22 +133,27 @@
         </div>
 
         <h3 id="When does it fit?">When does it fit?</h3>
-        <p>Venice is designed for users who want to set up a streaming pipeline with minimal hassle.</p>
+        <p>Venice offers a middle ground between proprietary and DIY solutions (more details <a
+            href="https://venice-framework.github.io/case-study.html#Venice">here</a>). Venice is open-source, abstracts
+          away some of the complexity, comes with reasonable defaults, and is fully customizable and extensible. It may
+          be most suitable for a subset of users.</p>
 
         <p>
           Venice may be a good fit if:
           <ul>
-            <li>You want to try stream processing using a fault-tolerant log-based message broker (Kafka) and have your
-              data output to a familiar PostgreSQL database.</li>
+            <li>You want to start with a basic stream processing pipeline for a small application.</li>
             <li>Most of the default settings would work for your use case.</li>
           </ul>
         </p>
 
         <h3 id="When does it not fit?">When does it not fit?</h3>
         <p>
-          Venice may not be a good fit if your use case is complex and would require substantial customization.
+          Venice may NOT be a good fit if:
+          <ul>
+            <li>Your application has to handle a large volume of events.</li>
+            <li>Your use case is complex and requires substantial customization.</li>
+          </ul>
         </p>
-
 
         <h2 id="Quickstart">Quickstart</h2>
         <h3 id="Installation Instructions">Installation Instructions</h3>
