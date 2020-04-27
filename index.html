@@ -1,204 +1,264 @@
 <!DOCTYPE html>
 <html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Venice</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Venice</title>
+    <link rel="stylesheet" href="stylesheets/reset.css" />
+    <link rel="stylesheet" href="stylesheets/main.css" />
 
-  <link rel="stylesheet" href="stylesheets/reset.css" />
-  <link rel="stylesheet" href="stylesheets/main.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/icons/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/icons/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/icons/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="images/icons/favicons/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Fira+Code&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content="Venice" />
+    <meta
+      property="og:description"
+      content="An open-source framework for deploying and managing stream processing pipelines"
+    />
+    <meta property="og:image" content="/images/thumbnail.png" />
+    <meta name="theme-color" content="#0f4c75" />
+    <script src="javascripts/sidebar.js"></script>
+  </head>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="images/icons/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicons/favicon-16x16.png">
-  <link rel="manifest" href="images/icons/favicons/manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Fira+Code&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap"
-    rel="stylesheet">
-  <meta property="og:title" content="Venice">
-  <meta property="og:description"
-    content="An open-source framework for deploying and managing stream processing pipelines">
-  <meta property="og:image" content="/images/thumbnail.png">
-  <meta name="theme-color" content="#0f4c75">
-  <script src="javascripts/sidebar.js"></script>
-</head>
+  <body>
+    <header id="home">
+      <div class="header-backdrop">
+        <nav>
+          <ul>
+            <li>
+              <a href="index.html">
+                <img src="images/logos/venice_logo.png" alt="Venice logo" />
+              </a>
+            </li>
+            <li><a href="case-study.html">Case Study</a></li>
+            <li><a href="docs.html">Docs</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li class="flex-float-right">
+              <a href="https://github.com/venice-framework" target="_blank">
+                <img
+                  src="images/logos/github-mark-light.png"
+                  alt="Venice GitHub"
+                  class="github"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-<body>
-
-  <header id="home">
-    <div class="header-backdrop">
-      <nav>
-        <ul>
-          <li>
-            <a href="index.html">
-              <img src="images/logos/venice_logo.png" alt="Venice logo" />
-            </a>
-          </li>
-          <li><a href="case-study.html">Case Study</a></li>
-          <li><a href="docs.html">Docs</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li class="flex-float-right">
-            <a href="https://github.com/venice-framework" target="_blank">
-              <img src="images/logos/github-mark-light.png" alt="Venice GitHub" class="github" />
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="banner">
-        <img src="../images/logos/venice_logo.png" alt="Venice">
-        <p>An open-source framework for deploying and managing stream processing pipelines</p>
-        <a href="case-study.html" class="button button-primary button-wide banner-cta">Case Study</a>
+        <div class="banner">
+          <img src="../images/logos/venice_logo.png" alt="Venice" />
+          <p>
+            An open-source framework for deploying and managing stream
+            processing pipelines
+          </p>
+          <a
+            href="case-study.html"
+            class="button button-primary button-wide banner-cta"
+            >Case Study</a
+          >
+        </div>
       </div>
+    </header>
+    <main></main>
+    <h1 id="overview">Overview</h1>
 
-    </div>
-  </header>
-  <main></main>
-  <h1 id="overview">Overview</h1>
+    <section class="features">
+      <article class="box deploy">
+        <div class="text-box">
+          <h2>Easy Deployment</h2>
+          <p>
+            Have your own stream processing pipeline set up in minutes.
+          </p>
+        </div>
+      </article>
 
-  <section class="integration">
-    <article class="box">
-      <div class="text-box">
-        <h2>Easy Deployment</h2>
-        <p>Have your own pipeline running in minutes using <code>venice up</code>.</p>
+      <figure class="box deploy">
+        <img
+          src="images/diagrams/gifs/setup.gif"
+          alt="'venice install' and 'venice up' commands in action"
+        />
+      </figure>
+
+      <article class="box integrate">
+        <div class="text-box">
+          <h2>Straightforward Integrations</h2>
+
+          <p>
+            Stream data from many sources to a variety of sinks through a single
+            processing pipeline.
+          </p>
+        </div>
+      </article>
+
+      <figure class="box integrate">
+        <img
+          src="images/Connectors.png"
+          class="connectors"
+          alt="PostgreSQL, Elasticsearch, InfluxDB logos"
+        />
+      </figure>
+
+      <article class="box manage">
+        <div class="text-box">
+          <h2><br />Simple Management</h2>
+
+          <p>
+            Use an intuitive and powerful syntax for common pipeline management
+            and development tasks.
+          </p>
+        </div>
+      </article>
+
+      <figure class="box manage">
+        <img
+          src="images/diagrams/gifs/workflow.gif"
+          alt="using the Venice CLI for insights and management of the system"
+        />
+      </figure>
+    </section>
+
+    <section class="lower-cta">
+      <h2>Want to know more?</h2>
+
+      <div class="buttons">
+        <a href="docs.html" class="button button-link button-wide banner-cta"
+          >Docs</a
+        >
+        <a
+          href="case-study.html"
+          class="button button-primary button-wide banner-cta"
+          >Case Study</a
+        >
+        <a
+          href="https://github.com/venice-framework"
+          target="_blank"
+          class="button button-link banner-cta"
+          >GitHub</a
+        >
       </div>
-    </article>
+    </section>
 
-    <div class="box">
-      <!-- replace with gif of Venice's CLI in action -->
-      <img src="images/diagrams/gifs/mothership-setup.gif" alt="motership-setup command in action" />
-    </div>
-  </section>
-
-  <section class="integration">
-    <div class="box">
-      <img src="images/langs.png" class="supported-languages" alt="Ruby, Python, Node.js" />
-    </div>
-
-    <article class="box">
-      <div class="text-box">
-        <h2>Many Integrations</h2>
-
-        <p>
-          Add data sources and sinks with ease.
-        </p>
-
+    <footer>
+      <div class="footer-backdrop">
+        <section id="our-team">
+          <h2>Our Team</h2>
+          <p>
+            We are looking for opportunities.<br />If you liked what you saw and
+            want to talk, please reach out!
+          </p>
+          <ul>
+            <li class="individual">
+              <img src="images/team/nancy.png" alt="Nancy Trinh" />
+              <h3>Nancy Trinh</h3>
+              <p>San Francisco, CA</p>
+              <ul class="social-icons">
+                <li>
+                  <a
+                    href="mailto:nantrinh338@gmail.com?subject=Venice%20Project"
+                  >
+                    <img src="images/icons/email_icon.png" alt="email" />
+                  </a>
+                </li>
+                <li>
+                  <a href="http://github.com/nantrinh" target="_blank">
+                    <img src="images/icons/website_icon.png" alt="website" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/nancytrinh/"
+                    target="_blank"
+                  >
+                    <img src="images/icons/linked_in_icon.png" alt="linkedin" />
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="individual">
+              <img src="images/team/David.jpg" alt="David Perich" />
+              <h3>David Perich</h3>
+              <p>Melbourne, AU</p>
+              <ul class="social-icons">
+                <li>
+                  <a
+                    href="mailto:davidnperich@gmail.com?subject=Venice%20Project"
+                  >
+                    <img src="images/icons/email_icon.png" alt="email" />
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.davidperich.com" target="_blank">
+                    <img src="images/icons/website_icon.png" alt="website" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/davidperich/"
+                    target="_blank"
+                  >
+                    <img src="images/icons/linked_in_icon.png" alt="linkedin" />
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="individual">
+              <img src="images/team/Melissa.png" alt="Melissa Manousos" />
+              <h3>Melissa Manousos</h3>
+              <p>Los Angeles, CA</p>
+              <ul class="social-icons">
+                <li>
+                  <a
+                    href="mailto:me@melissamanousos.com?subject=Venice%20Project"
+                    target="_blank"
+                  >
+                    <img src="images/icons/email_icon.png" alt="email" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://melissamanousos.com/" target="_blank">
+                    <img src="images/icons/website_icon.png" alt="website" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/melissa-manousos"
+                    target="_blank"
+                  >
+                    <img src="images/icons/linked_in_icon.png" alt="linkedin" />
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
       </div>
-    </article>
-  </section>
-
-  <section class="integration">
-    <article class="box">
-      <div class="text-box">
-        <h2><br />Simple Management</h2>
-
-        <p>
-          Intuitive and powerful syntax for common pipeline management tasks.
-        </p>
-
+      <div class="design-credit">
+        Logo and color scheme:
+        <a href="http://linzimurray.creative" target="_blank"
+          >linzimurray.creative</a
+        >
+        • Layout: <a href="http://jkulton.com" target="_blank">Jon Kulton</a>
       </div>
-    </article>
-
-    <div class="box">
-      <img class="browser-screenshot" src="images/manage-apps.png" alt="central control point for viewing apps" />
-    </div>
-  </section>
-
-  <section class="lower-cta">
-    <h2>Want to know more?</h2>
-
-    <div class="buttons">
-      <a href="docs.html" class="button button-link button-wide banner-cta">Docs</a>
-      <a href="case-study.html" class="button button-primary button-wide banner-cta">Case Study</a>
-      <a href="https://github.com/venice-framework" target="_blank" class="button button-link banner-cta">GitHub</a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-backdrop">
-      <section id="our-team">
-        <h2>Our Team</h2>
-        <p>
-          We are looking for opportunities.<br />If you liked what you saw and want to
-          talk, please reach out!
-        </p>
-        <ul>
-          <li class="individual">
-            <img src="images/team/nancy.png" alt="Nancy Trinh" />
-            <h3>Nancy Trinh</h3>
-            <p>San Francisco, CA</p>
-            <ul class="social-icons">
-              <li>
-                <a href="mailto:nantrinh338@gmail.com?subject=Venice%20Project">
-                  <img src="images/icons/email_icon.png" alt="email" />
-                </a>
-              </li>
-              <li>
-                <a href="http://github.com/nantrinh" target="_blank">
-                  <img src="images/icons/website_icon.png" alt="website" />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/nancytrinh/" target="_blank">
-                  <img src="images/icons/linked_in_icon.png" alt="linkedin" />
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="individual">
-            <img src="images/team/David.jpg" alt="David Perich" />
-            <h3>David Perich</h3>
-            <p>Melbourne, AU</p>
-            <ul class="social-icons">
-              <li>
-                <a href="mailto:davidnperich@gmail.com?subject=Venice%20Project">
-                  <img src="images/icons/email_icon.png" alt="email" />
-                </a>
-              </li>
-              <li>
-                <a href="http://www.davidperich.com" target="_blank">
-                  <img src="images/icons/website_icon.png" alt="website" />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/davidperich/" target="_blank">
-                  <img src="images/icons/linked_in_icon.png" alt="linkedin" />
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="individual">
-            <img src="images/team/Melissa.png" alt="Melissa Manousos" />
-            <h3>Melissa Manousos</h3>
-            <p>Los Angeles, CA</p>
-            <ul class="social-icons">
-              <li>
-                <a href="mailto:me@melissamanousos.com?subject=Venice%20Project" target="_blank">
-                  <img src="images/icons/email_icon.png" alt="email" />
-                </a>
-              </li>
-              <li>
-                <a href="https://melissamanousos.com/" target="_blank">
-                  <img src="images/icons/website_icon.png" alt="website" />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/melissa-manousos" target="_blank">
-                  <img src="images/icons/linked_in_icon.png" alt="linkedin" />
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-    </div>
-    <div class="design-credit">
-      Logo and color scheme: <a href="http://linzimurray.creative" target="_blank">linzimurray.creative</a> • Layout: <a
-        href="http://jkulton.com" target="_blank">Jon Kulton</a>
-    </div>
-  </footer>
-
-</body>
-
+    </footer>
+  </body>
 </html>

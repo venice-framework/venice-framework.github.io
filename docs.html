@@ -8,16 +8,19 @@
   <link rel="stylesheet" href="stylesheets/reset.css" />
   <link rel="stylesheet" href="stylesheets/main.css" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="images/icons/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicons/favicon-16x16.png">
-  <link rel="manifest" href="images/icons/favicons/manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Venice Documentation">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/icons/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicons/favicon-16x16.png" />
+  <link rel="manifest" href="images/icons/favicons/manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Fira+Code&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet" />
+  <meta property="og:title" content="Venice Documentation" />
   <meta property="og:description"
-    content="An open-source framework for deploying and managing stream processing pipelines">
-  <meta property="og:image" content="/images/thumbnail.png">
-  <meta name="theme-color" content="#0f4c75">
+    content="An open-source framework for deploying and managing stream processing pipelines" />
+  <meta property="og:image" content="/images/thumbnail.png" />
+  <meta name="theme-color" content="#0f4c75" />
   <script src="javascripts/sidebar.js"></script>
 </head>
 
@@ -42,95 +45,99 @@
     </nav>
   </header>
 
-  <div class="study-wrapper">
+  <div class="docs-wrapper">
     <aside class="sidebar">
       <ul>
         <li>
-          <a href="#What is Venice?">
-            What is Venice?</a>
-
+          <a href="#what-is-venice">What is Venice?</a>
           <ul>
-            <li><a href="#Features">Features</a></li>
-            <li><a href="#Components">Components</a></li>
-            <li><a href="#Architecture">Architecture</a></li>
-            <li><a href="#When does it fit?">When does it fit?</a></li>
-            <li><a href="#When does it not fit?">When does it not fit?</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#components">Components</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#when-does-it-fit">When does it fit?</a></li>
+            <li><a href="#when-does-it-not-fit">When does it not fit?</a></li>
           </ul>
-
-
         </li>
         <li>
-          <a href="#Quickstart">
-            Quickstart</a></li>
+          <a href="#Quickstart"> Quickstart</a>
+        </li>
       </ul>
     </aside>
 
     <main>
-      <section id="case-study">
+      <section id="docs">
         <h1>Documentation</h1>
 
-
-        <h2 id="What is Venice?">What is Venice?</h2>
-
+        <h2 id="what-is-venice" class="sec-header">What is Venice?</h2>
 
         <p>Venice is an open-source framework that enables users to deploy and manage stream processing pipelines.</p>
         <p>Venice is designed for users who want to set up a streaming pipeline with minimal hassle, and may be most
           suitable for developers who want to quickly deploy a streaming pipeline for a small application.</p>
         </p>
 
-        <div class="img-wrapper">
-          <video style="max-width: 100%" controls>
-            <source src="/images/rails-demo-website.mp4" type="video/mp4">
-          </video>
-          <p> A demo of deploying a pipeline where data is written to Kafka, aggregated in KSQL, and written to a
-            Postgres database via Kafka Connect.</p>
-        </div>
+        <figure class="img-wrapper">
+          <img src="/images/diagrams/gifs/workflow.gif" alt="gif of Venice pipeline in action" />
+          <figcaption>
+            A Venice pipeline in action.
+          </figcaption>
+        </figure>
 
-        <h3 id="Features">Features</h3>
+        <h3 id="features" class="sec-header">Features</h3>
         <p>
           Venice’s main features are:
-          <ul>
-            <li>An easy to use command line interface for common development and pipeline management tasks.</li>
-            <li>A default pipeline to quickly support stream processing applications.</li>
-            <li>Simple configuration of new connections and components.</li>
-            <li>A web-based UI for monitoring the message brokers.</li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            An easy to use command line interface for common development and
+            pipeline management tasks.
+          </li>
+          <li>
+            A default pipeline to quickly support stream processing
+            applications.
+          </li>
+          <li>Simple configuration of new connections and components.</li>
+          <li>A web-based UI for monitoring the message brokers.</li>
+        </ul>
 
-        <h3 id="Components">Components</h3>
+        <h3 id="components" class="sec-header">Components</h3>
         <p>
           The Venice default pipeline consists of multiple components:
-          <ul>
-            <li>Kafka brokers for logging events</li>
-            <li>Zookeeper for managing the Kafka brokers</li>
-            <li>Confluent Schema Registry for managing schemas</li>
-            <li>ksqlDB and ksqlCLI for performing aggregations, filtration, transformations, and joins over real-time
-              data
-            </li>
-            <li>Kafka Connect for pushing data into and pulling data out of Kafka and for simplifying the process of
-              adding new
-              sources and sinks</li>
-            <li>PostgreSQL data sink for storing or presenting the data in multiple formats</li>
-            <li></li>
-          </ul>
+        </p>
+        <ul>
+          <li>Kafka brokers for logging events</li>
+          <li>Zookeeper for managing the Kafka brokers</li>
+          <li>Confluent Schema Registry for managing schemas</li>
+          <li>ksqlDB and ksqlCLI for performing aggregations, filtration, transformations, and joins over real-time
+            data
+          </li>
+          <li>Kafka Connect for pushing data into and pulling data out of Kafka and for simplifying the process of
+            adding new
+            sources and sinks</li>
+          <li>PostgreSQL data sink for storing or presenting the data in multiple formats</li>
+          <li></li>
+        </ul>
+
+        <p>
+          The components used in the pipeline are packaged in Docker
+          containers, making them easy to build and deploy or swap for others
+          to better meet your needs.
         </p>
 
         <p>
-          The components used in the pipeline are packaged in Docker containers, making them easy to build and deploy or
-          swap for others to better meet your needs.</p>
+          To learn why we chose these components, read our
+          <a href="https://venice-framework.github.io/case-study.html">Case Study</a>
+        </p>
 
-        <p>To learn why we chose these components, read our <a
-            href="https://venice-framework.github.io/case-study.html">Case Study</a></p>
+        <h3 id="architecture" class="sec-header">Architecture</h3>
 
-        <h3 id="Architecture">Architecture</h3>
-        <div class="img-wrapper">
-          <figure>
-            <img src="images/diagrams/VeniceFull.png" style="max-height:400px"
-              alt="The Venice CLI manages the pipeline and can be used to attach additional components." />
-            <figcaption>The Venice CLI manages the pipeline and can be used to attach additional components.
-            </figcaption>
-          </figure>
-        </div>
+        <figure class="img-wrapper">
+          <img src="images/diagrams/VeniceFull.png" style="max-height: 400px;"
+            alt="The full Venice architecture - the Venice CLI manages the pipeline and can be used to attach additional components." />
+          <figcaption>
+            The Venice CLI manages the pipeline and can be used to attach
+            additional components.
+          </figcaption>
+        </figure>
 
         <h3 id="When does it fit?">When does it fit?</h3>
         <p>Venice offers a middle ground between proprietary and DIY solutions (more details <a
@@ -140,10 +147,11 @@
 
         <p>
           Venice may be a good fit if:
-          <ul>
-            <li>You want to start with a basic stream processing pipeline for a small application.</li>
-            <li>Most of the default settings would work for your use case.</li>
-          </ul>
+        </p>
+        <ul>
+          <li>You want to start with a basic stream processing pipeline for a small application.</li>
+          <li>Most of the default settings would work for your use case.</li>
+        </ul>
         </p>
 
         <h3 id="When does it not fit?">When does it not fit?</h3>
@@ -161,146 +169,259 @@
         <p>
           <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">Install Node and npm</a>
           <ul>
-            <li><a href="https://nodejs.org/">Node</a> (the CLI was created and tested with version 13.8.0)</li>
-            <li><a href="https://www.npmjs.com/get-npm">npm</a> (the CLI was created and tested with version 6.13.6)
+            <li>
+              <a href="https://nodejs.org/">Node</a> (the CLI was created and
+              tested with version 13.8.0)
+            </li>
+            <li>
+              <a href="https://www.npmjs.com/get-npm">npm</a> (the CLI was
+              created and tested with version 6.13.6)
             </li>
           </ul>
-        </p>
 
-        <h4 id="Install Venice CLI">Install Venice CLI</h4>
-        <p>
-          Use this command:
+          <h4>Install Venice CLI</h4>
           <p>
-            <code>git clone git@github.com:venice-framework/venice-cli.git && cd venice-cli && npm install && sudo npm link</code>
+            Use this command: <br />
+            <code>git clone git@github.com:venice-framework/venice-cli.git && cd
+              venice-cli && npm install && sudo npm link</code><br /><br />
+            Or do it step-by-step:
           </p>
-          <p>or do it step-by-step:</p>
+
           <ol>
-            <li>Clone the respository.</li>
-            <p><code>git clone git@github.com:venice-framework/venice-cli.git</code></p>
-            <li>Navigate into the newly installed <code>venice-cli</code> directory.</li>
-            <p><code>cd venice-cli</code></p>
-            <li>Install packages.</li>
-            <p><code>npm install</code> or <code>npm i</code></p>
-            <li>Create a symbolic link.</li>
-            <p><code>sudo npm link</code></p>
+            <li>
+              Clone the respository.<br />
+              <code>git clone git@github.com:venice-framework/venice-cli.git</code>
+            </li>
+
+            <li>
+              Navigate into the newly installed
+              <code>venice-cli</code> directory.<br />
+              <code>cd venice-cli</code>
+            </li>
+            <li>
+              Install packages.<br />
+              <code>npm install</code> or <code>npm i</code>
+            </li>
+            <li>
+              Create a symbolic link.<br />
+              <code>sudo npm link</code>
+            </li>
           </ol>
-        </p>
 
-        <h4 id="Choose a pipeline">Choose a pipeline</h4>
-        <p>Navigate to a repo containing a pipeline, or install a Venice default pipeline.</p>
-        <p>You can use the Venice pipeline with a PostgreSQL sink if you do not have a pipeline you want to test.
-        </p>
-        <p>NOTE: The following command will clone a repo into the current working directory. If you want the repo to be
-          cloned into another folder, navigate away from <code>venice-cli</code> now (e.g., `<code>cd ..</code>)</p>
-        <p><code>venice install</code></p>
-        <p>Select "venice - Base pipeline with a Postgres sink".</p>
-        <p><code>cd venice-postgres-sink</code></p>
+          <h4>Choose a pipeline</h4>
+          <p>
+            Navigate to a repo containing a pipeline, or install a Venice
+            default pipeline.
+          </p>
+          <p>
+            You can use the Venice pipeline with a PostgreSQL sink if you do not
+            have a pipeline you want to test.
+          </p>
+          <p>
+            NOTE: The following command will clone a repo into the current
+            working directory. If you want the repo to be cloned into another
+            folder, navigate away from <code>venice-cli</code> now (e.g., `<code>cd ..</code>)
+          </p>
+          <p><code>venice install</code></p>
+          <p>Select "venice - Base pipeline with a Postgres sink".</p>
+          <p><code>cd venice-postgres-sink</code></p>
 
+          <h4>Add a producer</h4>
+          <p>You can use your own or a Venice producer example.</p>
 
-        <h4 id="Add a producer">Add a producer</h4>
-        <p>You can use your own or a Venice producer example.</p>
+          <p>Open the <code>docker-compose.yml</code> file in a text editor.</p>
+          <p>
+            Uncomment the section for the producer so that
+            <code>producer</code> aligns vertically with the other services.
+          </p>
 
-        <p>Open the <code>docker-compose.yml</code> file in a text editor.</p>
-        <p>Uncomment the section for the producer so that <code>producer</code> aligns vertically with the other
-          services.</p>
-        <div class="img-wrapper">
-          <figure>
-            <img src="images/diagrams/Producer_DockerCompose.png" style="max-height:400px"
+          <figure class="img-wrapper">
+            <img src="images/diagrams/Producer_DockerCompose.png" style="max-height: 400px;"
               alt="code snippet of the producer service in the default docker-compose.yml file" />
             <figcaption>
+              code snippet of the producer service in the default
+              docker-compose.yml file
             </figcaption>
           </figure>
-        </div>
-        <p>
-          If you want to use your own producer, package it in a container and have it use the environment variables
-          <code>BROKER</code>, <code>TOPIC_NAME</code>, and <code>SCHEMA_REGISTRY_URL</code>. Then, swap out <code>image:
-          veniceframework/python-producer-test-key-string</code> for the image you want to use.
-        </p>
 
-        <h4 id="choose-whether-to-insert-or-upsert-the-data-into-postgresql">Choose whether to insert or upsert the data
-          into PostgreSQL</h4>
-        <p>Open the <code>docker-compose.yml</code> file in a text editor if it is not yet open.</p>
-        <p><code>insert</code> inserts every row into the table.
-          <code>upsert</code> adds a new row if a row with the same key does not exist yet. If a row with the same key
-          exists, that row is updated.</p>
-        <p>The PostgreSQL pipeline uses <code>upsert</code> by default.
-          Within the commands for the <code>connector-init</code> service, change <code>upsert</code> to
-          <code>insert</code> if you want to use <code>insert</code> instead.</p>
-        <div class="img-wrapper">
-          <figure>
-            <img src="images/diagrams/insert-upsert.png" style="max-height:400px"
+          <p>
+            If you want to use your own producer, package it in a container and
+            have it use the environment variables
+            <code>BROKER</code>, <code>TOPIC_NAME</code>, and
+            <code>SCHEMA_REGISTRY_URL</code>. Then, swap out
+            <code>image: veniceframework/python-producer-test-key-string</code>
+            for the image you want to use.
+          </p>
+
+          <h4>Choose whether to insert or upsert the data into PostgreSQL</h4>
+          <p>
+            Open the <code>docker-compose.yml</code> file in a text editor if it
+            is not yet open.
+          </p>
+          <p>
+            <code>insert</code> inserts every row into the table.
+            <code>upsert</code> adds a new row if a row with the same key does
+            not exist yet. If a row with the same key exists, that row is
+            updated.
+          </p>
+          <p>
+            The PostgreSQL pipeline uses <code>upsert</code> by default. Within
+            the commands for the <code>connector-init</code> service, change
+            <code>upsert</code> to <code>insert</code> if you want to use
+            <code>insert</code> instead.
+          </p>
+
+          <figure class="img-wrapper">
+            <img src="images/diagrams/insert-upsert.png" style="max-height: 400px;"
               alt="code snippet of the connector-init service in the default docker-compose.yml file, with the configuration line for insert or upsert highlighted" />
             <figcaption>
+              code snippet of the connector-init service in the default
+              docker-compose.yml file, with the configuration line for insert or
+              upsert highlighted
             </figcaption>
           </figure>
-        </div>
-        <p>Save and close the file.</p>
-        <h4 id="change-the-topic-name-and-postgresql-environment-variables-">Change the topic name and PostgreSQL
-          environment variables.</h4>
-        <p>Open the <code>.env</code> file in a text editor.
-          If you are following along with the Venice producer and PostgreSQL pipeline, change the values for
-          <code>TOPIC_NAME</code> to <code>bus_locations</code> and <code>POSTGRES_DB</code> to <code>buses</code>.
-          Save and close the file.</p>
-        <h4 id="start-the-pipeline-">Start the pipeline.</h4>
-        <p><code>venice up</code></p>
-        <h4 id="show-the-status-of-all-components-of-the-pipeline-">Show the status of all components of the pipeline.
-        </h4>
-        <p><code>venice status</code> or <code>venice -st</code></p>
-        <h4 id="to-follow-the-logs-of-one-or-more-components-press-space-bar-to-select-before-pressing-enter-return-">To
-          follow the logs of one or more components (press space bar to select before pressing enter/return)</h4>
-        <p><code>venice logs</code>
-          <img src="gifs/venice-logs.gif" alt="venice logs demo"></p>
-        <p>The output is piped to <code>less</code>, so you can navigate up and down through the logs using the arrow
-          keys or <code>j</code> and <code>k</code>. Use the spacebar to scroll down by “page”, and press <code>q</code>
-          to quit.</p>
-        <h4 id="show-topics-schemas-and-connectors">Show topics, schemas, and connectors</h4>
-        <p><code>venice topics</code> or <code>venice -t</code>
-          <code>venice schemas</code> | <code>venice -s</code>
-          <code>venice connectors</code> | <code>venice -c</code>venice</p>
-        <h4 id="open-the-ksql-cli-to-see-the-data-being-written-to-the-topic-">Open the KSQL CLI to see the data being
-          written to the topic.</h4>
-        <p>This will download the KSQL CLI if you have not already used it. There will be a notable delay as it loads
-          for the first time.
-          <code>venice ksql</code></p>
-        <p>If you get an error message that
-          <code>Remote server at http://ksql-server:8088 does not appear to be a valid KSQL server</code>, exit the KSQL
-          CLI and try again.</p>
-        <p>Try these KSQL commands:
-          Show all topics. You should see <code>bus_locations</code> among the list of topics.
-          <code>SHOW TOPICS;</code></p>
-        <p>Print all data from the beginning.
-          <code>PRINT bus_locations FROM BEGINNING;</code></p>
-        <p>Follow any new input.
-          <code>PRINT bus_locations;</code>
-          CTRL+C to stop printing.</p>
-        <p>You can issue additional queries over the data such as aggregations and other transformations.
-          See more KSQL commands in the <a
-            href="https://docs.confluent.io/current/ksql/docs/developer-guide/syntax-reference.html#ksql-statements">KSQL
-            documentation</a></p>
-        <p><code>CTRL+D</code> to exit the KSQL console.</p>
-        <h4 id="launch-the-postgresql-cli-to-see-the-data-populating-in-the-database-">Launch the PostgreSQL CLI to see
-          the data populating in the database.</h4>
-        <p><code>venice psql</code></p>
-        <p>If you are following along with the bus example, enter “venice_user” for the name of the PostgreSQL user, and
-          “buses” for the name of the PostgreSQL database.</p>
-        <p>PostgreSQL commands:
-          Show all tables. You should see <code>bus_locations</code>.
-          <code>\dt</code></p>
-        <p>Show the first ten rows.
-          <code>SELECT * FROM bus_locations LIMIT 10;</code></p>
-        <p>Display a count of how many records there are in the table.
-          <code>SELECT COUNT(*) FROM bus_locations;</code></p>
-        <p>CTRL+D to exit the PSQL console.
-          You can also use <code>exit</code>, <code>quit</code>, <code>\q</code>, or CTRL+C.</p>
-        <h4 id="gui">GUI</h4>
-        <p>For a graphic interface for the Kafka cluster, navigate to <code>localhost:9000</code> in your web browser.
-          Here you can view Kafka topics and consumer groups. You can examine individual messages to ensure they are
-          being serialized and deserialized correctly. You can also verify message distribution among partitions to
-          ensure balance.</p>
-        <h4 id="shut-down-the-venice-pipeline">Shut down the Venice pipeline</h4>
-        <p><code>venice down</code> </p>
 
+          <p>Save and close the file.</p>
+          <h4>Change the topic name and PostgreSQL environment variables.</h4>
+          <p>
+            Open the <code>.env</code> file in a text editor. If you are
+            following along with the Venice producer and PostgreSQL pipeline,
+            change the values for <code>TOPIC_NAME</code> to
+            <code>bus_locations</code> and <code>POSTGRES_DB</code> to
+            <code>buses</code>. Save and close the file.
+          </p>
+          <h4>Start the pipeline.</h4>
+          <p><code>venice up</code></p>
+          <h4>Show the status of all components of the pipeline.</h4>
+          <p><code>venice status</code> or <code>venice -st</code></p>
+          <h4>
+            To follow the logs of one or more components
+          </h4>
 
+          <p><code>venice logs</code></p>
+          <p>press space bar to select before pressing enter/return</p>
+
+          <figure class="img-wrapper">
+            <img src="images/diagrams/gifs/venice_logs_broker.gif" alt="venice logs demo" />
+            <figcaption><code>venice logs</code> demo</figcaption>
+          </figure>
+
+          <p>
+            The output is piped to <code>less</code>, so you can navigate up and
+            down through the logs using the arrow keys or <code>j</code> and
+            <code>k</code>. Use the spacebar to scroll down by “page”, and press
+            <code>q</code> to quit.
+          </p>
+          <h4>Show topics, schemas, and connectors</h4>
+          <p>
+            <code>venice topics</code> or <code>venice -t</code><br />
+            <code>venice schemas</code> or <code>venice -s</code><br />
+            <code>venice connectors</code> or <code>venice -c</code>
+          </p>
+
+          <figure class="img-wrapper">
+            <img src="images/diagrams/gifs/venice_topics_schemas_connectors.gif"
+              alt="gif of venice commands to view topics, schemas, and connectors" />
+            <figcaption>
+              view topics, schemas, and connectors
+            </figcaption>
+          </figure>
+
+          <h4>Open the KSQL CLI to see the data being written to the topic.</h4>
+          <p>
+            This will download the KSQL CLI if you have not already used it.
+            There will be a notable delay as it loads for the first time.
+          </p>
+          <p><code>venice ksql</code></p>
+          <p>
+            <i>If you get an error message that</i>
+            <code>Remote server at http://ksql-server:8088 does not appear to be a
+              valid KSQL server</code><i>, exit the KSQL CLI and try again.</i>
+          </p>
+
+          <figure class="img-wrapper">
+            <img src="images/diagrams/gifs/venice_ksql.gif" alt="gif of venice KSQL commands" />
+            <figcaption>
+              <code>SHOW TOPICS</code> and <code>PRINT bus_locations</code> KSQL
+              commands.
+            </figcaption>
+          </figure>
+
+          <p>
+            Try these KSQL commands: Show all topics. You should see
+            <code>bus_locations</code> among the list of topics.
+            <code>SHOW TOPICS;</code>
+          </p>
+          <p>
+            Print all data from the beginning.
+            <code>PRINT bus_locations FROM BEGINNING;</code>
+          </p>
+          <p>
+            Follow any new input.
+            <code>PRINT bus_locations;</code>
+            CTRL+C to stop printing.
+          </p>
+          <p>
+            You can issue additional queries over the data such as aggregations
+            and other transformations. See more KSQL commands in the
+            <a href="https://docs.confluent.io/current/ksql/docs/developer-guide/syntax-reference.html#ksql-statements">KSQL
+              documentation</a>
+          </p>
+          <p><code>CTRL+D</code> to exit the KSQL console.</p>
+          <h4 id="launch-the-postgresql-cli-to-see-the-data-populating-in-the-database-">
+            Launch the PostgreSQL CLI to see the data populating in the
+            database.
+          </h4>
+          <p><code>venice psql</code></p>
+          <p>
+            If you are following along with the bus example, enter “venice_user”
+            for the name of the PostgreSQL user, and “buses” for the name of the
+            PostgreSQL database.
+          </p>
+          <p>PostgreSQL commands:</p>
+
+          <ul>
+            <li>
+              Show all tables. You should see <code>bus_locations</code>.<br />
+              <code>\dt</code>
+            </li>
+            <li>
+              Show the first ten rows.<br />
+              <code>SELECT * FROM bus_locations LIMIT 10;</code>
+            </li>
+            <li>
+              Display a count of how many records there are in the table.<br />
+              <code>SELECT COUNT(*) FROM bus_locations;</code>
+            </li>
+            <li>
+              <code>CTRL+D</code> to exit the PSQL console.
+              <i>You can also use <code>exit</code>, <code>quit</code>,
+                <code>\q</code>, or <code>CTRL+C</code>.</i>
+            </li>
+          </ul>
+
+          <h4 id="gui">GUI</h4>
+          <p>
+            For a graphic interface for the Kafka cluster, navigate to
+            <code>localhost:9000</code> in your web browser. Here you can view
+            Kafka topics and consumer groups. You can examine individual
+            messages to ensure they are being serialized and deserialized
+            correctly. You can also verify message distribution among partitions
+            to ensure balance.
+          </p>
+
+          <figure class="img-wrapper">
+            <img src="images/diagrams/gifs/kafdrop_view_messages.gif"
+              alt="gif of viewing messages through the Kafdrop graphical user interface" />
+            <figcaption>
+              View partition messages in Kafdrop.
+            </figcaption>
+          </figure>
+
+          <h4 id="shut-down-the-venice-pipeline">
+            Shut down the Venice pipeline
+          </h4>
+          <p><code>venice down</code></p>
       </section>
     </main>
   </div>
@@ -314,14 +435,13 @@
     </div>
   </section>
 
-
   <footer>
     <div class="footer-backdrop">
       <section id="our-team">
         <h2>Our Team</h2>
         <p>
-          We are looking for opportunities.<br />If you liked what you saw and want to
-          talk, please reach out!
+          We are looking for opportunities.<br />If you liked what you saw and
+          want to talk, please reach out!
         </p>
         <ul>
           <li class="individual">
@@ -394,8 +514,9 @@
       </section>
     </div>
     <div class="design-credit">
-      Logo and color scheme: <a href="http://linzimurray.creative" target="_blank">linzimurray.creative</a> • Layout: <a
-        href="http://jkulton.com" target="_blank">Jon Kulton</a>
+      Logo and color scheme:
+      <a href="http://linzimurray.creative" target="_blank">linzimurray.creative</a>
+      • Layout: <a href="http://jkulton.com" target="_blank">Jon Kulton</a>
     </div>
   </footer>
 </body>
