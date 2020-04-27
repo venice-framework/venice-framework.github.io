@@ -721,7 +721,7 @@ small {
   color: var(--bright-orange);
 }
 
-.connectors {
+#connectors {
   max-width: 550px;
 }
 
